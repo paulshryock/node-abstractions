@@ -1,0 +1,25 @@
+# Contributing Guidelines
+
+-   Use version control
+-   Use test-driven development
+-   Write maintainable code
+    -   Write short units of code
+    -   Write simple units of code
+    -   Write code once
+    -   Keep unit interfaces small
+    -   Separate concerns in modules
+    -   Couple architecture components loosely
+    -   Keep architecture components balanced
+    -   Keep your codebase small
+    -   Automate development pipeline and tests
+    -   Write clean code
+-   Use continuous integration
+-   Use continuous delivery
+-   Enforce code quality standards
+    -   Format code consistently
+    -   Detect and prevent errors, vulnerabilities, and code smells
+    -   Ensure type safety
+    -   Ensure all code is tested
+-   Write documentation
+-   Keep a changelog
+-   Pair program whenever possible

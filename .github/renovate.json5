@@ -1,0 +1,28 @@
+{
+	extends: ['config:base', ':pinAllExceptPeerDependencies'],
+	assigneesFromCodeOwners: true,
+	labels: ['dependencies'],
+	packageRules: [
+		{
+			matchDepTypes: ['devDependencies'],
+			automerge: true,
+		},
+		{
+			matchUpdateTypes: [
+				'minor',
+				'patch',
+				'pin',
+				'pinDigest',
+				'digest',
+				'lockFileMaintenance',
+				'rollback',
+				'bump',
+				'replacement',
+			],
+			automerge: true,
+			platformAutomerge: true,
+		},
+	],
+	schedule: ['after 10pm and before 5am every weekday', 'every weekend'],
+	timezone: 'America/New_York',
+}

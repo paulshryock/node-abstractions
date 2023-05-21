@@ -1,0 +1,189 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="graph-div" aria-roledescription="flowchart-v2" style="max-width:100%" viewBox="-7.5 -8 924.867 234.75">
+  <style>
+    #graph-div{font-family:&quot;trebuchet ms&quot;,verdana,arial,sans-serif;font-size:16px;fill:#ccc}#graph-div .edge-thickness-normal{stroke-width:2px}#graph-div .edge-pattern-solid{stroke-dasharray:0}#graph-div .marker{fill:#d3d3d3;stroke:#d3d3d3}#graph-div .marker.cross{stroke:#d3d3d3}#graph-div .label,#graph-div svg{font-family:&quot;trebuchet ms&quot;,verdana,arial,sans-serif}#graph-div svg{font-size:16px}#graph-div .label{color:#ccc}#graph-div .cluster span,#graph-div .cluster-label span{color:#f9fffe}#graph-div span{fill:#ccc;color:#ccc}#graph-div .node circle,#graph-div .node path,#graph-div .node rect{fill:#1f2020;stroke:#81b1db;stroke-width:1px}#graph-div .node .label{text-align:center}#graph-div .flowchart-link{stroke:#d3d3d3;fill:none}#graph-div .edgeLabel{background-color:#585858;text-align:center}#graph-div .edgeLabel rect{opacity:.5;background-color:#585858;fill:#585858}#graph-div .cluster rect{fill:#474949;stroke:rgba(255,255,255,.25);stroke-width:1px}#graph-div :root{--mermaid-font-family:&quot;trebuchet ms&quot;,verdana,arial,sans-serif}
+  </style>
+  <marker id="flowchart-pointEnd" class="marker flowchart" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" refX="10" refY="5" viewBox="0 0 12 20">
+    <path d="m0 0 10 5-10 5z" class="arrowMarkerPath" style="stroke-width:1px;stroke-dasharray:1px,0"/>
+  </marker>
+  <marker id="flowchart-pointStart" class="marker flowchart" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" refX="0" refY="5" viewBox="0 0 10 10">
+    <path d="m0 5 10 5V0z" class="arrowMarkerPath" style="stroke-width:1px;stroke-dasharray:1px,0"/>
+  </marker>
+  <marker id="flowchart-circleEnd" class="marker flowchart" markerHeight="11" markerUnits="userSpaceOnUse" markerWidth="11" orient="auto" refX="11" refY="5" viewBox="0 0 10 10">
+    <circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width:1px;stroke-dasharray:1px,0"/>
+  </marker>
+  <marker id="flowchart-circleStart" class="marker flowchart" markerHeight="11" markerUnits="userSpaceOnUse" markerWidth="11" orient="auto" refX="-1" refY="5" viewBox="0 0 10 10">
+    <circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width:1px;stroke-dasharray:1px,0"/>
+  </marker>
+  <marker id="flowchart-crossEnd" class="marker cross flowchart" markerHeight="11" markerUnits="userSpaceOnUse" markerWidth="11" orient="auto" refX="12" refY="5.2" viewBox="0 0 11 11">
+    <use xlink:href="#reuse-0" class="arrowMarkerPath" style="stroke-width:2px;stroke-dasharray:1px,0"/>
+  </marker>
+  <marker id="flowchart-crossStart" class="marker cross flowchart" markerHeight="11" markerUnits="userSpaceOnUse" markerWidth="11" orient="auto" refX="-1" refY="5.2" viewBox="0 0 11 11">
+    <use xlink:href="#reuse-0" class="arrowMarkerPath" style="stroke-width:2px;stroke-dasharray:1px,0"/>
+  </marker>
+  <g class="root">
+    <g class="nodes">
+      <g class="root">
+        <g class="clusters" transform="translate(-7.5 -8)">
+          <g id="subGraph0" class="cluster default flowchart-label">
+            <rect width="908.867" height="218.75" x="8" y="8" rx="0" ry="0"/>
+            <foreignObject width="178.133" height="24" class="cluster-label" transform="translate(373.367 8)">
+              <div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;white-space:nowrap">
+                <span class="nodeLabel">
+                  Test-driven development
+                </span>
+              </div>
+            </foreignObject>
+          </g>
+        </g>
+        <g class="edgePaths" transform="translate(-7.5 -8)">
+          <path id="L-test-passes-0" marker-end="url(#flowchart-pointEnd)" d="M161.483 91h50" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-test LE-passes" style="fill:none"/>
+          <path id="L-passes-code-0" marker-end="url(#flowchart-pointEnd)" d="m311.258 71.5 7.765-3.375C326.79 64.75 342.32 58 360.118 55.42s37.865-.988 47.899-.193l10.033.796" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-passes LE-code" style="fill:none"/>
+          <path id="L-code-passes-0" marker-end="url(#flowchart-pointEnd)" d="m418.05 81.644-10.033 2.35c-10.034 2.352-30.1 7.054-46.225 9.089-16.125 2.034-28.309 1.401-34.4 1.085l-6.092-.316" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-code LE-passes" style="fill:none"/>
+          <path id="L-passes-ready-0" marker-end="url(#flowchart-pointEnd)" d="m295.87 110.5 10.33 6.833c10.33 6.834 30.99 20.5 47.412 27.334 16.421 6.833 28.605 6.833 34.696 6.833h6.092" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-passes LE-ready" style="fill:none"/>
+          <path id="L-ready-refactor-0" marker-end="url(#flowchart-pointEnd)" d="m532.593 132 18.176-10.792c18.177-10.791 54.529-32.375 78.797-42.487 24.267-10.111 36.45-8.752 42.542-8.072l6.092.68" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-ready LE-refactor" style="fill:none"/>
+          <path id="L-refactor-ready-0" marker-end="url(#flowchart-pointEnd)" d="m686.929 102.75-7.547 1.5c-7.546 1.5-22.639 4.5-42.234 9.375-19.594 4.875-43.69 11.625-55.739 15L569.361 132" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-refactor LE-ready" style="fill:none"/>
+          <path id="L-ready-commit-0" marker-end="url(#flowchart-pointEnd)" d="m605.1 166.905 6.092.891c6.091.89 18.275 2.672 39.975 3.563 21.7.891 52.916.891 68.525.891H735.3" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-ready LE-commit" style="fill:none"/>
+        </g>
+        <g class="edgeLabels">
+          <g class="edgeLabel">
+            <foreignObject width="0" height="0" class="label" transform="translate(-7.5 -8)">
+              <div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;white-space:nowrap">
+                <span class="edgeLabel"/>
+              </div>
+            </foreignObject>
+          </g>
+          <g class="edgeLabel">
+            <foreignObject width="17.333" height="24" class="label" transform="translate(341.683 31.25)">
+              <div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;white-space:nowrap">
+                <span class="edgeLabel">
+                  no
+                </span>
+              </div>
+            </foreignObject>
+          </g>
+          <g class="edgeLabel">
+            <foreignObject width="0" height="0" class="label" transform="translate(-7.5 -8)">
+              <div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;white-space:nowrap">
+                <span class="edgeLabel"/>
+              </div>
+            </foreignObject>
+          </g>
+          <g class="edgeLabel">
+            <foreignObject width="23.1" height="24" class="label" transform="translate(338.8 131.5)">
+              <div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;white-space:nowrap">
+                <span class="edgeLabel">
+                  yes
+                </span>
+              </div>
+            </foreignObject>
+          </g>
+          <g class="edgeLabel">
+            <foreignObject width="17.333" height="24" class="label" transform="translate(625.483 47.25)">
+              <div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;white-space:nowrap">
+                <span class="edgeLabel">
+                  no
+                </span>
+              </div>
+            </foreignObject>
+          </g>
+          <g class="edgeLabel">
+            <foreignObject width="0" height="0" class="label" transform="translate(-7.5 -8)">
+              <div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;white-space:nowrap">
+                <span class="edgeLabel"/>
+              </div>
+            </foreignObject>
+          </g>
+          <g class="edgeLabel">
+            <foreignObject width="23.1" height="24" class="label" transform="translate(622.6 152.25)">
+              <div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;white-space:nowrap">
+                <span class="edgeLabel">
+                  yes
+                </span>
+              </div>
+            </foreignObject>
+          </g>
+        </g>
+        <g class="nodes" transform="translate(-7.5 -8)">
+          <g id="flowchart-test-28075" class="node default default flowchart-label" transform="translate(97.242 91)">
+            <rect width="128.483" height="39" x="-64.242" y="-19.5" rx="19.5" ry="19.5"/>
+            <g class="label" transform="translate(-51.867 -12)">
+              <rect/>
+              <foreignObject width="103.733" height="24">
+                <div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;white-space:nowrap">
+                  <span class="nodeLabel">
+                    1. Write a test
+                  </span>
+                </div>
+              </foreignObject>
+            </g>
+          </g>
+          <g id="flowchart-passes-28076" class="node default default flowchart-label" transform="translate(266.392 91)">
+            <rect width="109.817" height="39" x="-54.908" y="-19.5" rx="19.5" ry="19.5"/>
+            <g class="label" transform="translate(-42.533 -12)">
+              <rect/>
+              <foreignObject width="85.067" height="24">
+                <div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;white-space:nowrap">
+                  <span class="nodeLabel">
+                    Test passes?
+                  </span>
+                </div>
+              </foreignObject>
+            </g>
+          </g>
+          <g id="flowchart-code-28077" class="node default default flowchart-label" transform="translate(499.75 62.5)">
+            <rect width="163.4" height="39" x="-81.7" y="-19.5" rx="19.5" ry="19.5"/>
+            <g class="label" transform="translate(-69.325 -12)">
+              <rect/>
+              <foreignObject width="138.65" height="24">
+                <div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;white-space:nowrap">
+                  <span class="nodeLabel">
+                    2. Write some code
+                  </span>
+                </div>
+              </foreignObject>
+            </g>
+          </g>
+          <g id="flowchart-ready-28078" class="node default default flowchart-label" transform="translate(499.75 151.5)">
+            <rect width="210.7" height="39" x="-105.35" y="-19.5" rx="19.5" ry="19.5"/>
+            <g class="label" transform="translate(-92.975 -12)">
+              <rect/>
+              <foreignObject width="185.95" height="24">
+                <div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;white-space:nowrap">
+                  <span class="nodeLabel">
+                    Code is production-ready?
+                  </span>
+                </div>
+              </foreignObject>
+            </g>
+          </g>
+          <g id="flowchart-refactor-28079" class="node default default flowchart-label" transform="translate(785.033 83.25)">
+            <rect width="213.667" height="39" x="-106.833" y="-19.5" rx="19.5" ry="19.5"/>
+            <g class="label" transform="translate(-94.458 -12)">
+              <rect/>
+              <foreignObject width="188.917" height="24">
+                <div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;white-space:nowrap">
+                  <span class="nodeLabel">
+                    3. Refactor code and tests
+                  </span>
+                </div>
+              </foreignObject>
+            </g>
+          </g>
+          <g id="flowchart-commit-28080" class="node default default flowchart-label" transform="translate(785.033 172.25)">
+            <rect width="99.467" height="39" x="-49.733" y="-19.5" rx="19.5" ry="19.5"/>
+            <g class="label" transform="translate(-37.358 -12)">
+              <rect/>
+              <foreignObject width="74.717" height="24">
+                <div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;white-space:nowrap">
+                  <span class="nodeLabel">
+                    4. Commit
+                  </span>
+                </div>
+              </foreignObject>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

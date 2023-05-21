@@ -70,5 +70,8 @@
 		"tslib": "^2.5.0",
 		"typedoc": "^0.24.7",
 		"typescript": "^5.0.4"
+	},
+	"engines": {
+		"node": ">=14.13.1"
 	}
 }

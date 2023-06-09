@@ -2,6 +2,12 @@
 
 Reusable abstractions for Node.js.
 
+## Requirements
+
+| Software | Minimum Version |
+| :------- | :-------------- |
+| Node     | 14.13.1         |
+
 ## Installation
 
 ```bash

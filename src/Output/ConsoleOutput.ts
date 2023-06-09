@@ -8,13 +8,13 @@ import { stderr, stdout } from 'node:process'
 /**
  * Console Output class for printing messages to stdout and stderr streams.
  *
- * @since unreleased
+ * @since 0.1.0
  */
 export class ConsoleOutput implements Output {
 	/**
 	 * Console Output class constructor.
 	 *
-	 * @since unreleased
+	 * @since 0.1.0
 	 *
 	 * @param {Console} console Console instance which writes to stdout and
 	 *                          stderr streams.
@@ -26,7 +26,7 @@ export class ConsoleOutput implements Output {
 	/**
 	 * Prints an error to stderr stream.
 	 *
-	 * @since unreleased
+	 * @since 0.1.0
 	 *
 	 * @param {string} message           Message to output.
 	 * @param {any[]}  ...optionalParams Optional parameters.
@@ -38,7 +38,7 @@ export class ConsoleOutput implements Output {
 	/**
 	 * Prints a warning to stderr stream.
 	 *
-	 * @since unreleased
+	 * @since 0.1.0
 	 *
 	 * @param {string} message           Message to output.
 	 * @param {any[]}  ...optionalParams Optional parameters.
@@ -50,7 +50,7 @@ export class ConsoleOutput implements Output {
 	/**
 	 * Prints a log message to stdout stream.
 	 *
-	 * @since unreleased
+	 * @since 0.1.0
 	 *
 	 * @param {string} message           Message to output.
 	 * @param {any[]}  ...optionalParams Optional parameters.
@@ -62,7 +62,7 @@ export class ConsoleOutput implements Output {
 	/**
 	 * Prints an info message to stdout stream.
 	 *
-	 * @since unreleased
+	 * @since 0.1.0
 	 *
 	 * @param {string} message           Message to output.
 	 * @param {any[]}  ...optionalParams Optional parameters.
@@ -74,7 +74,7 @@ export class ConsoleOutput implements Output {
 	/**
 	 * Print a debug message to stdout stream.
 	 *
-	 * @since unreleased
+	 * @since 0.1.0
 	 *
 	 * @param {string} message           Message to output.
 	 * @param {any[]}  ...optionalParams Optional parameters.
@@ -86,7 +86,7 @@ export class ConsoleOutput implements Output {
 	/**
 	 * Gets the console instance.
 	 *
-	 * @since  unreleased
+	 * @since  0.1.0
 	 *
 	 * @return {Console}
 	 */

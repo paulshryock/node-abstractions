@@ -3,13 +3,13 @@
 /**
  * Output abstraction for printing messages to output and error streams.
  *
- * @since unreleased
+ * @since 0.1.0
  */
 export interface Output {
 	/**
 	 * Prints an error to an error stream.
 	 *
-	 * @since unreleased
+	 * @since 0.1.0
 	 *
 	 * @param {string} message           Message to output.
 	 * @param {any[]}  ...optionalParams Optional parameters.
@@ -19,7 +19,7 @@ export interface Output {
 	/**
 	 * Prints a warning to an error stream.
 	 *
-	 * @since unreleased
+	 * @since 0.1.0
 	 *
 	 * @param {string} message           Message to output.
 	 * @param {any[]}  ...optionalParams Optional parameters.
@@ -29,7 +29,7 @@ export interface Output {
 	/**
 	 * Prints a log message to an output stream.
 	 *
-	 * @since unreleased
+	 * @since 0.1.0
 	 *
 	 * @param {string} message           Message to output.
 	 * @param {any[]}  ...optionalParams Optional parameters.
@@ -39,7 +39,7 @@ export interface Output {
 	/**
 	 * Prints an info message to an output stream.
 	 *
-	 * @since unreleased
+	 * @since 0.1.0
 	 *
 	 * @param {string} message           Message to output.
 	 * @param {any[]}  ...optionalParams Optional parameters.
@@ -49,7 +49,7 @@ export interface Output {
 	/**
 	 * Print a debug message to an output stream.
 	 *
-	 * @since unreleased
+	 * @since 0.1.0
 	 *
 	 * @param {string} message           Message to output.
 	 * @param {any[]}  ...optionalParams Optional parameters.

@@ -1,6 +1,6 @@
 {
 	"name": "@paulshryock/abstractions",
-	"version": "0.0.0",
+	"version": "0.1.0",
 	"description": "Reusable abstractions for Node.js.",
 	"keywords": [
 		"abstraction",

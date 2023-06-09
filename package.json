@@ -43,7 +43,8 @@
 		"upgrade:all": "ncu --upgrade",
 		"upgrade:dry-run": "ncu",
 		"upgrade:minor": "ncu --target=minor --upgrade",
-		"upgrade:patch": "ncu --target=patch --upgrade"
+		"upgrade:patch": "ncu --target=patch --upgrade",
+		"version": "release-bump -epq --ignore=coverage,dist && git add ."
 	},
 	"devDependencies": {
 		"@babel/core": "^7.22.5",
@@ -68,6 +69,7 @@
 		"npm-run-all2": "^6.0.5",
 		"prettier": "^2.8.8",
 		"prettier-plugin-packagejson": "^2.4.3",
+		"release-bump": "3.0.0-alpha.69",
 		"ts-node": "^10.9.1",
 		"tslib": "^2.5.3",
 		"typedoc": "^0.24.8",

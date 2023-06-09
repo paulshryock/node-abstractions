@@ -8,6 +8,26 @@ Reusable abstractions for Node.js.
 npm install @paulshryock/abstractions
 ```
 
+## Usage
+
+### Output
+
+```typescript
+import { Output } from '@paulshryock/abstractions'
+
+class MyService {
+    constructor(private readonly output: Output) {}
+
+    outputMessages(): void {
+        this.output.error('An error occurred.')
+        this.output.warn('A warning message.')
+        this.output.log('A log message.')
+        this.output.info('An info message.')
+        this.output.debug('A debug message.')
+    }
+}
+```
+
 ## Support
 
 -   [Ask a question](https://github.com/paulshryock/abstractions/issues/new?assignees=&labels=question&projects=&template=1_ask_a_question.md&title=)
@@ -22,7 +42,7 @@ npm install @paulshryock/abstractions
 -   [ ] FileSystem
 -   [ ] Input
 -   [ ] Network
--   [ ] Output
+-   ✅ Output
 
 ## Contributing
 

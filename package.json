@@ -11,13 +11,13 @@
 		"file system",
 		"network"
 	],
-	"homepage": "https://github.com/paulshryock/abstractions",
+	"homepage": "https://github.com/paulshryock/node-abstractions",
 	"bugs": {
-		"url": "https://github.com/paulshryock/abstractions/issues/new?assignees=&labels=bug&projects=&template=4_report_a_bug.md&title="
+		"url": "https://github.com/paulshryock/node-abstractions/issues/new?assignees=&labels=bug&projects=&template=4_report_a_bug.md&title="
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/paulshryock/abstractions.git"
+		"url": "git+https://github.com/paulshryock/node-abstractions.git"
 	},
 	"license": "MIT",
 	"author": "Paul Shryock (https://github.com/paulshryock)",

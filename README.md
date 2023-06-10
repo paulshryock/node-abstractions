@@ -36,10 +36,10 @@ class MyService {
 
 ## Support
 
--   [Ask a question](https://github.com/paulshryock/abstractions/issues/new?assignees=&labels=question&projects=&template=1_ask_a_question.md&title=)
--   [Request a feature](https://github.com/paulshryock/abstractions/issues/new?assignees=&labels=enhancement&projects=&template=2_request_a_feature.md&title=)
--   [Document a user story](https://github.com/paulshryock/abstractions/issues/new?assignees=&labels=enhancement&projects=&template=3_document_a_user_story.md&title=)
--   [Report a bug](https://github.com/paulshryock/abstractions/issues/new?assignees=&labels=bug&projects=&template=4_report_a_bug.md&title=)
+-   [Ask a question](https://github.com/paulshryock/node-abstractions/issues/new?assignees=&labels=question&projects=&template=1_ask_a_question.md&title=)
+-   [Request a feature](https://github.com/paulshryock/node-abstractions/issues/new?assignees=&labels=enhancement&projects=&template=2_request_a_feature.md&title=)
+-   [Document a user story](https://github.com/paulshryock/node-abstractions/issues/new?assignees=&labels=enhancement&projects=&template=3_document_a_user_story.md&title=)
+-   [Report a bug](https://github.com/paulshryock/node-abstractions/issues/new?assignees=&labels=bug&projects=&template=4_report_a_bug.md&title=)
 
 ## Roadmap
 
@@ -52,7 +52,7 @@ class MyService {
 
 ## Contributing
 
-Contributions are welcome! **Read the [contribution guidelines](https://github.com/paulshryock/abstractions/blob/main/CONTRIBUTING.md)**, and then submit a pull request.
+Contributions are welcome! **Read the [contribution guidelines](https://github.com/paulshryock/node-abstractions/blob/main/CONTRIBUTING.md)**, and then submit a pull request.
 
 ## Authors and acknowledgment
 
@@ -60,7 +60,7 @@ Contributions are welcome! **Read the [contribution guidelines](https://github.c
 
 ## License
 
-[MIT License](https://github.com/paulshryock/abstractions/blob/main/LICENSE)
+[MIT License](https://github.com/paulshryock/node-abstractions/blob/main/LICENSE)
 
 ## Project status
 

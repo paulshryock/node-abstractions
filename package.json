@@ -24,6 +24,10 @@
 	"type": "module",
 	"main": "./dist/index.js",
 	"typings": "./dist/index.d.ts",
+	"files": [
+		"./dist/index.js",
+		"./dist/index.d.ts"
+	],
 	"scripts": {
 		"precompile": "rm -rf dist",
 		"compile": "esbuild src/index.ts --bundle --format=esm --minify --outfile=dist/index.js --platform=node",

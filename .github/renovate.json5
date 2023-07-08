@@ -4,10 +4,12 @@
 	labels: ['dependencies'],
 	packageRules: [
 		{
-			matchDepTypes: ['devDependencies'],
 			automerge: true,
+			matchDepTypes: ['devDependencies'],
+			platformCommit: true,
 		},
 		{
+			automerge: true,
 			matchUpdateTypes: [
 				'minor',
 				'patch',
@@ -19,8 +21,7 @@
 				'bump',
 				'replacement',
 			],
-			automerge: true,
-			platformAutomerge: true,
+			platformCommit: true,
 		},
 	],
 	schedule: ['after 10pm and before 5am every weekday', 'every weekend'],

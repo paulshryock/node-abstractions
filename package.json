@@ -63,7 +63,7 @@
 		"babel-jest": "29.5.0",
 		"dts-bundle-generator": "8.0.1",
 		"esbuild": "0.17.19",
-		"eslint": "8.42.0",
+		"eslint": "8.44.0",
 		"eslint-config-prettier": "8.8.0",
 		"eslint-plugin-json": "3.1.0",
 		"husky": "8.0.3",

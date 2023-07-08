@@ -1,5 +1,7 @@
 import { ConsoleOutput } from '../../src/Output/ConsoleOutput.ts'
-import { describe, expect, it, jest } from '@jest/globals'
+import { MessageStringable } from '../../src/Stringable/MessageStringable.ts'
+import { Stringable } from '../../src/Stringable/Stringable.ts'
+import { describe, expect, it, jest, test } from '@jest/globals'
 import { Console } from 'node:console'
 import { Writable } from 'node:stream'
 
@@ -17,58 +19,93 @@ class MockConsole extends Console {
 
 describe('ConsoleOutput', () => {
 	describe('error', () => {
-		it('should print an error to stderr stream', () => {
-			const mockConsole = new MockConsole()
-			const output = new ConsoleOutput(mockConsole)
+		const errorMessage = 'An error occurred.'
 
-			output.error('An error occurred.')
+		describe.each([errorMessage, new MessageStringable(errorMessage)])(
+			'should print an error to stderr stream',
+			(message: string | Stringable) => {
+				test(message.constructor.name, () => {
+					const mockConsole = new MockConsole()
+					const output = new ConsoleOutput(mockConsole)
 
-			expect(mockConsole.error).toHaveBeenCalled()
-		})
+					output.error(message)
+
+					expect(mockConsole.error).toHaveBeenCalledWith(errorMessage)
+				})
+			},
+		)
 	})
 
 	describe('warn', () => {
-		it('should print a warning to stderr stream', () => {
-			const mockConsole = new MockConsole()
-			const output = new ConsoleOutput(mockConsole)
+		const warningMessage = 'An warning message.'
 
-			output.warn('A warning message.')
+		describe.each([warningMessage, new MessageStringable(warningMessage)])(
+			'should print a warning to stderr stream',
+			(message: string | Stringable) => {
+				test(message.constructor.name, () => {
+					const mockConsole = new MockConsole()
+					const output = new ConsoleOutput(mockConsole)
 
-			expect(mockConsole.warn).toHaveBeenCalled()
-		})
+					output.warn(message)
+
+					expect(mockConsole.warn).toHaveBeenCalledWith(warningMessage)
+				})
+			},
+		)
 	})
 
 	describe('log', () => {
-		it('should print a log message to stdout stream', () => {
-			const mockConsole = new MockConsole()
-			const output = new ConsoleOutput(mockConsole)
+		const logMessage = 'A log message.'
 
-			output.log('A log message.')
+		describe.each([logMessage, new MessageStringable(logMessage)])(
+			'should print a log message to stdout stream',
+			(message: string | Stringable) => {
+				test(message.constructor.name, () => {
+					const mockConsole = new MockConsole()
+					const output = new ConsoleOutput(mockConsole)
 
-			expect(mockConsole.log).toHaveBeenCalled()
-		})
+					output.log(message)
+
+					expect(mockConsole.log).toHaveBeenCalledWith(logMessage)
+				})
+			},
+		)
 	})
 
 	describe('info', () => {
-		it('should print an info message to stdout stream', () => {
-			const mockConsole = new MockConsole()
-			const output = new ConsoleOutput(mockConsole)
+		const infoMessage = 'An info message.'
 
-			output.info('A info message.')
+		describe.each([infoMessage, new MessageStringable(infoMessage)])(
+			'should print an info message to stdout stream',
+			(message: string | Stringable) => {
+				test(message.constructor.name, () => {
+					const mockConsole = new MockConsole()
+					const output = new ConsoleOutput(mockConsole)
 
-			expect(mockConsole.info).toHaveBeenCalled()
-		})
+					output.info(message)
+
+					expect(mockConsole.info).toHaveBeenCalledWith(infoMessage)
+				})
+			},
+		)
 	})
 
 	describe('debug', () => {
-		it('should print a debug message to stdout stream', () => {
-			const mockConsole = new MockConsole()
-			const output = new ConsoleOutput(mockConsole)
+		const debugMessage = 'A debug message.'
 
-			output.debug('A debug message.')
+		describe.each([debugMessage, new MessageStringable(debugMessage)])(
+			'should print a debug message to stdout stream',
+			(message: string | Stringable) => {
+				test(message.constructor.name, () => {
+					const mockConsole = new MockConsole()
+					const output = new ConsoleOutput(mockConsole)
 
-			expect(mockConsole.debug).toHaveBeenCalled()
-		})
+					output.debug(message)
+
+					expect(mockConsole.debug).toHaveBeenCalledWith(debugMessage)
+				})
+			},
+		)
 	})
 
 	describe('getConsole', () => {

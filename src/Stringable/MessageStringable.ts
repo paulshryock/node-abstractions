@@ -7,6 +7,12 @@ import { Stringable } from './Stringable.ts'
  * @since unreleased
  */
 export class MessageStringable implements Stringable {
+	/**
+	 * MessageStringable class constructor.
+	 *
+	 * @since unreleased
+	 * @param {string} message Stringable message.
+	 */
 	constructor(private message: string) {}
 
 	/**

@@ -11,50 +11,50 @@ export interface Output {
 	/**
 	 * Prints an error to an error stream.
 	 *
+	 * @param  {string | Stringable} message        Message to output.
+	 * @param  {any[]}               optionalParams Optional parameters.
+	 * @return {void}
 	 * @since 0.1.0
-	 *
-	 * @param {string | Stringable} message           Message to output.
-	 * @param {any[]}               ...optionalParams Optional parameters.
 	 */
 	error(message: string | Stringable, ...optionalParams: any[]): void
 
 	/**
 	 * Prints a warning to an error stream.
 	 *
+	 * @param  {string | Stringable} message        Message to output.
+	 * @param  {any[]}               optionalParams Optional parameters.
+	 * @return {void}
 	 * @since 0.1.0
-	 *
-	 * @param {string | Stringable} message           Message to output.
-	 * @param {any[]}               ...optionalParams Optional parameters.
 	 */
 	warn(message: string | Stringable, ...optionalParams: any[]): void
 
 	/**
 	 * Prints a log message to an output stream.
 	 *
+	 * @param  {string | Stringable} message        Message to output.
+	 * @param  {any[]}               optionalParams Optional parameters.
+	 * @return {void}
 	 * @since 0.1.0
-	 *
-	 * @param {string | Stringable} message           Message to output.
-	 * @param {any[]}               ...optionalParams Optional parameters.
 	 */
 	log(message: string | Stringable, ...optionalParams: any[]): void
 
 	/**
 	 * Prints an info message to an output stream.
 	 *
+	 * @param  {string | Stringable} message        Message to output.
+	 * @param  {any[]}               optionalParams Optional parameters.
+	 * @return {void}
 	 * @since 0.1.0
-	 *
-	 * @param {string | Stringable} message           Message to output.
-	 * @param {any[]}               ...optionalParams Optional parameters.
 	 */
 	info(message: string | Stringable, ...optionalParams: any[]): void
 
 	/**
 	 * Print a debug message to an output stream.
 	 *
+	 * @param  {string | Stringable} message        Message to output.
+	 * @param  {any[]}               optionalParams Optional parameters.
+	 * @return {void}
 	 * @since 0.1.0
-	 *
-	 * @param {string | Stringable} message           Message to output.
-	 * @param {any[]}               ...optionalParams Optional parameters.
 	 */
 	debug(message: string | Stringable, ...optionalParams: any[]): void
 }

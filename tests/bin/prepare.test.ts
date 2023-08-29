@@ -1,12 +1,8 @@
 import { beforeEach, describe, expect, it, jest } from '@jest/globals'
-import { resolve } from 'node:path'
 import { env } from 'node:process'
+import { resolve } from 'node:path'
 
-/**
- * var is hoisted along with jest.mock.
- *
- * @see https://github.com/jestjs/jest/issues/9430
- */
+// eslint-disable-next-line no-var -- var is hoisted with jest.mock.
 var mockInstall = jest.fn()
 
 jest.mock('husky', () => ({ install: mockInstall }))

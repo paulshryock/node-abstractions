@@ -5,6 +5,15 @@ export default {
 	embeddedLanguageFormatting: 'auto',
 	endOfLine: 'lf',
 	htmlWhitespaceSensitivity: 'css',
+	overrides: [
+		{
+			files: [
+				'*.{md,toml,yaml,yml}',
+				'.{editorconfig,env,env.*,gitattributes,gitignore,npmrc,nvmrc}',
+			],
+			options: { useTabs: false },
+		},
+	],
 	/*
 	 * Do not set `printWidth`. Prettier’s print width is configured by
 	 * `max_line_length` in `.editorconfig`.
@@ -24,14 +33,4 @@ export default {
 	 */
 	trailingComma: 'all',
 	useTabs: true,
-
-	overrides: [
-		{
-			files: [
-				'*.{md,toml,yaml,yml}',
-				'.{editorconfig,env,env.*,gitattributes,gitignore,npmrc,nvmrc}',
-			],
-			options: { useTabs: false },
-		},
-	],
 }

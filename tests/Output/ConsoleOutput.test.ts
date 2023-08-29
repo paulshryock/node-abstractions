@@ -1,11 +1,21 @@
+import { describe, expect, it, jest, test } from '@jest/globals'
+import { Console } from 'node:console'
 import { ConsoleOutput } from '../../src/Output/ConsoleOutput.ts'
 import { MessageStringable } from '../../src/Stringable/MessageStringable.ts'
 import { Stringable } from '../../src/Stringable/Stringable.ts'
-import { describe, expect, it, jest, test } from '@jest/globals'
-import { Console } from 'node:console'
 import { Writable } from 'node:stream'
 
+/**
+ * Mock console class.
+ *
+ * @since unreleased
+ */
 class MockConsole extends Console {
+	/**
+	 * MockConsole class constructor.
+	 *
+	 * @since unreleased
+	 */
 	constructor() {
 		super(new Writable({}))
 	}
@@ -17,6 +27,7 @@ class MockConsole extends Console {
 	override debug = jest.fn()
 }
 
+// eslint-disable-next-line max-lines-per-function -- Test case description.
 describe('ConsoleOutput', () => {
 	describe('error', () => {
 		const errorMessage = 'An error occurred.'

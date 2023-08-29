@@ -31,7 +31,7 @@
 	"scripts": {
 		"precompile": "rm -rf dist",
 		"compile": "run-p compile:*",
-		"compile:docs": "typedoc --out dist/docs --plugin ./config/typedoc/typedoc-plugin-default-values.js src/index.ts",
+		"compile:docs": "typedoc",
 		"compile:module": "esbuild src/index.ts --bundle --format=esm --minify --outfile=dist/index.js --platform=node",
 		"compile:types": "dts-bundle-generator --no-banner=true --out-file=dist/index.d.ts src/index.ts",
 		"format": "prettier --log-level=log --write .",
@@ -65,6 +65,7 @@
 		"esbuild": "0.19.2",
 		"eslint": "8.44.0",
 		"eslint-config-prettier": "9.0.0",
+		"eslint-plugin-jsdoc": "46.4.3",
 		"eslint-plugin-json": "3.1.0",
 		"husky": "8.0.3",
 		"jest": "29.6.4",

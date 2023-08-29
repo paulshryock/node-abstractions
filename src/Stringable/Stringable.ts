@@ -7,9 +7,8 @@ export interface Stringable {
 	/**
 	 * Converts object to a string.
 	 *
-	 * @since  unreleased
-	 *
 	 * @return {string}
+	 * @since  unreleased
 	 */
 	toString(): string
 }

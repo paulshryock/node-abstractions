@@ -1,29 +1,80 @@
-import { Converter, TypeScript } from 'typedoc'
+import {
+	Application,
+	Context,
+	Converter,
+	Reflection,
+	TypeScript,
+} from 'typedoc'
 
+/**
+ * Loads TypeDoc plugin.
+ *
+ * @param  {{ application: Application }} options Plugin load options.
+ * @return {void}
+ * @since  unreleased
+ */
 export function load({ application }) {
-	/** @type {Map<Reflection, string>} */
-	const defaultValues = new Map()
-
-	const printer = TypeScript.createPrinter({
-		removeComments: true,
-		omitTrailingSemicolon: true,
-	})
+	const plugin = new DefaultValuesPlugin(new Map())
 
 	application.converter.on(
 		Converter.EVENT_CREATE_DECLARATION,
-		saveDefaultValues,
+		plugin.save.bind(plugin),
 	)
-	application.converter.on(Converter.EVENT_CREATE_PARAMETER, saveDefaultValues)
 
-	function saveDefaultValues(_context, reflection) {
+	application.converter.on(
+		Converter.EVENT_CREATE_PARAMETER,
+		plugin.save.bind(plugin),
+	)
+
+	application.converter.on(
+		Converter.EVENT_RESOLVE_BEGIN,
+		plugin.clear.bind(plugin),
+	)
+}
+
+/**
+ * Default values plugin class.
+ *
+ * @since unreleased
+ */
+class DefaultValuesPlugin {
+	/** @var {Map<Reflection, string>} defaultValues Map of default values. */
+	defaultValues
+
+	/** @var {TypeScript.printer} printer TypeScript printer. */
+	printer
+
+	/**
+	 * DefaultValuesPlugin class constructor.
+	 *
+	 * @param {Map<Reflection, string>} defaultValues Map of default values.
+	 * @since unreleased
+	 */
+	constructor(defaultValues = new Map()) {
+		this.defaultValues = defaultValues
+		this.printer = TypeScript.createPrinter({
+			omitTrailingSemicolon: true,
+			removeComments: true,
+		})
+	}
+
+	/**
+	 * Saves default values.
+	 *
+	 * @param  {Context}    _context   Current state the converter is in.
+	 * @param  {Reflection} reflection Reflection object.
+	 * @return {void}
+	 * @since  unreleased
+	 */
+	save(_context, reflection) {
 		const node =
 			reflection.project.getSymbolFromReflection(reflection)?.declarations?.[0]
+
 		if (!node || !node.initializer) return
 
-		// Unfortunately can't just set defaultValue right here, this happens before TD sets it.
-		defaultValues.set(
+		this.defaultValues.set(
 			reflection,
-			printer.printNode(
+			this.printer.printNode(
 				TypeScript.EmitHint.Expression,
 				node.initializer,
 				node.getSourceFile(),
@@ -31,10 +82,15 @@ export function load({ application }) {
 		)
 	}
 
-	application.converter.on(Converter.EVENT_RESOLVE_BEGIN, () => {
-		for (const [refl, init] of defaultValues) {
-			refl.defaultValue = init
-		}
-		defaultValues.clear()
-	})
+	/**
+	 * Clears default values.
+	 *
+	 * @return {void}
+	 * @since  unreleased
+	 */
+	clear() {
+		for (const [refl, init] of this.defaultValues) refl.defaultValue = init
+
+		this.defaultValues.clear()
+	}
 }

@@ -1,7 +1,17 @@
+'use strict'
+
 /** @see https://github.com/nodejs/node/issues/30810#issuecomment-1433950987 */
 const process = require('node:process')
 const { emit: originalEmit } = process
 
+/**
+ * Suppresses certain experimental warnings.
+ *
+ * @param  {string}    event Event type.
+ * @param  {Error}     error Event error object.
+ * @return {false|any}       False or calls the original emitter function.
+ * @since  unreleased
+ */
 function suppresser(event, error) {
 	if (
 		event === 'warning' &&
@@ -10,7 +20,7 @@ function suppresser(event, error) {
 	)
 		return false
 
-	return originalEmit.apply(process, arguments)
+	return originalEmit.apply(process, [event, error])
 }
 
 process.emit = suppresser

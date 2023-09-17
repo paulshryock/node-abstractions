@@ -1,3 +1,6 @@
+// Exception.
+export { Exception } from './Exception/Exception.ts'
+
 // Output.
 export { type Output } from './Output/Output.ts'
 export { ConsoleOutput } from './Output/ConsoleOutput.ts'

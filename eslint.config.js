@@ -31,7 +31,6 @@ export default [
 			],
 			'block-scoped-var': 'error',
 			camelcase: 'error',
-			'class-methods-use-this': 'error',
 			complexity: ['error', 4],
 			curly: ['error', 'multi-or-nest'],
 			'default-case': 'error',
@@ -50,22 +49,7 @@ export default [
 			],
 			'jsdoc/check-access': 'error',
 			'jsdoc/check-alignment': 'error',
-			'jsdoc/check-line-alignment': [
-				'error',
-				'always',
-				{
-					tags: [
-						'arg',
-						'argument',
-						'param',
-						'prop',
-						'property',
-						'return',
-						'returns',
-						'throws',
-					],
-				},
-			],
+			'jsdoc/check-line-alignment': ['error', 'always'],
 			'jsdoc/check-param-names': 'error',
 			'jsdoc/check-property-names': 'error',
 			'jsdoc/check-syntax': 'error',
@@ -189,7 +173,6 @@ export default [
 			'no-return-await': 'error',
 			'no-script-url': 'error',
 			'no-sequences': 'error',
-			'no-shadow': 'error',
 			'no-throw-literal': 'error',
 			'no-undef-init': 'error',
 			'no-undefined': 'error',
@@ -249,6 +232,13 @@ export default [
 					var: 'var',
 				},
 			},
+		},
+	},
+	{
+		files: ['tests/**/*'],
+		rules: {
+			'max-lines': 'off',
+			'max-lines-per-function': 'off',
 		},
 	},
 	{

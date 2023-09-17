@@ -27,7 +27,6 @@ class MockConsole extends Console {
 	override debug = jest.fn()
 }
 
-// eslint-disable-next-line max-lines-per-function -- Test case description.
 describe('ConsoleOutput', () => {
 	describe('error', () => {
 		const errorMessage = 'An error occurred.'

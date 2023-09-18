@@ -30,7 +30,7 @@ export class ConsoleOutput implements Output {
 	 * @param  {any[]}               optionalParams Optional parameters.
 	 * @return {void}
 	 * @since 0.1.0
-	 * @since unreleased - Allow first param to be Stringable.
+	 * @since 0.1.1 - Allow first param to be Stringable.
 	 */
 	public error(message: string | Stringable, ...optionalParams: any[]): void {
 		this.console.error(message.toString(), ...optionalParams)
@@ -43,7 +43,7 @@ export class ConsoleOutput implements Output {
 	 * @param  {any[]}               optionalParams Optional parameters.
 	 * @return {void}
 	 * @since 0.1.0
-	 * @since unreleased - Allow first param to be Stringable.
+	 * @since 0.1.1 - Allow first param to be Stringable.
 	 */
 	public warn(message: string | Stringable, ...optionalParams: any[]): void {
 		this.console.warn(message.toString(), ...optionalParams)
@@ -56,7 +56,7 @@ export class ConsoleOutput implements Output {
 	 * @param  {any[]}               optionalParams Optional parameters.
 	 * @return {void}
 	 * @since 0.1.0
-	 * @since unreleased - Allow first param to be Stringable.
+	 * @since 0.1.1 - Allow first param to be Stringable.
 	 */
 	public log(message: string | Stringable, ...optionalParams: any[]): void {
 		this.console.log(message.toString(), ...optionalParams)
@@ -69,7 +69,7 @@ export class ConsoleOutput implements Output {
 	 * @param  {any[]}               optionalParams Optional parameters.
 	 * @return {void}
 	 * @since 0.1.0
-	 * @since unreleased - Allow first param to be Stringable.
+	 * @since 0.1.1 - Allow first param to be Stringable.
 	 */
 	public info(message: string | Stringable, ...optionalParams: any[]): void {
 		this.console.info(message.toString(), ...optionalParams)
@@ -82,7 +82,7 @@ export class ConsoleOutput implements Output {
 	 * @param  {any[]}               optionalParams Optional parameters.
 	 * @return {void}
 	 * @since 0.1.0
-	 * @since unreleased - Allow first param to be Stringable.
+	 * @since 0.1.1 - Allow first param to be Stringable.
 	 */
 	public debug(message: string | Stringable, ...optionalParams: any[]): void {
 		this.console.debug(message.toString(), ...optionalParams)

@@ -3,7 +3,7 @@ import { Exception } from '../Exception/Exception.ts'
 /**
  * File system exception message.
  *
- * @since unreleased
+ * @since 0.1.1
  */
 export enum FileSystemExceptionMessage {
 	DirectoryAlreadyExists = 'Directory already exists.',
@@ -16,7 +16,7 @@ export enum FileSystemExceptionMessage {
 /**
  * File system exception.
  *
- * @since unreleased
+ * @since 0.1.1
  */
 export class FileSystemException extends Exception {
 	/**
@@ -24,7 +24,7 @@ export class FileSystemException extends Exception {
 	 *
 	 * @param {string}       path    Path to directory.
 	 * @param {ErrorOptions} options Error options.
-	 * @since unreleased
+	 * @since 0.1.1
 	 */
 	public constructor(
 		public readonly path: string,
@@ -42,27 +42,27 @@ export class FileSystemException extends Exception {
 /**
  * Directory already exists exception.
  *
- * @since unreleased
+ * @since 0.1.1
  */
 export class DirectoryAlreadyExists extends FileSystemException {}
 
 /**
  * File or directory not found exception.
  *
- * @since unreleased
+ * @since 0.1.1
  */
 export class FileOrDirectoryNotFound extends FileSystemException {}
 
 /**
  * Directory not found exception.
  *
- * @since unreleased
+ * @since 0.1.1
  */
 export class DirectoryNotFound extends FileOrDirectoryNotFound {}
 
 /**
  * File not found exception.
  *
- * @since unreleased
+ * @since 0.1.1
  */
 export class FileNotFound extends FileOrDirectoryNotFound {}

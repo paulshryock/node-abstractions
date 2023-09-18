@@ -24,14 +24,14 @@ import { Stringable } from '../Stringable/Stringable.ts'
 /**
  * Local file system class.
  *
- * @since unreleased
+ * @since 0.1.1
  */
 export class LocalFileSystem implements FileSystem {
 	/**
 	 * Callbacks for each file system action.
 	 *
 	 * @internal
-	 * @since unreleased
+	 * @since 0.1.1
 	 */
 	private ACTIONS = {
 		copy: { directory: copy, file: copyFile },
@@ -44,7 +44,7 @@ export class LocalFileSystem implements FileSystem {
 	 * @param  {string}          path Path to file.
 	 * @return {Promise<string>}      Contents of file.
 	 * @throws {FileNotFound}
-	 * @since  unreleased
+	 * @since  0.1.1
 	 */
 	public async readFile(path: string): Promise<string> {
 		return readFile(path, 'utf8').catch((cause: unknown) => {
@@ -58,7 +58,7 @@ export class LocalFileSystem implements FileSystem {
 	 * @param  {string}              path    Path to file.
 	 * @param  {string | Stringable} content Content to write to file.
 	 * @return {Promise<void>}
-	 * @since  unreleased
+	 * @since  0.1.1
 	 */
 	public async writeFile(
 		path: string,
@@ -75,7 +75,7 @@ export class LocalFileSystem implements FileSystem {
 	 * @param  {string}              path    Path to file.
 	 * @param  {string | Stringable} content Content to write to file.
 	 * @return {Promise<void>}
-	 * @since  unreleased
+	 * @since  0.1.1
 	 */
 	public async appendFile(
 		path: string,
@@ -91,7 +91,7 @@ export class LocalFileSystem implements FileSystem {
 	 * @param  {string}        path Path to file.
 	 * @return {Promise<void>}
 	 * @throws {FileNotFound}
-	 * @since  unreleased
+	 * @since  0.1.1
 	 */
 	public async deleteFile(path: string): Promise<void> {
 		if (!(await this.exists(path)) || !(await this.isFile(path)))
@@ -105,7 +105,7 @@ export class LocalFileSystem implements FileSystem {
 	 *
 	 * @param  {string}           path Path to file.
 	 * @return {Promise<boolean>}      Whether the path points to a file.
-	 * @since  unreleased
+	 * @since  0.1.1
 	 */
 	public async isFile(path: string): Promise<boolean> {
 		try {
@@ -120,7 +120,7 @@ export class LocalFileSystem implements FileSystem {
 	 *
 	 * @param  {string}        path Path to directory.
 	 * @return {Promise<void>}
-	 * @since  unreleased
+	 * @since  0.1.1
 	 */
 	public async createDirectory(path: string): Promise<void> {
 		await mkdir(path, { recursive: true })
@@ -132,7 +132,7 @@ export class LocalFileSystem implements FileSystem {
 	 * @param  {string}            path Path to directory.
 	 * @return {Promise<string[]>}      Directory contents.
 	 * @throws {DirectoryNotFound}
-	 * @since  unreleased
+	 * @since  0.1.1
 	 */
 	public async readDirectory(path: string): Promise<string[]> {
 		if (!(await this.isDirectory(path))) throw new DirectoryNotFound(path)
@@ -146,7 +146,7 @@ export class LocalFileSystem implements FileSystem {
 	 * @param  {string}            path Path to directory.
 	 * @return {Promise<string[]>}      Directory contents.
 	 * @throws {DirectoryNotFound}
-	 * @since  unreleased
+	 * @since  0.1.1
 	 */
 	public async readDirectoryRecursive(path: string): Promise<string[]> {
 		if (!(await this.isDirectory(path))) throw new DirectoryNotFound(path)
@@ -172,7 +172,7 @@ export class LocalFileSystem implements FileSystem {
 	 * @param  {string}        path Path to directory.
 	 * @return {Promise<void>}
 	 * @throws {DirectoryNotFound}
-	 * @since  unreleased
+	 * @since  0.1.1
 	 */
 	public async deleteDirectory(path: string): Promise<void> {
 		if (!(await this.exists(path)) || !(await this.isDirectory(path)))
@@ -187,7 +187,7 @@ export class LocalFileSystem implements FileSystem {
 	 * @param  {string}           path Path to directory.
 	 * @return {Promise<boolean>}      Whether the path points to a directory.
 	 * @throws {DirectoryNotFound}
-	 * @since  unreleased
+	 * @since  0.1.1
 	 */
 	public async isDirectory(path: string): Promise<boolean> {
 		try {
@@ -205,7 +205,7 @@ export class LocalFileSystem implements FileSystem {
 	 * @return {Promise<void>}
 	 * @throws {import('./FileSystemException.ts').FileSystemException}
 	 * @see    https://github.com/nodejs/node/issues/44598
-	 * @since  unreleased
+	 * @since  0.1.1
 	 * @todo   Remove fs-extra and use fs.promises.cp when it stabilizes.
 	 * @todo   Maybe handle symlinks.
 	 */
@@ -220,7 +220,7 @@ export class LocalFileSystem implements FileSystem {
 	 * @param  {string}        dest Destination path.
 	 * @return {Promise<void>}
 	 * @throws {import('./FileSystemException.ts').FileSystemException}
-	 * @since  unreleased
+	 * @since  0.1.1
 	 */
 	public async move(src: string, dest: string): Promise<void> {
 		await this.copyOrMove('move', src, dest)
@@ -234,7 +234,7 @@ export class LocalFileSystem implements FileSystem {
 	 * @param  {string}          src    Source path.
 	 * @param  {string}          dest   Destination path.
 	 * @return {Promise<void>}
-	 * @since  unreleased
+	 * @since  0.1.1
 	 */
 	private async copyOrMove(
 		action: 'copy' | 'move',
@@ -256,7 +256,7 @@ export class LocalFileSystem implements FileSystem {
 	 * @param  {string}          src    Source path.
 	 * @param  {string}          dest   Destination path.
 	 * @return {Promise<void>}
-	 * @since  unreleased
+	 * @since  0.1.1
 	 */
 	private async copyOrMoveFile(
 		action: 'copy' | 'move',
@@ -278,7 +278,7 @@ export class LocalFileSystem implements FileSystem {
 	 * @param  {string}          src    Source path.
 	 * @param  {string}          dest   Destination path.
 	 * @return {Promise<void>}
-	 * @since  unreleased
+	 * @since  0.1.1
 	 */
 	private async copyOrMoveDirectory(
 		action: 'copy' | 'move',
@@ -299,7 +299,7 @@ export class LocalFileSystem implements FileSystem {
 	 *
 	 * @param  {string}           path Path to file or directory.
 	 * @return {Promise<boolean>}      Whether the file or directory exists.
-	 * @since  unreleased
+	 * @since  0.1.1
 	 */
 	public async exists(path: string): Promise<boolean> {
 		try {

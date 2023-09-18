@@ -4,14 +4,14 @@ import { Stringable } from './Stringable.ts'
  * Object whose constructor takes a message and returns it from toString
  * method.
  *
- * @since unreleased
+ * @since 0.1.1
  */
 export class MessageStringable implements Stringable {
 	/**
 	 * MessageStringable class constructor.
 	 *
 	 * @param {string} message Message to return from toString method.
-	 * @since unreleased
+	 * @since 0.1.1
 	 */
 	constructor(private message: string) {}
 
@@ -19,7 +19,7 @@ export class MessageStringable implements Stringable {
 	 * Converts object to a string.
 	 *
 	 * @return {string} String representation of the object.
-	 * @since  unreleased
+	 * @since  0.1.1
 	 */
 	toString(): string {
 		return this.message

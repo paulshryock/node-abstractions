@@ -8,13 +8,13 @@ import { Writable } from 'node:stream'
 /**
  * Mock console class.
  *
- * @since unreleased
+ * @since 0.1.1
  */
 class MockConsole extends Console {
 	/**
 	 * MockConsole class constructor.
 	 *
-	 * @since unreleased
+	 * @since 0.1.1
 	 */
 	constructor() {
 		super(new Writable({}))

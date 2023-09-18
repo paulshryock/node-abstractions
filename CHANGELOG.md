@@ -12,16 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   **Fixed** for any bug fixes.
 -   **Security** in case of vulnerabilities.
 
-## [Unreleased](https://github.com/paulshryock/node-abstractions/compare/HEAD..v0.1.0)
+## [Unreleased](https://github.com/paulshryock/node-abstractions.git/compare/HEAD..v0.1.1)
 
 ### Added
 
--   Stringable interface.
--   MessageStringable class.
-
 ### Changed
-
--   Allow Output methods' first parameter to be Stringable.
 
 ### Deprecated
 
@@ -30,6 +25,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Security
+
+## [v0.1.1](https://github.com/paulshryock/node-abstractions.git/releases/tag/v0.1.1) - 2023-09-18
+
+-   Stringable interface.
+-   MessageStringable class.
+
+-   Allow Output methods' first parameter to be Stringable.
 
 ## [v0.1.0](https://github.com/paulshryock/node-abstractions/releases/tag/v0.1.0) - 2023-06-09
 

@@ -10,7 +10,7 @@ const { emit: originalEmit } = process
  * @param  {string}    event Event type.
  * @param  {Error}     error Event error object.
  * @return {false|any}       False or calls the original emitter function.
- * @since  unreleased
+ * @since  0.1.1
  */
 function suppresser(event, error) {
 	if (

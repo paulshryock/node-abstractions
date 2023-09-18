@@ -3,7 +3,7 @@ import { Storage } from './Storage.ts'
 /**
  * Record from storage.
  *
- * @since unreleased
+ * @since 0.1.1
  */
 export type StorageRecord = Record<string, unknown> & {
 	id?: number
@@ -13,7 +13,7 @@ export type StorageRecord = Record<string, unknown> & {
 /**
  * Query describing records to retreive from storage.
  *
- * @since unreleased
+ * @since 0.1.1
  */
 export interface RecordQuery extends StorageRecord {
 	ids?: number[]
@@ -22,7 +22,7 @@ export interface RecordQuery extends StorageRecord {
 /**
  * Storage container which stores records.
  *
- * @since unreleased
+ * @since 0.1.1
  */
 export interface RecordStorage extends Storage {
 	/**
@@ -31,7 +31,7 @@ export interface RecordStorage extends Storage {
 	 * @param  {StorageRecord} record Record to store.
 	 * @return {Promise<void>}
 	 * @throws {import('./RecordStorageException.ts').RecordNotCreated}
-	 * @since  unreleased
+	 * @since  0.1.1
 	 */
 	createRecord(record: StorageRecord): Promise<void>
 
@@ -41,7 +41,7 @@ export interface RecordStorage extends Storage {
 	 * @param  {StorageRecord} record Records to store.
 	 * @return {Promise<void>}
 	 * @throws {import('./RecordStorageException.ts').RecordNotCreated}
-	 * @since  unreleased
+	 * @since  0.1.1
 	 */
 	createRecords(records: StorageRecord[]): Promise<void>
 
@@ -52,7 +52,7 @@ export interface RecordStorage extends Storage {
 	 * @param  {string}                 type Record type.
 	 * @return {Promise<StorageRecord>}      The record from storage.
 	 * @throws {import('./RecordStorageException.ts').RecordNotFound}
-	 * @since  unreleased
+	 * @since  0.1.1
 	 */
 	getRecord(id: number, type: string): Promise<StorageRecord>
 
@@ -61,7 +61,7 @@ export interface RecordStorage extends Storage {
 	 *
 	 * @param  {RecordQuery}              query Query describing records to get.
 	 * @return {Promise<StorageRecord[]>}       The records from storage.
-	 * @since  unreleased
+	 * @since  0.1.1
 	 */
 	getRecords(query: RecordQuery): Promise<StorageRecord[]>
 
@@ -71,7 +71,7 @@ export interface RecordStorage extends Storage {
 	 * @param  {StorageRecord} record Existing record to update.
 	 * @return {Promise<void>}
 	 * @throws {import('./RecordStorageException.ts').RecordNotUpdated}
-	 * @since  unreleased
+	 * @since  0.1.1
 	 */
 	updateRecord(record: StorageRecord): Promise<void>
 
@@ -80,7 +80,7 @@ export interface RecordStorage extends Storage {
 	 *
 	 * @param  {StorageRecord[]} records Existing records to update.
 	 * @return {Promise<void>}
-	 * @since  unreleased
+	 * @since  0.1.1
 	 */
 	updateRecords(records: StorageRecord[]): Promise<void>
 
@@ -90,7 +90,7 @@ export interface RecordStorage extends Storage {
 	 * @param  {StorageRecord} record [description].
 	 * @return {Promise<void>}        [description].
 	 * @throws {import('./RecordStorageException.ts').RecordNotDeleted}
-	 * @since  unreleased
+	 * @since  0.1.1
 	 */
 	deleteRecord(record: StorageRecord): Promise<void>
 
@@ -99,7 +99,7 @@ export interface RecordStorage extends Storage {
 	 *
 	 * @param  {RecordQuery}   query Query describing records to delete.
 	 * @return {Promise<void>}
-	 * @since  unreleased
+	 * @since  0.1.1
 	 */
 	deleteRecords(query: RecordQuery): Promise<void>
 }

@@ -2,6 +2,8 @@
 
 This package includes a number of reusable abstractions and implementations for common tasks which take place at the edges of your software. These are things like input/output, the network, the file system, databases, and email. By abstracting these concepts behind an interface, you can easily manage this accidental complexity and instead focus on the essential complexity of your application's business logic.
 
+[![Socket Badge](https://socket.dev/api/badge/npm/package/@paulshryock/abstractions)](https://socket.dev/npm/package/@paulshryock/abstractions)
+
 | :warning: This project is in early development and not ready for production use. |
 | :------------------------------------------------------------------------------- |
 

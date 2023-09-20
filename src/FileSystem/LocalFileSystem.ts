@@ -302,11 +302,8 @@ export class LocalFileSystem implements FileSystem {
 	 * @since  0.1.1
 	 */
 	public async exists(path: string): Promise<boolean> {
-		try {
-			await access(path)
-			return true
-		} catch (error) {
-			return false
-		}
+		return access(path)
+			.then(() => true)
+			.catch(() => false)
 	}
 }

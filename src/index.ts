@@ -8,6 +8,7 @@ export {
 	DirectoryNotFound,
 	FileNotFound,
 	FileOrDirectoryNotFound,
+	FileSystemExceptionMessage,
 } from './FileSystem/FileSystemException.ts'
 export { LocalFileSystem } from './FileSystem/LocalFileSystem.ts'
 export { type FileSystem } from './FileSystem/FileSystem.ts'

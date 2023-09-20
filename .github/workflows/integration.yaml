@@ -137,4 +137,4 @@ jobs:
             ${{ runner.os }}-node-
             ${{ runner.os }}-
       - name: Compile source code
-        run: npm run compile:module
+        run: npm run compile

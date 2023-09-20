@@ -18,6 +18,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+-   Export RecordStorage.
+-   Export RecordStorageException.
+-   Export Storage.
+-   Export StorageException.
+
 ### Deprecated
 
 ### Removed

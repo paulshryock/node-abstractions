@@ -16,6 +16,22 @@ export { type FileSystem } from './FileSystem/FileSystem.ts'
 export { type Output } from './Output/Output.ts'
 export { ConsoleOutput } from './Output/ConsoleOutput.ts'
 
+// Storage.
+export {
+	type RecordQuery,
+	type RecordStorage,
+	type StorageRecord,
+} from './Storage/RecordStorage.ts'
+export {
+	RecordNotCreated,
+	RecordNotDeleted,
+	RecordNotFound,
+	RecordNotUpdated,
+	RecordStorageException,
+} from './Storage/RecordStorageException.ts'
+export { type Storage } from './Storage/Storage.ts'
+export { StorageException } from './Storage/StorageException.ts'
+
 // Stringable.
 export { type Stringable } from './Stringable/Stringable.ts'
 export { MessageStringable } from './Stringable/MessageStringable.ts'

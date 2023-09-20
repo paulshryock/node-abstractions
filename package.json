@@ -34,7 +34,7 @@
 		"compile:docs": "typedoc",
 		"compile:module": "esbuild src/index.ts --bundle --format=esm --minify --outfile=dist/index.js --platform=node",
 		"compile:types": "dts-bundle-generator --no-banner=true --out-file=dist/index.d.ts src/index.ts",
-		"format": "prettier --log-level=log --write .",
+		"format": "prettier --write .",
 		"format:check": "prettier --check --log-level=warn .",
 		"lint": "eslint .",
 		"lint:fix": "npm run lint -- --fix",

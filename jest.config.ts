@@ -1,4 +1,6 @@
-export default {
+import type { Config } from 'jest'
+
+const config: Config = {
 	clearMocks: true,
 	collectCoverage: true,
 	collectCoverageFrom: ['bin/**/*', 'src/**/*'],
@@ -17,3 +19,5 @@ export default {
 	},
 	errorOnDeprecated: true,
 }
+
+export default config

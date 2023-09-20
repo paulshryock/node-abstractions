@@ -15,6 +15,7 @@ export interface Output {
 	 * @param  {any[]}               optionalParams Optional parameters.
 	 * @return {void}
 	 * @since 0.1.0
+	 * @since 0.1.1 - Allow first param to be Stringable.
 	 */
 	error(message: string | Stringable, ...optionalParams: any[]): void
 
@@ -25,6 +26,7 @@ export interface Output {
 	 * @param  {any[]}               optionalParams Optional parameters.
 	 * @return {void}
 	 * @since 0.1.0
+	 * @since 0.1.1 - Allow first param to be Stringable.
 	 */
 	warn(message: string | Stringable, ...optionalParams: any[]): void
 
@@ -35,6 +37,7 @@ export interface Output {
 	 * @param  {any[]}               optionalParams Optional parameters.
 	 * @return {void}
 	 * @since 0.1.0
+	 * @since 0.1.1 - Allow first param to be Stringable.
 	 */
 	log(message: string | Stringable, ...optionalParams: any[]): void
 
@@ -45,6 +48,7 @@ export interface Output {
 	 * @param  {any[]}               optionalParams Optional parameters.
 	 * @return {void}
 	 * @since 0.1.0
+	 * @since 0.1.1 - Allow first param to be Stringable.
 	 */
 	info(message: string | Stringable, ...optionalParams: any[]): void
 
@@ -55,6 +59,7 @@ export interface Output {
 	 * @param  {any[]}               optionalParams Optional parameters.
 	 * @return {void}
 	 * @since 0.1.0
+	 * @since 0.1.1 - Allow first param to be Stringable.
 	 */
 	debug(message: string | Stringable, ...optionalParams: any[]): void
 }

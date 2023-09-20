@@ -28,8 +28,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v0.1.1](https://github.com/paulshryock/node-abstractions.git/releases/tag/v0.1.1) - 2023-09-18
 
--   Stringable interface.
--   MessageStringable class.
+## Added
+
+-   Exception.
+-   FileSystem.
+-   FileSystemException.
+-   LocalFileSystem.
+-   MessageStringable.
+-   RecordStorage.
+-   RecordStorageException.
+-   Storage.
+-   StorageException.
+-   Stringable.
+-   Install fs-extra.
+
+## Changed
 
 -   Allow Output methods' first parameter to be Stringable.
 
@@ -37,5 +50,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Added
 
--   Console interface.
--   ConsoleOutput class.
+-   Console.
+-   ConsoleOutput.

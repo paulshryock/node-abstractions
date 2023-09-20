@@ -18,8 +18,7 @@ describe('prepare script', () => {
 	it('should install husky if ci is not defined', async () => {
 		delete env.CI
 
-		// eslint-disable-next-line no-undef -- Node 20 & Jest 8 allow this.
-		await require(filePath)
+		await import(filePath)
 
 		expect(mockInstall).toHaveBeenCalledTimes(1)
 	})
@@ -27,8 +26,7 @@ describe('prepare script', () => {
 	it('should not install husky if ci is defined', async () => {
 		env.CI = 'true'
 
-		// eslint-disable-next-line no-undef -- Node 20 & Jest 8 allow this.
-		await require(filePath)
+		await import(filePath)
 
 		expect(mockInstall).toHaveBeenCalledTimes(0)
 	})

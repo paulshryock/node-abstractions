@@ -116,7 +116,7 @@ jobs:
             ${{ runner.os }}-node-
             ${{ runner.os }}-
       - name: Run tests
-        run: npm test
+        run: npm test -- --ci
 
   compile-source-code:
     runs-on: ubuntu-latest

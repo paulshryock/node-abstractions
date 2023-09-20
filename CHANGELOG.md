@@ -12,16 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   **Fixed** for any bug fixes.
 -   **Security** in case of vulnerabilities.
 
-## [Unreleased](https://github.com/paulshryock/node-abstractions.git/compare/HEAD..v0.1.1)
+## [Unreleased](https://github.com/paulshryock/node-abstractions.git/compare/HEAD..v0.1.2)
 
 ### Added
 
 ### Changed
-
--   Export RecordStorage.
--   Export RecordStorageException.
--   Export Storage.
--   Export StorageException.
 
 ### Deprecated
 
@@ -30,6 +25,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Security
+
+## [v0.1.2](https://github.com/paulshryock/node-abstractions.git/releases/tag/v0.1.2) - 2023-09-20
+
+-   Export RecordStorage.
+-   Export RecordStorageException.
+-   Export Storage.
+-   Export StorageException.
 
 ## [v0.1.1](https://github.com/paulshryock/node-abstractions.git/releases/tag/v0.1.1) - 2023-09-18
 

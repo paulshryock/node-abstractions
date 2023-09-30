@@ -20,9 +20,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+-   Rewrite LocalFileSystem.copy with standard library.
+
 ### Deprecated
 
 ### Removed
+
+-   Uninstall fs-extra.
 
 ### Fixed
 

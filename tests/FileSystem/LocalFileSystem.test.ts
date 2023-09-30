@@ -474,18 +474,18 @@ describe('LocalFileSystem', () => {
 				})
 
 				describe('when dest does not exist', () => {
-					beforeEach(() => mockFs({ path: { to: { file: '' } } }))
+					beforeEach(() => mockFs({ long: { path: { to: { file: '' } } } }))
 
 					it('should copy the directory to the new location', async () => {
 						const fs = new LocalFileSystem()
 
-						await fs.copy('path/to', 'new/path/to')
+						await fs.copy('long/path', 'new/long/path')
 
-						expect(await fs.exists('new/path/to')).toBe(true)
-						expect(await fs.isDirectory('new/path/to')).toBe(true)
+						expect(await fs.exists('new/long/path/to')).toBe(true)
+						expect(await fs.isDirectory('new/long/path/to')).toBe(true)
 
-						expect(await fs.exists('new/path/to')).toBe(true)
-						expect(await fs.isFile('new/path/to/file')).toBe(true)
+						expect(await fs.exists('new/long/path/to/file')).toBe(true)
+						expect(await fs.isFile('new/long/path/to/file')).toBe(true)
 					})
 				})
 			})

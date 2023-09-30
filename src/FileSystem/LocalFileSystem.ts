@@ -16,7 +16,6 @@ import {
 	FileOrDirectoryNotFound,
 } from './FileSystemException.ts'
 import { dirname, join, parse } from 'node:path'
-import { copy } from 'fs-extra'
 import { FileSystem } from './FileSystem.ts'
 import { Stringable } from '../Stringable/Stringable.ts'
 
@@ -33,7 +32,7 @@ export class LocalFileSystem implements FileSystem {
 	 * @since 0.1.1
 	 */
 	private ACTIONS = {
-		copy: { directory: copy, file: copyFile },
+		copy: { file: copyFile },
 		move: { directory: rename, file: rename },
 	}
 
@@ -154,12 +153,11 @@ export class LocalFileSystem implements FileSystem {
 
 		for (const item of await readdir(path)) {
 			const itemPath = join(path, item)
+			const stats = await stat(itemPath)
 
-			if ((await stat(itemPath)).isDirectory()) {
+			if (stats.isDirectory())
 				filePaths.push(...(await this.readDirectoryRecursive(itemPath)))
-			} else {
-				filePaths.push(itemPath)
-			}
+			else filePaths.push(itemPath)
 		}
 
 		return filePaths
@@ -203,10 +201,7 @@ export class LocalFileSystem implements FileSystem {
 	 * @param  {string}        dest Destination path.
 	 * @return {Promise<void>}
 	 * @throws {import('./FileSystemException.ts').FileSystemException}
-	 * @see    https://github.com/nodejs/node/issues/44598
 	 * @since  0.1.1
-	 * @todo   Remove fs-extra and use fs.promises.cp when it stabilizes.
-	 * @todo   Maybe handle symlinks.
 	 */
 	public async copy(src: string, dest: string): Promise<void> {
 		await this.copyOrMove('copy', src, dest)
@@ -291,7 +286,25 @@ export class LocalFileSystem implements FileSystem {
 			: dest
 
 		await mkdir(dirname(destination), { recursive: true })
+
+		if (action === 'copy') return this.copyDirectory(src, destination)
+
 		await this.ACTIONS[action].directory(src, destination)
+	}
+
+	/**
+	 * Recursively creates directories and files to copy a directory.
+	 *
+	 * @param  {string}        src  Directory to copy.
+	 * @param  {string}        dest Destination path to copy the directory to.
+	 * @return {Promise<void>}
+	 * @since  unreleased
+	 */
+	private async copyDirectory(src: string, dest: string): Promise<void> {
+		for (const item of await this.readDirectory(src))
+			if (await this.isFile(`${src}/${item}`))
+				await this.copy(`${src}/${item}`, `${dest}/${item}`)
+			else await this.copyDirectory(`${src}/${item}`, `${dest}/${item}`)
 	}
 
 	/**

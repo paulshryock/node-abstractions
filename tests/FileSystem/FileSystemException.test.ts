@@ -1,6 +1,5 @@
 import { describe, expect, it } from '@jest/globals'
 import {
-	DirectoryAlreadyExists,
 	DirectoryNotFound,
 	FileNotFound,
 	FileOrDirectoryNotFound,
@@ -9,7 +8,6 @@ import {
 } from '../../src/FileSystem/FileSystemException.ts'
 
 describe.each([
-	new DirectoryAlreadyExists(''),
 	new DirectoryNotFound(''),
 	new FileNotFound(''),
 	new FileOrDirectoryNotFound(''),

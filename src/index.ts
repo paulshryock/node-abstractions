@@ -4,7 +4,6 @@ export { Exception } from './Exception/Exception.ts'
 // File System.
 export {
 	FileSystemException,
-	DirectoryAlreadyExists,
 	DirectoryNotFound,
 	FileNotFound,
 	FileOrDirectoryNotFound,

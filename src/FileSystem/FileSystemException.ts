@@ -6,7 +6,6 @@ import { Exception } from '../Exception/Exception.ts'
  * @since 0.1.1
  */
 export enum FileSystemExceptionMessage {
-	DirectoryAlreadyExists = 'Directory already exists.',
 	DirectoryNotFound = 'Directory not found.',
 	FileNotFound = 'File not found.',
 	FileOrDirectoryNotFound = 'File or directory not found.',
@@ -38,13 +37,6 @@ export class FileSystemException extends Exception {
 		)
 	}
 }
-
-/**
- * Directory already exists exception.
- *
- * @since 0.1.1
- */
-export class DirectoryAlreadyExists extends FileSystemException {}
 
 /**
  * File or directory not found exception.

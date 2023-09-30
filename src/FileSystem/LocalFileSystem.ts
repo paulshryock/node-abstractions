@@ -11,7 +11,6 @@ import {
 	writeFile,
 } from 'node:fs/promises'
 import {
-	DirectoryAlreadyExists,
 	DirectoryNotFound,
 	FileNotFound,
 	FileOrDirectoryNotFound,
@@ -287,11 +286,12 @@ export class LocalFileSystem implements FileSystem {
 	): Promise<void> {
 		if (await this.isFile(dest)) throw new DirectoryNotFound(dest)
 
-		if (action === 'move' && (await this.isDirectory(dest)))
-			throw new DirectoryAlreadyExists(dest)
+		const destination = (await this.isDirectory(dest))
+			? `${dest}/${parse(src).base}`
+			: dest
 
-		await mkdir(dirname(dest), { recursive: true })
-		await this.ACTIONS[action].directory(src, dest)
+		await mkdir(dirname(destination), { recursive: true })
+		await this.ACTIONS[action].directory(src, destination)
 	}
 
 	/**

@@ -7,7 +7,6 @@ import {
 	test,
 } from '@jest/globals'
 import {
-	DirectoryAlreadyExists,
 	DirectoryNotFound,
 	FileNotFound,
 	FileOrDirectoryNotFound,
@@ -456,37 +455,37 @@ describe('LocalFileSystem', () => {
 				describe('when dest is a directory', () => {
 					beforeEach(() =>
 						mockFs({
-							new: { path: { to: {} } },
-							path: { to: { file: {} } },
+							new: { path: {} },
+							path: { to: { file: '' } },
 						}),
 					)
 
-					it('should copy the directory to the new location', async () => {
+					it('should copy the directory into the new location', async () => {
 						const fs = new LocalFileSystem()
 
-						await fs.copy(path, newPath)
+						await fs.copy('path/to', 'new/path')
 
-						expect(await fs.exists(path)).toBe(true)
-						expect(await fs.isDirectory(path)).toBe(true)
+						expect(await fs.exists('new/path/to')).toBe(true)
+						expect(await fs.isDirectory('new/path/to')).toBe(true)
 
-						expect(await fs.exists(newPath)).toBe(true)
-						expect(await fs.isDirectory(newPath)).toBe(true)
+						expect(await fs.exists('new/path/to/file')).toBe(true)
+						expect(await fs.isFile('new/path/to/file')).toBe(true)
 					})
 				})
 
 				describe('when dest does not exist', () => {
-					beforeEach(() => mockFs({ path: { to: { file: {} } } }))
+					beforeEach(() => mockFs({ path: { to: { file: '' } } }))
 
 					it('should copy the directory to the new location', async () => {
 						const fs = new LocalFileSystem()
 
-						await fs.copy(path, newPath)
+						await fs.copy('path/to', 'new/path/to')
 
-						expect(await fs.exists(path)).toBe(true)
-						expect(await fs.isDirectory(path)).toBe(true)
+						expect(await fs.exists('new/path/to')).toBe(true)
+						expect(await fs.isDirectory('new/path/to')).toBe(true)
 
-						expect(await fs.exists(newPath)).toBe(true)
-						expect(await fs.isDirectory(newPath)).toBe(true)
+						expect(await fs.exists('new/path/to')).toBe(true)
+						expect(await fs.isFile('new/path/to/file')).toBe(true)
 					})
 				})
 			})
@@ -601,12 +600,31 @@ describe('LocalFileSystem', () => {
 						}),
 					)
 
-					it('should throw an exception', async () => {
+					it('should not change file in destination directory', async () => {
 						const fs = new LocalFileSystem()
 
-						await expect(
-							fs.move(pathDirectory, newPathDirectory),
-						).rejects.toThrow(DirectoryAlreadyExists)
+						await fs.move('path/to', 'new/path/to')
+
+						expect(await fs.readFile('new/path/to/file')).toBe(oldData)
+					})
+
+					it('should move the directory into destination directory', async () => {
+						const fs = new LocalFileSystem()
+
+						await fs.move('path/to', 'new/path/to')
+
+						expect(await fs.exists('new/path/to/to')).toBe(true)
+						expect(await fs.isDirectory('new/path/to/to')).toBe(true)
+					})
+
+					it('should move directory contents', async () => {
+						const fs = new LocalFileSystem()
+
+						await fs.move('path/to', 'new/path/to')
+
+						expect(await fs.exists('new/path/to/to/file')).toBe(true)
+						expect(await fs.isFile('new/path/to/to/file')).toBe(true)
+						expect(await fs.readFile('new/path/to/to/file')).toBe(newData)
 					})
 				})
 

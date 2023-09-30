@@ -166,7 +166,10 @@ export default [
 			'no-new-wrappers': 'error',
 			'no-nonoctal-decimal-escape': 'error',
 			'no-octal-escape': 'error',
-			'no-param-reassign': ['error', { props: true }],
+			'no-param-reassign': [
+				'error',
+				{ ignorePropertyModificationsForRegex: ['Mutable$'], props: true },
+			],
 			'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
 			'no-proto': 'error',
 			'no-return-assign': ['error', 'always'],

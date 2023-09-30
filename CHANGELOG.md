@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+-   ProcessInput.
+
 ### Changed
 
 ### Deprecated
@@ -27,6 +29,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 ## [v0.1.2](https://github.com/paulshryock/node-abstractions.git/releases/tag/v0.1.2) - 2023-09-20
+
+### Added
 
 -   Export RecordStorage.
 -   Export RecordStorageException.

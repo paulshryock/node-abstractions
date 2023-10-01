@@ -50,19 +50,14 @@ export class ProcessInput {
 	 *
 	 * @return {Configuration} Long flag key value pairs.
 	 * @since  unreleased
-	 * @todo   Refactor.
 	 */
 	public getLongFlags(): Configuration {
 		const flags: Configuration = {}
 		const args = this.getArguments()
 
-		for (let index = 0; index < args.length; index++) {
-			const arg = args[index]
-
-			if (!arg.startsWith('--')) continue
-
-			this.parseArgFromArgsAtIndexToFlags(args, index, flags)
-		}
+		for (let index = 0; index < args.length; index++)
+			if (args[index].startsWith('--'))
+				this.parseArgFromArgsAtIndexToFlags(args, index, flags)
 
 		this.convertFalseFlagsToBoolean(flags)
 

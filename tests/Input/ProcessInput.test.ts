@@ -146,7 +146,7 @@ describe('ProcessInput', () => {
  *
  * @param  {typeof process.env} obj Object to stringify.
  * @return {string}                 Stringified object.
- * @since  unreleased
+ * @since  0.1.3
  */
 function stringifyObject(obj: typeof process.env): string {
 	return `{ ${Object.entries(obj).map(stringifyEntry).join(', ')} }`
@@ -157,7 +157,7 @@ function stringifyObject(obj: typeof process.env): string {
  *
  * @param  {[key: string, value: string | undefined]} entry Test case entry.
  * @return {string}                                         Stringified entry.
- * @since  unreleased
+ * @since  0.1.3
  */
 function stringifyEntry(
 	entry: [key: string, value: string | undefined],

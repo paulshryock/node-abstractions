@@ -5,14 +5,14 @@ type Configuration = Record<string, unknown>
 /**
  * Process input class.
  *
- * @since unreleased
+ * @since 0.1.3
  */
 export class ProcessInput {
 	/**
 	 * Gets process arguments, if there are any.
 	 *
 	 * @return {string[]} Process arguments, if there are any.
-	 * @since  unreleased
+	 * @since  0.1.3
 	 */
 	public getArguments(): string[] {
 		return process.argv.slice(2)
@@ -23,7 +23,7 @@ export class ProcessInput {
 	 *
 	 * @param  {string}  key Environment variable name.
 	 * @return {unknown}     Environment variable value.
-	 * @since  unreleased
+	 * @since  0.1.3
 	 */
 	public getEnvironmentVariable(key: string): unknown {
 		return process.env[key]
@@ -34,7 +34,7 @@ export class ProcessInput {
 	 *
 	 * @param  {string[]}           keys Names of environment variables to get.
 	 * @return {typeof process.env}      Environment variable values.
-	 * @since  unreleased
+	 * @since  0.1.3
 	 */
 	public getEnvironmentVariables(keys: string[]): typeof process.env {
 		return keys.reduce((output, key) => {
@@ -49,7 +49,7 @@ export class ProcessInput {
 	 * Gets long flags.
 	 *
 	 * @return {Configuration} Long flag key value pairs.
-	 * @since  unreleased
+	 * @since  0.1.3
 	 */
 	public getLongFlags(): Configuration {
 		const flags: Configuration = {}
@@ -69,7 +69,7 @@ export class ProcessInput {
 	 *
 	 * @param  {Configuration} flagsMutable Flags to mutate.
 	 * @return {void}
-	 * @since  unreleased
+	 * @since  0.1.3
 	 */
 	private convertFalseFlagsToBoolean(flagsMutable: Configuration): void {
 		for (const flag in flagsMutable)
@@ -83,7 +83,7 @@ export class ProcessInput {
 	 * @param  {number}        index        Current index.
 	 * @param  {Configuration} flagsMutable Flags to mutate.
 	 * @return {void}
-	 * @since  unreleased
+	 * @since  0.1.3
 	 */
 	private parseArgFromArgsAtIndexToFlags(
 		args: string[],
@@ -108,7 +108,7 @@ export class ProcessInput {
 	 * @param  {string[]} args  All args.
 	 * @param  {number}   index Index to check.
 	 * @return {boolean}        Whether the arg has a value.
-	 * @since  unreleased
+	 * @since  0.1.3
 	 */
 	private argAtIndexHasValue(args: string[], index: number): boolean {
 		return (
@@ -122,7 +122,7 @@ export class ProcessInput {
 	 * @param  {string}        arg          Arg to split.
 	 * @param  {Configuration} flagsMutable Flags to mutate.
 	 * @return {void}
-	 * @since  unreleased
+	 * @since  0.1.3
 	 */
 	private splitArgAtEquals(arg: string, flagsMutable: Configuration): void {
 		const [key, value] = arg.split('=')

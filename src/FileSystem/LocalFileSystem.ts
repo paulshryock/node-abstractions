@@ -298,7 +298,7 @@ export class LocalFileSystem implements FileSystem {
 	 * @param  {string}        src  Directory to copy.
 	 * @param  {string}        dest Destination path to copy the directory to.
 	 * @return {Promise<void>}
-	 * @since  unreleased
+	 * @since  0.1.3
 	 */
 	private async copyDirectory(src: string, dest: string): Promise<void> {
 		for (const item of await this.readDirectory(src))

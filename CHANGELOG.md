@@ -12,29 +12,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   **Fixed** for any bug fixes.
 -   **Security** in case of vulnerabilities.
 
-## [Unreleased](https://github.com/paulshryock/node-abstractions.git/compare/HEAD..v0.1.2)
+## [Unreleased](https://github.com/paulshryock/node-abstractions.git/compare/HEAD..v0.1.3)
 
 ### Added
 
--   ProcessInput.
-
 ### Changed
-
--   Rewrite LocalFileSystem.copy with standard library.
 
 ### Deprecated
 
 ### Removed
 
--   Uninstall fs-extra.
-
 ### Fixed
 
 ### Security
 
-## [v0.1.2](https://github.com/paulshryock/node-abstractions.git/releases/tag/v0.1.2) - 2023-09-20
+## [v0.1.3](https://github.com/paulshryock/node-abstractions.git/releases/tag/v0.1.3) - 2023-10-01
 
-### Added
+-   ProcessInput.
+
+-   Rewrite LocalFileSystem.copy with standard library.
+
+-   Uninstall fs-extra.
+
+## [v0.1.2](https://github.com/paulshryock/node-abstractions.git/releases/tag/v0.1.2) - 2023-09-20
 
 -   Export RecordStorage.
 -   Export RecordStorageException.

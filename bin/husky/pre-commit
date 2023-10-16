@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-echo '⚙️ Enforcing code quality.'
+echo '⚙️ Checking code quality.'
 npm run quality

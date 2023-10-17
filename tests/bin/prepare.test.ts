@@ -12,7 +12,6 @@ beforeEach(() => {
 })
 
 describe('prepare script', () => {
-	// eslint-disable-next-line no-undef -- Node 20 & Jest 8 allow this.
 	const filePath = resolve(__dirname, '../../bin/prepare.ts')
 
 	it('should install husky if ci is not defined', async () => {

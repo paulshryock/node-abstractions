@@ -177,6 +177,7 @@ export default [
 			'no-script-url': 'error',
 			'no-sequences': 'error',
 			'no-throw-literal': 'error',
+			'no-undef': 'off',
 			'no-undef-init': 'error',
 			'no-undefined': 'error',
 			'no-underscore-dangle': [

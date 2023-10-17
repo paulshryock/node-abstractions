@@ -33,7 +33,7 @@
 		"compile": "esbuild src/index.ts --bundle --format=esm --minify-syntax --minify-whitespace --outfile=dist/index.js --platform=node",
 		"docs": "typedoc",
 		"fix": "run-s format lint:fix",
-		"format": "prettier --write .",
+		"format": "prettier --log-level=warn --write .",
 		"format:check": "prettier --check --log-level=warn .",
 		"lint": "eslint .",
 		"lint:fix": "npm run lint -- --fix",

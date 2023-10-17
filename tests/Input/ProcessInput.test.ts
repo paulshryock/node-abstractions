@@ -6,8 +6,10 @@ import {
 	it,
 	test,
 } from '@jest/globals'
+import { Configuration } from '../../src/Configuration/Configuration.ts'
 import process from 'node:process'
 import { ProcessInput } from '../../src/Input/ProcessInput.ts'
+import { stringifyObject } from '../utilities.ts'
 
 describe('ProcessInput', () => {
 	const processArgv = process.argv
@@ -62,17 +64,15 @@ describe('ProcessInput', () => {
 		})
 
 		describe.each([
-			/* eslint-disable no-undefined -- Okay for test expectations. */
 			[[], {}, {}],
-			[['hello'], {}, { hello: undefined }],
+			[['hello'], {}, {}],
 			[['hello'], { hello: 'world' }, { hello: 'world' }],
-			[['hello', 'hi'], { hello: 'world' }, { hello: 'world', hi: undefined }],
+			[['hello', 'hi'], { hello: 'world' }, { hello: 'world' }],
 			[
 				['hello', 'hi'],
 				{ hello: 'world', hi: 'universe' },
 				{ hello: 'world', hi: 'universe' },
 			],
-			/* eslint-enable no-undefined */
 		])(
 			'should get environment variables if they are defined',
 			(
@@ -103,66 +103,75 @@ describe('ProcessInput', () => {
 		)
 	})
 
-	describe('getArguments', () => {
-		describe.each([[[]], [['one']], [['one', 'two']]])(
-			'when there are one or more arguments',
-			(args: string[]) => {
-				const testCase = `"${args.join(' ')}"`
-				const expected = `[${args.map((arg) => `"${arg}"`).join(', ')}]`
+	const testCases: [string, string[], Configuration][] = [
+		['no args', [], {}],
+		['short flags', ['-a', '-bc'], { a: true, b: true, c: true }],
+		[
+			'long flags',
+			['--a', '--b', 'bValue', '--c=cValue'],
+			{ a: true, b: 'bValue', c: 'cValue' },
+		],
+		[
+			'all types of args',
+			[
+				'positional',
+				'-a',
+				'true',
+				'--b',
+				'false',
+				'-cd',
+				'dValue',
+				'--e',
+				'eValue',
+				'positional',
+				'-fgh=hValue',
+				'--i=iValue',
+				'positional positional',
+			],
+			{
+				a: true,
+				b: false,
+				c: true,
+				d: 'dValue',
+				/* eslint-disable-next-line id-denylist -- `e` is fine here. */
+				e: 'eValue',
+				f: true,
+				g: true,
+				h: 'hValue',
+				i: 'iValue',
+			},
+		],
+	]
 
-				test(`${testCase} should return ${expected}`, () => {
+	describe('getConfiguration', () => {
+		describe.each(testCases)(
+			'should get configuration options',
+			(testCase: string, args: string[], expected: Record<string, unknown>) => {
+				beforeEach(() => {
 					process.argv = [...process.argv.slice(0, 2), ...args]
+				})
 
-					expect(new ProcessInput().getArguments()).toStrictEqual(args)
+				test(`when there are ${testCase}`, () => {
+					expect(new ProcessInput().getConfiguration()).toEqual(expected)
 				})
 			},
 		)
 	})
 
-	describe('getLongFlags', () => {
-		describe.each([
-			[['--key'], { key: true }],
-			[['--key=false'], { key: false }],
-			[['--key=value'], { key: 'value' }],
-			[['--key', 'value'], { key: 'value' }],
-			[['--key', '--another', 'value'], { another: 'value', key: true }],
-		])(
-			'when there are long flags',
-			(args: string[], expected: Record<string, unknown>) => {
-				const testCase = `"${args.join(' ')}"`
-
-				it(`${testCase} should return ${JSON.stringify(expected)}`, () => {
+	describe('getConfigurationOption', () => {
+		describe.each(testCases)(
+			'should get a configuration option',
+			(testCase: string, args: string[], expected: Record<string, unknown>) => {
+				beforeEach(() => {
 					process.argv = [...process.argv.slice(0, 2), ...args]
+				})
 
-					expect(new ProcessInput().getLongFlags()).toStrictEqual(expected)
+				test(`when there are ${testCase}`, () => {
+					expect(new ProcessInput().getConfigurationOption('a')).toEqual(
+						expected.a,
+					)
 				})
 			},
 		)
 	})
 })
-
-/**
- * Stringifies an object for a written test case.
- *
- * @param  {typeof process.env} obj Object to stringify.
- * @return {string}                 Stringified object.
- * @since  0.1.3
- */
-function stringifyObject(obj: typeof process.env): string {
-	return `{ ${Object.entries(obj).map(stringifyEntry).join(', ')} }`
-}
-
-/**
- * Stringifies entries for a written test case.
- *
- * @param  {[key: string, value: string | undefined]} entry Test case entry.
- * @return {string}                                         Stringified entry.
- * @since  0.1.3
- */
-function stringifyEntry(
-	entry: [key: string, value: string | undefined],
-): string {
-	const [key, value] = entry
-
-	return `${key}: ${typeof value === 'undefined' ? value : `"${value}"`}`
-}

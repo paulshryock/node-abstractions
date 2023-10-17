@@ -1,131 +1,32 @@
+import { Configuration } from '../Configuration/Configuration.ts'
+import { Input } from './Input.ts'
 import process from 'node:process'
-
-type Configuration = Record<string, unknown>
+import { ProcessConfigurator } from '../Configurator/ProcessConfigurator.ts'
 
 /**
  * Process input class.
  *
  * @since 0.1.3
  */
-export class ProcessInput {
+export class ProcessInput extends Input {
 	/**
-	 * Gets process arguments, if there are any.
+	 * Gets configuration data.
 	 *
-	 * @return {string[]} Process arguments, if there are any.
-	 * @since  0.1.3
+	 * @return {Configuration} Configuration data.
+	 * @since  unreleased
 	 */
-	public getArguments(): string[] {
-		return process.argv.slice(2)
+	public getConfiguration(): Configuration {
+		return new ProcessConfigurator(process.argv.slice(2)).getConfiguration()
 	}
 
 	/**
-	 * Gets an environment variable, if it is defined.
+	 * Gets a configuration option's value.
 	 *
-	 * @param  {string}  key Environment variable name.
-	 * @return {unknown}     Environment variable value.
-	 * @since  0.1.3
+	 * @param  {string}  option Configuration option to get.
+	 * @return {unknown}        Configuration option's value.
+	 * @since  unreleased
 	 */
-	public getEnvironmentVariable(key: string): unknown {
-		return process.env[key]
-	}
-
-	/**
-	 * Gets environment variables.
-	 *
-	 * @param  {string[]}           keys Names of environment variables to get.
-	 * @return {typeof process.env}      Environment variable values.
-	 * @since  0.1.3
-	 */
-	public getEnvironmentVariables(keys: string[]): typeof process.env {
-		return keys.reduce((output, key) => {
-			return {
-				...output,
-				[key]: process.env[key],
-			}
-		}, {})
-	}
-
-	/**
-	 * Gets long flags.
-	 *
-	 * @return {Configuration} Long flag key value pairs.
-	 * @since  0.1.3
-	 */
-	public getLongFlags(): Configuration {
-		const flags: Configuration = {}
-		const args = this.getArguments()
-
-		for (let index = 0; index < args.length; index++)
-			if (args[index].startsWith('--'))
-				this.parseArgFromArgsAtIndexToFlags(args, index, flags)
-
-		this.convertFalseFlagsToBoolean(flags)
-
-		return flags
-	}
-
-	/**
-	 * Converts "false" flags to boolean false.
-	 *
-	 * @param  {Configuration} flagsMutable Flags to mutate.
-	 * @return {void}
-	 * @since  0.1.3
-	 */
-	private convertFalseFlagsToBoolean(flagsMutable: Configuration): void {
-		for (const flag in flagsMutable)
-			if (flagsMutable[flag] === 'false') flagsMutable[flag] = false
-	}
-
-	/**
-	 * Parses arg from args at index to flags.
-	 *
-	 * @param  {string[]}      args         All arguments.
-	 * @param  {number}        index        Current index.
-	 * @param  {Configuration} flagsMutable Flags to mutate.
-	 * @return {void}
-	 * @since  0.1.3
-	 */
-	private parseArgFromArgsAtIndexToFlags(
-		args: string[],
-		index: number,
-		flagsMutable: Configuration,
-	): void {
-		const arg = args[index]
-
-		if (arg.includes('=')) return this.splitArgAtEquals(arg, flagsMutable)
-
-		if (this.argAtIndexHasValue(args, index)) {
-			flagsMutable[arg.slice(2)] = true
-			return
-		}
-
-		flagsMutable[arg.slice(2)] = args[index + 1]
-	}
-
-	/**
-	 * Check if arg at index has a value.
-	 *
-	 * @param  {string[]} args  All args.
-	 * @param  {number}   index Index to check.
-	 * @return {boolean}        Whether the arg has a value.
-	 * @since  0.1.3
-	 */
-	private argAtIndexHasValue(args: string[], index: number): boolean {
-		return (
-			typeof args[index + 1] === 'undefined' || args[index + 1].startsWith('--')
-		)
-	}
-
-	/**
-	 * Splits an arg by "=" and assigns flag.
-	 *
-	 * @param  {string}        arg          Arg to split.
-	 * @param  {Configuration} flagsMutable Flags to mutate.
-	 * @return {void}
-	 * @since  0.1.3
-	 */
-	private splitArgAtEquals(arg: string, flagsMutable: Configuration): void {
-		const [key, value] = arg.split('=')
-		flagsMutable[key.slice(2)] = value
+	public getConfigurationOption(option: string): unknown {
+		return this.getConfiguration()[option]
 	}
 }

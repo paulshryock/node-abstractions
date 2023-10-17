@@ -221,6 +221,19 @@ export class LocalFileSystem implements FileSystem {
 	}
 
 	/**
+	 * Checks if a file or directory exists.
+	 *
+	 * @param  {string}           path Path to file or directory.
+	 * @return {Promise<boolean>}      Whether the file or directory exists.
+	 * @since  0.1.1
+	 */
+	public async exists(path: string): Promise<boolean> {
+		return access(path)
+			.then(() => true)
+			.catch(() => false)
+	}
+
+	/**
 	 * Copies or moves a file or directory to another location.
 	 *
 	 * @internal
@@ -295,6 +308,7 @@ export class LocalFileSystem implements FileSystem {
 	/**
 	 * Recursively creates directories and files to copy a directory.
 	 *
+	 * @internal
 	 * @param  {string}        src  Directory to copy.
 	 * @param  {string}        dest Destination path to copy the directory to.
 	 * @return {Promise<void>}
@@ -305,18 +319,5 @@ export class LocalFileSystem implements FileSystem {
 			if (await this.isFile(`${src}/${item}`))
 				await this.copy(`${src}/${item}`, `${dest}/${item}`)
 			else await this.copyDirectory(`${src}/${item}`, `${dest}/${item}`)
-	}
-
-	/**
-	 * Checks if a file or directory exists.
-	 *
-	 * @param  {string}           path Path to file or directory.
-	 * @return {Promise<boolean>}      Whether the file or directory exists.
-	 * @since  0.1.1
-	 */
-	public async exists(path: string): Promise<boolean> {
-		return access(path)
-			.then(() => true)
-			.catch(() => false)
 	}
 }

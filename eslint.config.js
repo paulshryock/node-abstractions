@@ -172,6 +172,10 @@ export default [
 			],
 			'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
 			'no-proto': 'error',
+			'no-restricted-globals': [
+				'error',
+				{ message: 'Use Number.isNaN instead.', name: 'isNaN' },
+			],
 			'no-return-assign': ['error', 'always'],
 			'no-return-await': 'error',
 			'no-script-url': 'error',

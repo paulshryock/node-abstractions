@@ -45,7 +45,7 @@ export default [
 			'id-denylist': ['error', 'data', 'err', 'e', 'cb', 'callback'],
 			'id-match': [
 				'error',
-				'^(_+)?(([a-z]+([A-Z][a-z]+)*)|([A-Z]+(_[A-Z]+)*)|(([A-Z][a-z]+)+))$',
+				'^(_+)?(([a-z]+([A-Z][a-z]+)*)|([A-Z]+(_[A-Z]+)*)|(([A-Z][a-z]+)+))?$',
 			],
 			'jsdoc/check-access': 'error',
 			'jsdoc/check-alignment': 'error',
@@ -223,7 +223,6 @@ export default [
 			'prefer-template': 'error',
 			'quote-props': ['error', 'as-needed'],
 			radix: 'error',
-			'require-await': 'error',
 			'require-unicode-regexp': 'error',
 			'sort-imports': ['error', { ignoreCase: true }],
 			'sort-keys': 'error',

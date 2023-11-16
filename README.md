@@ -46,15 +46,6 @@ class MyService {
 -   [Document a user story](https://github.com/paulshryock/node-abstractions/issues/new?assignees=&labels=enhancement&projects=&template=3_document_a_user_story.md&title=)
 -   [Report a bug](https://github.com/paulshryock/node-abstractions/issues/new?assignees=&labels=bug&projects=&template=4_report_a_bug.md&title=)
 
-## Roadmap
-
--   [ ] Database
--   [ ] Email
--   [ ] FileSystem
--   [ ] Input
--   [ ] Network
--   ✅ Output
-
 ## Contributing
 
 Contributions are welcome! **Read the [contribution guidelines](https://github.com/paulshryock/node-abstractions/blob/main/CONTRIBUTING.md)**, and then submit a pull request.

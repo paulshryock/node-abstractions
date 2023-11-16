@@ -10,15 +10,11 @@ const { emit: originalEmit } = process
  * @param  {string}    event Event type.
  * @param  {Error}     error Event error object.
  * @return {false|any}       False or calls the original emitter function.
- * @since  0.1.1
+ * @since  0.1.1 - Suppress only Custom ESM Loader warnings.
+ * @since  unreleased - Suppress all experimental warnings.
  */
 function suppresser(event, error) {
-	if (
-		event === 'warning' &&
-		error.name === 'ExperimentalWarning' &&
-		error.message.includes('Custom ESM Loader')
-	)
-		return false
+	if (event === 'warning' && error.name === 'ExperimentalWarning') return false
 
 	return originalEmit.apply(process, [event, error])
 }

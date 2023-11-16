@@ -1,11 +1,13 @@
 # Abstractions
 
-This package includes a number of reusable abstractions and implementations for common tasks which take place at the edges of your software. These are things like input/output, the network, the file system, databases, and email. By abstracting these concepts behind an interface, you can easily manage this accidental complexity and instead focus on the essential complexity of your application's business logic.
+| :warning: This project is in early development and not for production use. |
+| :------------------------------------------------------------------------- |
 
-[![Socket Badge](https://socket.dev/api/badge/npm/package/@paulshryock/abstractions)](https://socket.dev/npm/package/@paulshryock/abstractions)
+Library of Node.js abstractions for side effects at the edges of software.
 
-| :warning: This project is in early development and not ready for production use. |
-| :------------------------------------------------------------------------------- |
+Reduce accidental complexity and focus on application business logic.
+
+![GitHub License](https://img.shields.io/github/license/paulshryock/node-abstractions) ![npm bundle size](https://img.shields.io/bundlephobia/min/%40paulshryock%2Fabstractions) ![npm downloads badge](https://img.shields.io/npm/dt/%40paulshryock/abstractions) ![Latest version badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgithub.com%2Fpaulshryock%2Fnode-abstractions%2Fraw%2Fmain%2Fpackage.json&query=%24.version&prefix=v&label=latest%20version) [![Socket badge](https://socket.dev/api/badge/npm/package/@paulshryock/abstractions)](https://socket.dev/npm/package/@paulshryock/abstractions)
 
 ## Requirements
 
@@ -57,7 +59,3 @@ Contributions are welcome! **Read the [contribution guidelines](https://github.c
 ## License
 
 [MIT License](https://github.com/paulshryock/node-abstractions/blob/main/LICENSE)
-
-## Project status
-
-This project is in early development, and is not recommended for use in a production environment.

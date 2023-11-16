@@ -33,16 +33,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v0.1.3](https://github.com/paulshryock/node-abstractions.git/releases/tag/v0.1.3) - 2023-10-01
 
+## Added
+
 -   ProcessInput.
 -   Rewrite LocalFileSystem.copy with standard library.
 -   Uninstall fs-extra.
 
 ## [v0.1.2](https://github.com/paulshryock/node-abstractions.git/releases/tag/v0.1.2) - 2023-09-20
 
--   Export RecordStorage.
--   Export RecordStorageException.
--   Export Storage.
--   Export StorageException.
+## Added
+
+-   Export Record and Storage classes with Exceptions.
 
 ## [v0.1.1](https://github.com/paulshryock/node-abstractions.git/releases/tag/v0.1.1) - 2023-09-18
 

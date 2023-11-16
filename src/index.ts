@@ -1,9 +1,6 @@
 // Configuration.
 export { Configuration } from './Configuration/Configuration.ts'
 
-// Configurator.
-export { ProcessConfigurator } from './Configurator/ProcessConfigurator.ts'
-
 // Exception.
 export { Exception } from './Exception/Exception.ts'
 
@@ -20,6 +17,7 @@ export { type FileSystem } from './FileSystem/FileSystem.ts'
 
 // Input.
 export { Input } from './Input/Input.ts'
+export { NetworkInput } from './Input/NetworkInput.ts'
 export { ProcessInput } from './Input/ProcessInput.ts'
 
 // Output.

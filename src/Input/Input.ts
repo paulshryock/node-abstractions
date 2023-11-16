@@ -52,17 +52,19 @@ export abstract class Input {
 	/**
 	 * Gets configuration data.
 	 *
-	 * @return {Configuration} Configuration data.
+	 * @return {Promise<Configuration>} Configuration data.
 	 * @since  unreleased
 	 */
-	public abstract getConfiguration(): Configuration
+	public abstract getConfiguration(): Promise<Configuration>
 
 	/**
 	 * Gets a configuration option's value.
 	 *
-	 * @param  {string}  option Configuration option to get.
-	 * @return {unknown}        Configuration option's value.
+	 * @param  {string}           option Configuration option to get.
+	 * @return {Promise<unknown>}        Configuration option's value.
 	 * @since  unreleased
 	 */
-	public abstract getConfigurationOption(option: string): unknown
+	public async getConfigurationOption(option: string): Promise<unknown> {
+		return (await this.getConfiguration())[option]
+	}
 }

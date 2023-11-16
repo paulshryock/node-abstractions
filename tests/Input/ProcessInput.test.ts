@@ -151,8 +151,8 @@ describe('ProcessInput', () => {
 					process.argv = [...process.argv.slice(0, 2), ...args]
 				})
 
-				test(`when there are ${testCase}`, () => {
-					expect(new ProcessInput().getConfiguration()).toEqual(expected)
+				test(`when there are ${testCase}`, async () => {
+					expect(await new ProcessInput().getConfiguration()).toEqual(expected)
 				})
 			},
 		)
@@ -166,8 +166,8 @@ describe('ProcessInput', () => {
 					process.argv = [...process.argv.slice(0, 2), ...args]
 				})
 
-				test(`when there are ${testCase}`, () => {
-					expect(new ProcessInput().getConfigurationOption('a')).toEqual(
+				test(`when there are ${testCase}`, async () => {
+					expect(await new ProcessInput().getConfigurationOption('a')).toEqual(
 						expected.a,
 					)
 				})

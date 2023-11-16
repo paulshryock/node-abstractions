@@ -4,29 +4,39 @@ import process from 'node:process'
 import { ProcessConfigurator } from '../Configurator/ProcessConfigurator.ts'
 
 /**
- * Process input class.
+ * Gets process input.
  *
  * @since 0.1.3
  */
 export class ProcessInput extends Input {
 	/**
-	 * Gets configuration data.
+	 * Configuration data.
 	 *
-	 * @return {Configuration} Configuration data.
-	 * @since  unreleased
+	 * @internal
+	 * @since unreleased
 	 */
-	public getConfiguration(): Configuration {
-		return new ProcessConfigurator(process.argv.slice(2)).getConfiguration()
+	private readonly configuration: Configuration
+
+	/**
+	 * Constructs a process input object.
+	 *
+	 * @since unreleased
+	 */
+	public constructor() {
+		super()
+
+		this.configuration = new ProcessConfigurator(
+			process.argv.slice(2),
+		).getConfiguration()
 	}
 
 	/**
-	 * Gets a configuration option's value.
+	 * Gets configuration data.
 	 *
-	 * @param  {string}  option Configuration option to get.
-	 * @return {unknown}        Configuration option's value.
+	 * @return {Promise<Configuration>} Configuration data.
 	 * @since  unreleased
 	 */
-	public getConfigurationOption(option: string): unknown {
-		return this.getConfiguration()[option]
+	public getConfiguration(): Promise<Configuration> {
+		return new Promise((res) => res(this.configuration))
 	}
 }

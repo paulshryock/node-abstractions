@@ -659,7 +659,7 @@ describe('LocalFileSystem', () => {
 				['file', path],
 				['directory', 'path/to'],
 			])('should return true', (testCase: string, pathToItem: string) => {
-				test(testCase, async () => {
+				test(`${testCase}`, async () => {
 					expect(await new LocalFileSystem().exists(pathToItem)).toBe(true)
 				})
 			})

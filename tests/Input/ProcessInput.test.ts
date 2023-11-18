@@ -9,7 +9,6 @@ import {
 import { Configuration } from '../../src/Configuration/Configuration.ts'
 import process from 'node:process'
 import { ProcessInput } from '../../src/Input/ProcessInput.ts'
-import { stringifyObject } from '../utilities.ts'
 
 describe('ProcessInput', () => {
 	const processArgv = process.argv
@@ -88,11 +87,11 @@ describe('ProcessInput', () => {
 					.map((k) => `"${k}"`)
 					.join(', ')}]`
 
-				describe(`when process.env is ${stringifyObject(
+				describe(`when process.env is ${JSON.stringify(
 					processEnvValue,
 				)}`, () => {
-					describe(argsCase, () => {
-						test(`should return ${stringifyObject(expected)}`, () => {
+					describe(`${argsCase}`, () => {
+						test(`should return ${JSON.stringify(expected)}`, () => {
 							expect(
 								new ProcessInput().getEnvironmentVariables(keys),
 							).toStrictEqual(expected)

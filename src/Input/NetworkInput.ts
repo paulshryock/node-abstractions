@@ -1,6 +1,5 @@
-import { Configuration } from '../Configuration/Configuration.ts'
+import { Configuration, Input } from './Input.ts'
 import { Entries } from '../utilities/primitives.ts'
-import { Input } from './Input.ts'
 
 type ContentTypeHandler = (configuration: Configuration) => Promise<void>
 

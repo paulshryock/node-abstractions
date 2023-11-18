@@ -1,4 +1,4 @@
-import { Configuration } from '../Configuration/Configuration.ts'
+import { Configuration } from './Input.ts'
 
 /**
  * Process configuration class for building configuration data.
@@ -45,7 +45,7 @@ export class ProcessConfigurator {
 	 * @since  unreleased
 	 */
 	private buildConfiguration(): void {
-		this.#configuration = new Configuration(this)
+		this.#configuration = { ...this }
 	}
 
 	/**

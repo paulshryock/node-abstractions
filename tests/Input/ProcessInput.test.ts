@@ -6,7 +6,7 @@ import {
 	it,
 	test,
 } from '@jest/globals'
-import { Configuration } from '../../src/Configuration/Configuration.ts'
+import { Configuration } from '../../src/Input/Input.ts'
 import process from 'node:process'
 import { ProcessInput } from '../../src/Input/ProcessInput.ts'
 

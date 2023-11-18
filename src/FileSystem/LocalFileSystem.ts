@@ -17,7 +17,6 @@ import {
 } from './FileSystemException.ts'
 import { dirname, join, parse } from 'node:path'
 import { FileSystem } from './FileSystem.ts'
-import { Stringable } from '../Stringable/Stringable.ts'
 
 /**
  * Local file system class.
@@ -53,15 +52,12 @@ export class LocalFileSystem implements FileSystem {
 	/**
 	 * Writes to a file.
 	 *
-	 * @param  {string}              path    Path to file.
-	 * @param  {string | Stringable} content Content to write to file.
+	 * @param  {string}        path    Path to file.
+	 * @param  {string}        content Content to write to file.
 	 * @return {Promise<void>}
 	 * @since  0.1.1
 	 */
-	public async writeFile(
-		path: string,
-		content: string | Stringable,
-	): Promise<void> {
+	public async writeFile(path: string, content: string): Promise<void> {
 		await mkdir(dirname(path), { recursive: true })
 
 		await writeFile(path, content.toString(), 'utf8')
@@ -70,15 +66,12 @@ export class LocalFileSystem implements FileSystem {
 	/**
 	 * Appends to a file.
 	 *
-	 * @param  {string}              path    Path to file.
-	 * @param  {string | Stringable} content Content to write to file.
+	 * @param  {string}        path    Path to file.
+	 * @param  {string}        content Content to write to file.
 	 * @return {Promise<void>}
 	 * @since  0.1.1
 	 */
-	public async appendFile(
-		path: string,
-		content: string | Stringable,
-	): Promise<void> {
+	public async appendFile(path: string, content: string): Promise<void> {
 		await mkdir(dirname(path), { recursive: true })
 		await appendFile(path, content.toString(), 'utf8')
 	}

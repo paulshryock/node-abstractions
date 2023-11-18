@@ -9,11 +9,7 @@ Reduce accidental complexity and focus on application business logic.
 
 ![GitHub License](https://img.shields.io/github/license/paulshryock/node-abstractions) ![npm bundle size](https://img.shields.io/bundlephobia/min/%40paulshryock%2Fabstractions) ![npm downloads badge](https://img.shields.io/npm/dt/%40paulshryock/abstractions) ![Latest version badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgithub.com%2Fpaulshryock%2Fnode-abstractions%2Fraw%2Fmain%2Fpackage.json&query=%24.version&prefix=v&label=latest%20version) [![Socket badge](https://socket.dev/api/badge/npm/package/@paulshryock/abstractions)](https://socket.dev/npm/package/@paulshryock/abstractions)
 
-## Requirements
-
-| Software | Minimum Version |
-| :------- | :-------------- |
-| Node     | 14.13.1         |
+<!-- todo ## Requirements -->
 
 ## Installation
 
@@ -23,22 +19,8 @@ npm install @paulshryock/abstractions
 
 ## Usage
 
-### Output
-
-```typescript
-import { Output } from '@paulshryock/abstractions'
-
-class MyService {
-    constructor(private readonly output: Output) {}
-
-    outputMessages(): void {
-        this.output.error('An error occurred.')
-        this.output.warn('A warning message.')
-        this.output.log('A log message.')
-        this.output.info('An info message.')
-        this.output.debug('A debug message.')
-    }
-}
+```ts
+import { CommandLine, FileSystem, Network, Storage } from '@paulshryock/abstractions'
 ```
 
 ## Support
@@ -52,9 +34,9 @@ class MyService {
 
 Contributions are welcome! **Read the [contribution guidelines](https://github.com/paulshryock/node-abstractions/blob/main/CONTRIBUTING.md)**, and then submit a pull request.
 
-## Authors and acknowledgment
+## Maintainers
 
-[Paul Shryock](https://github.com/paulshryock)
+-   [Paul Shryock](https://github.com/paulshryock)
 
 ## License
 

@@ -1,5 +1,6 @@
-import { Configuration } from '../Configuration/Configuration.ts'
 import process from 'node:process'
+
+export type Configuration = Record<string, unknown>
 
 /**
  * @internal

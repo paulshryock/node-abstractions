@@ -1,5 +1,3 @@
-import { Stringable } from '../Stringable/Stringable.ts'
-
 /**
  * File system abstraction.
  *
@@ -19,22 +17,22 @@ export interface FileSystem {
 	/**
 	 * Writes to a file.
 	 *
-	 * @param  {string}              path    Path to file.
-	 * @param  {string | Stringable} content Content to write to file.
+	 * @param  {string}        path    Path to file.
+	 * @param  {string}        content Content to write to file.
 	 * @return {Promise<void>}
 	 * @since  0.1.1
 	 */
-	writeFile(path: string, content: string | Stringable): Promise<void>
+	writeFile(path: string, content: string): Promise<void>
 
 	/**
 	 * Appends to a file.
 	 *
-	 * @param  {string}              path    Path to file.
-	 * @param  {string | Stringable} content Content to write to file.
+	 * @param  {string}        path    Path to file.
+	 * @param  {string}        content Content to write to file.
 	 * @return {Promise<void>}
 	 * @since  0.1.1
 	 */
-	appendFile(path: string, content: string | Stringable): Promise<void>
+	appendFile(path: string, content: string): Promise<void>
 
 	/**
 	 * Deletes a file.

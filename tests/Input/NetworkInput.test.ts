@@ -1,5 +1,5 @@
 import { describe, expect, it } from '@jest/globals'
-import { Configuration } from '../../src/Configuration/Configuration.ts'
+import { Configuration } from '../../src/Input/Input.ts'
 import { NetworkInput } from '../../src/Input/NetworkInput.ts'
 
 describe('NetworkInput', () => {

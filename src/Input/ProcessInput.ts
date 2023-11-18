@@ -1,7 +1,6 @@
-import { Configuration } from '../Configuration/Configuration.ts'
-import { Input } from './Input.ts'
+import { Configuration, Input } from './Input.ts'
 import process from 'node:process'
-import { ProcessConfigurator } from '../Configurator/ProcessConfigurator.ts'
+import { ProcessConfigurator } from './ProcessConfigurator.ts'
 
 /**
  * Gets process input.

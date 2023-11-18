@@ -1,7 +1,6 @@
 import { stderr, stdout } from 'node:process'
 import { Console } from 'node:console'
 import { Output } from './Output.ts'
-import { Stringable } from '../Stringable/Stringable.ts'
 
 /**
  * Prints program output to stdout and stderr streams.
@@ -24,51 +23,24 @@ export class ConsoleOutput implements Output {
 	/**
 	 * Outputs a message.
 	 *
-	 * @param  {string | Stringable}     message Message to output.
+	 * @param  {string}                  message Message to output.
 	 * @param  {Record<string, unknown>} context (optional) Message context.
 	 * @return {void}
-	 * @since unreleased
+	 * @since  unreleased
 	 */
-	public out(
-		message: string | Stringable,
-		context: Record<string, unknown> = {},
-	): void {
-		this.console.log(this.interpolate(message.toString(), context))
+	public out(message: string, context: Record<string, unknown> = {}): void {
+		this.console.log(message, context)
 	}
 
 	/**
 	 * Outputs an error message.
 	 *
-	 * @param  {string | Stringable}     message Message to output.
+	 * @param  {string}                  message Message to output.
 	 * @param  {Record<string, unknown>} context Message context.
 	 * @return {void}
-	 * @since 0.1.0
-	 * @since 0.1.1 - Allow first parameter to be Stringable.
-	 * @since unreleased - Changed second parameter to Record.
-	 */
-	public error(
-		message: string | Stringable,
-		context: Record<string, unknown> = {},
-	): void {
-		this.console.error(this.interpolate(message.toString(), context))
-	}
-
-	/**
-	 * Interpolates a string with values from a context object.
-	 *
-	 * @param  {string | Stringable}     message Message to output.
-	 * @param  {Record<string, unknown>} context Message context.
-	 * @return {string}                          Interpolated message.
 	 * @since  unreleased
 	 */
-	private interpolate(
-		message: string,
-		context: Record<string, unknown>,
-	): string {
-		return message.replaceAll(/(?<match>\{[^}]+\})/gu, (match) => {
-			const param = match.replaceAll(/(?<curly>^\{|\}$)/gu, '')
-
-			return context[param]?.toString() ?? match
-		})
+	public error(message: string, context: Record<string, unknown> = {}): void {
+		this.console.error(message, context)
 	}
 }

@@ -1,4 +1,4 @@
-// export { CommandLine } from './CommandLine/CommandLine.ts'
+export { CommandLine } from './CommandLine/CommandLine.ts'
 
 export { Exception } from './Exception/Exception.ts'
 

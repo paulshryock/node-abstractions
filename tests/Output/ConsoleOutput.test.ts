@@ -1,126 +1,131 @@
 import { describe, expect, it, jest, test } from '@jest/globals'
-import { Console } from 'node:console'
+import { stderr, stdout } from 'node:process'
 import { ConsoleOutput } from '../../src/Output/ConsoleOutput.ts'
 import { MessageStringable } from '../../src/Stringable/MessageStringable.ts'
+import { mockStream } from '../testing-utilities/streams.ts'
 import { Stringable } from '../../src/Stringable/Stringable.ts'
-import { Writable } from 'node:stream'
-
-/**
- * Mock console class.
- *
- * @since 0.1.1
- */
-class MockConsole extends Console {
-	/**
-	 * MockConsole class constructor.
-	 *
-	 * @since 0.1.1
-	 */
-	constructor() {
-		super(new Writable({}))
-	}
-
-	override error = jest.fn()
-	override warn = jest.fn()
-	override log = jest.fn()
-	override info = jest.fn()
-	override debug = jest.fn()
-}
 
 describe('ConsoleOutput', () => {
-	describe('error', () => {
-		const errorMessage = 'An error occurred.'
+	describe('ConsoleOutput.out', () => {
+		mockStream(stdout)
 
-		describe.each([errorMessage, new MessageStringable(errorMessage)])(
-			'should print an error to stderr stream',
+		describe.each(['A message.', new MessageStringable('A message.')])(
+			'should print a message to stdout stream',
 			(message: string | Stringable) => {
-				test(message.constructor.name, () => {
-					const mockConsole = new MockConsole()
-					const output = new ConsoleOutput(mockConsole)
+				test(`when message is a ${message.constructor.name}`, () => {
+					new ConsoleOutput().out(message)
 
-					output.error(message)
+					const [toStdout] = (stdout.write as jest.Mock).mock.lastCall as [
+						string,
+					]
 
-					expect(mockConsole.error).toHaveBeenCalledWith(errorMessage)
+					expect(toStdout).toBe('A message.\n')
+				})
+			},
+		)
+
+		// eslint-disable-next-line no-undefined -- Testing edge case.
+		describe.each([null, undefined])(
+			'should not interpolate unstringable value from context into message',
+			(greeting: null | undefined) => {
+				test(`${JSON.stringify(greeting)}`, () => {
+					new ConsoleOutput().out('{greeting} world', { greeting })
+
+					const [toStdout] = (stdout.write as jest.Mock).mock.lastCall as [
+						string,
+					]
+
+					expect(toStdout).toBe('{greeting} world\n')
+				})
+			},
+		)
+
+		describe.each([
+			['hello', 'hello world\n'],
+			[1, '1 world\n'],
+			[['1', '2', '3'], '1,2,3 world\n'],
+			[[1, 2, 3], '1,2,3 world\n'],
+			[
+				[{ hello: 'world' }, { hello: 'world' }],
+				'[object Object],[object Object] world\n',
+			],
+			[{ hello: 'world' }, '[object Object] world\n'],
+		])(
+			'should interpolate stringable value from context into message',
+			(greeting: unknown, expected: string) => {
+				it(`${JSON.stringify(greeting)}`, () => {
+					new ConsoleOutput().out('{greeting} world', { greeting })
+
+					const [toStdout] = (stdout.write as jest.Mock).mock.lastCall as [
+						string,
+					]
+
+					expect(toStdout).toBe(expected)
 				})
 			},
 		)
 	})
 
-	describe('warn', () => {
-		const warningMessage = 'An warning message.'
+	describe('ConsoleOutput.error', () => {
+		mockStream(stderr)
 
-		describe.each([warningMessage, new MessageStringable(warningMessage)])(
-			'should print a warning to stderr stream',
+		describe.each([
+			'An error message.',
+			new MessageStringable('An error message.'),
+		])(
+			'should print a message to stderr stream',
 			(message: string | Stringable) => {
-				test(message.constructor.name, () => {
-					const mockConsole = new MockConsole()
-					const output = new ConsoleOutput(mockConsole)
+				test(`when message is a ${message.constructor.name}`, () => {
+					new ConsoleOutput().error(message)
 
-					output.warn(message)
+					const [toStderr] = (stderr.write as jest.Mock).mock.lastCall as [
+						string,
+					]
 
-					expect(mockConsole.warn).toHaveBeenCalledWith(warningMessage)
+					expect(toStderr).toBe('An error message.\n')
 				})
 			},
 		)
-	})
 
-	describe('log', () => {
-		const logMessage = 'A log message.'
+		// eslint-disable-next-line no-undefined -- Testing edge case.
+		describe.each([null, undefined])(
+			'should not interpolate unstringable value from context into message',
+			(greeting: null | undefined) => {
+				test(`${JSON.stringify(greeting)}`, () => {
+					new ConsoleOutput().error('{greeting} world', { greeting })
 
-		describe.each([logMessage, new MessageStringable(logMessage)])(
-			'should print a log message to stdout stream',
-			(message: string | Stringable) => {
-				test(message.constructor.name, () => {
-					const mockConsole = new MockConsole()
-					const output = new ConsoleOutput(mockConsole)
+					const [toStderr] = (stderr.write as jest.Mock).mock.lastCall as [
+						string,
+					]
 
-					output.log(message)
-
-					expect(mockConsole.log).toHaveBeenCalledWith(logMessage)
+					expect(toStderr).toBe('{greeting} world\n')
 				})
 			},
 		)
-	})
 
-	describe('info', () => {
-		const infoMessage = 'An info message.'
+		describe.each([
+			['hello', 'hello world\n'],
+			[1, '1 world\n'],
+			[['1', '2', '3'], '1,2,3 world\n'],
+			[[1, 2, 3], '1,2,3 world\n'],
+			[
+				[{ hello: 'world' }, { hello: 'world' }],
+				'[object Object],[object Object] world\n',
+			],
+			[{ hello: 'world' }, '[object Object] world\n'],
+		])(
+			'should interpolate stringable value from context into message',
+			(greeting: unknown, expected: string) => {
+				it(`${JSON.stringify(greeting)}`, () => {
+					new ConsoleOutput().error('{greeting} world', { greeting })
 
-		describe.each([infoMessage, new MessageStringable(infoMessage)])(
-			'should print an info message to stdout stream',
-			(message: string | Stringable) => {
-				test(message.constructor.name, () => {
-					const mockConsole = new MockConsole()
-					const output = new ConsoleOutput(mockConsole)
+					const [toStderr] = (stderr.write as jest.Mock).mock.lastCall as [
+						string,
+					]
 
-					output.info(message)
-
-					expect(mockConsole.info).toHaveBeenCalledWith(infoMessage)
+					expect(toStderr).toBe(expected)
 				})
 			},
 		)
-	})
-
-	describe('debug', () => {
-		const debugMessage = 'A debug message.'
-
-		describe.each([debugMessage, new MessageStringable(debugMessage)])(
-			'should print a debug message to stdout stream',
-			(message: string | Stringable) => {
-				test(message.constructor.name, () => {
-					const mockConsole = new MockConsole()
-					const output = new ConsoleOutput(mockConsole)
-
-					output.debug(message)
-
-					expect(mockConsole.debug).toHaveBeenCalledWith(debugMessage)
-				})
-			},
-		)
-	})
-
-	describe('getConsole', () => {
-		it('should get the console instance', () => {
-			expect(new ConsoleOutput().getConsole()).toBeInstanceOf(Console)
-		})
 	})
 })

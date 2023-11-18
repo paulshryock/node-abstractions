@@ -3,20 +3,18 @@ import { Console } from 'node:console'
 import { Output } from './Output.ts'
 import { Stringable } from '../Stringable/Stringable.ts'
 
-/* eslint @typescript-eslint/no-explicit-any: 0 -- Params can be any. */
-/* eslint @typescript-eslint/no-unsafe-argument: 0 -- Console allows any. */
-
 /**
- * Console Output class for printing messages to stdout and stderr streams.
+ * Prints program output to stdout and stderr streams.
  *
  * @since 0.1.0
+ * @since unreleased - Removed all methods except error.
+ * @since unreleased - Added out method.
  */
 export class ConsoleOutput implements Output {
 	/**
 	 * Console Output class constructor.
 	 *
-	 * @param {Console} console Console instance which writes to stdout and
-	 *                          stderr streams.
+	 * @param {Console} console Console instance with stdout and stderr streams.
 	 * @since 0.1.0
 	 */
 	public constructor(
@@ -24,77 +22,53 @@ export class ConsoleOutput implements Output {
 	) {}
 
 	/**
-	 * Prints an error to stderr stream.
+	 * Outputs a message.
 	 *
-	 * @param  {string | Stringable} message        Message to output.
-	 * @param  {any[]}               optionalParams Optional parameters.
+	 * @param  {string | Stringable}     message Message to output.
+	 * @param  {Record<string, unknown>} context (optional) Message context.
 	 * @return {void}
-	 * @since 0.1.0
-	 * @since 0.1.1 - Allow first param to be Stringable.
+	 * @since unreleased
 	 */
-	public error(message: string | Stringable, ...optionalParams: any[]): void {
-		this.console.error(message.toString(), ...optionalParams)
+	public out(
+		message: string | Stringable,
+		context: Record<string, unknown> = {},
+	): void {
+		this.console.log(this.interpolate(message.toString(), context))
 	}
 
 	/**
-	 * Prints a warning to stderr stream.
+	 * Outputs an error message.
 	 *
-	 * @param  {string | Stringable} message        Message to output.
-	 * @param  {any[]}               optionalParams Optional parameters.
+	 * @param  {string | Stringable}     message Message to output.
+	 * @param  {Record<string, unknown>} context Message context.
 	 * @return {void}
 	 * @since 0.1.0
-	 * @since 0.1.1 - Allow first param to be Stringable.
+	 * @since 0.1.1 - Allow first parameter to be Stringable.
+	 * @since unreleased - Changed second parameter to Record.
 	 */
-	public warn(message: string | Stringable, ...optionalParams: any[]): void {
-		this.console.warn(message.toString(), ...optionalParams)
+	public error(
+		message: string | Stringable,
+		context: Record<string, unknown> = {},
+	): void {
+		this.console.error(this.interpolate(message.toString(), context))
 	}
 
 	/**
-	 * Prints a log message to stdout stream.
+	 * Interpolates a string with values from a context object.
 	 *
-	 * @param  {string | Stringable} message        Message to output.
-	 * @param  {any[]}               optionalParams Optional parameters.
-	 * @return {void}
-	 * @since 0.1.0
-	 * @since 0.1.1 - Allow first param to be Stringable.
+	 * @param  {string | Stringable}     message Message to output.
+	 * @param  {Record<string, unknown>} context Message context.
+	 * @return {string}                          Interpolated message.
+	 * @since  unreleased
 	 */
-	public log(message: string | Stringable, ...optionalParams: any[]): void {
-		this.console.log(message.toString(), ...optionalParams)
-	}
+	private interpolate(
+		message: string,
+		context: Record<string, unknown>,
+	): string {
+		return message.replaceAll(/(?<match>\{[^}]+\})/gu, (match) => {
+			const param = match.replaceAll(/(?<curly>^\{|\}$)/gu, '')
 
-	/**
-	 * Prints an info message to stdout stream.
-	 *
-	 * @param  {string | Stringable} message        Message to output.
-	 * @param  {any[]}               optionalParams Optional parameters.
-	 * @return {void}
-	 * @since 0.1.0
-	 * @since 0.1.1 - Allow first param to be Stringable.
-	 */
-	public info(message: string | Stringable, ...optionalParams: any[]): void {
-		this.console.info(message.toString(), ...optionalParams)
-	}
-
-	/**
-	 * Print a debug message to stdout stream.
-	 *
-	 * @param  {string | Stringable} message        Message to output.
-	 * @param  {any[]}               optionalParams Optional parameters.
-	 * @return {void}
-	 * @since 0.1.0
-	 * @since 0.1.1 - Allow first param to be Stringable.
-	 */
-	public debug(message: string | Stringable, ...optionalParams: any[]): void {
-		this.console.debug(message.toString(), ...optionalParams)
-	}
-
-	/**
-	 * Gets the console instance.
-	 *
-	 * @return {Console} The Console instance.
-	 * @since  0.1.0
-	 */
-	public getConsole(): Console {
-		return this.console
+			return context[param]?.toString() ?? match
+		})
 	}
 }

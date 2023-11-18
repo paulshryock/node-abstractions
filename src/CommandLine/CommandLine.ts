@@ -12,8 +12,7 @@ export class CommandLine {
 	 * @since unreleased
 	 */
 	public constructor() {
-		if (new.target !== CommandLine)
-			throw new FinalClassWasExtended(CommandLine.constructor.name)
+		if (new.target !== CommandLine) throw new FinalClassWasExtended(CommandLine)
 	}
 
 	/**

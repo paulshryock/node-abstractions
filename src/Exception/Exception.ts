@@ -1,3 +1,5 @@
+import { FinalClass } from '../utilities/primitives.ts'
+
 /**
  * Exception.
  *
@@ -11,13 +13,18 @@ export class Exception extends Error {}
  * @since unreleased
  */
 export class FinalClassWasExtended extends Exception {
+	public readonly finalClass: string
+
 	/**
 	 * Constructs a FinalClassWasExtended exception.
 	 *
-	 * @param {string} constructor Final class constructor name.
+	 * @param {string} finalClass Final class which was extended.
 	 * @since unreleased
 	 */
-	public constructor(constructor: string) {
-		super(`Final class ${constructor} may not be extended.`)
+	public constructor(finalClass: FinalClass) {
+		super(`Final class ${finalClass.name} may not be extended.`)
+
+		this.finalClass = finalClass.name
+		this.name = this.constructor.name
 	}
 }

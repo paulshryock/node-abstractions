@@ -3,6 +3,7 @@ import eslintComments from '@eslint-community/eslint-plugin-eslint-comments'
 import eslintConfigPrettier from 'eslint-config-prettier'
 import eslintJsonPlugin from 'eslint-plugin-json'
 import { fileURLToPath as fileUrlToPath } from 'node:url'
+import jest from 'eslint-plugin-jest'
 import js from '@eslint/js'
 import jsdoc from 'eslint-plugin-jsdoc'
 import path from 'node:path'
@@ -242,13 +243,6 @@ export default [
 		},
 	},
 	{
-		files: ['tests/**/*'],
-		rules: {
-			'max-lines': 'off',
-			'max-lines-per-function': 'off',
-		},
-	},
-	{
 		files: ['**/*.cjs'],
 		languageOptions: { ecmaVersion: 'latest', sourceType: 'commonjs' },
 	},
@@ -280,6 +274,15 @@ export default [
 			...typescriptEslint.configs.recommended.rules,
 			...typescriptEslint.configs['recommended-requiring-type-checking'].rules,
 			'@typescript-eslint/return-await': 'error',
+		},
+	},
+	{
+		files: ['tests/**/*'],
+		plugins: { jest },
+		rules: {
+			...jest.configs.recommended.rules,
+			'max-lines': 'off',
+			'max-lines-per-function': 'off',
 		},
 	},
 	eslintConfigPrettier,

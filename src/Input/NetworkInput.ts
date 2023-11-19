@@ -1,5 +1,6 @@
-import { Configuration, Input } from './Input.ts'
 import { Entries } from '../utilities/primitives.ts'
+
+type Configuration = Record<string, unknown>
 
 type ContentTypeHandler = (configuration: Configuration) => Promise<void>
 
@@ -11,7 +12,7 @@ type ContentTypeHandlers = Record<string, ContentTypeHandler>
  * @since unreleased
  * @deprecated
  */
-export class NetworkInput extends Input {
+export class NetworkInput {
 	/**
 	 * @internal
 	 * @since unreleased
@@ -47,9 +48,7 @@ export class NetworkInput extends Input {
 	 * @param {Request} request Network request to extract information from.
 	 * @since unreleased
 	 */
-	public constructor(private readonly request: Request) {
-		super()
-	}
+	public constructor(private readonly request: Request) {}
 
 	/**
 	 * Gets configuration data.

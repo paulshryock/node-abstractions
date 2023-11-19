@@ -1,6 +1,12 @@
-import { describe, expect, it } from '@jest/globals'
+import { afterAll, beforeEach, describe, expect, it } from '@jest/globals'
 import { CommandLine } from '../../src/CommandLine/CommandLine.ts'
-import { FinalClassWasExtended } from '../../src/Exception/Exception.ts'
+import process from 'node:process'
+
+const processArgv = process.argv
+
+afterAll(() => {
+	process.argv = processArgv
+})
 
 describe('CommandLine', () => {
 	it('should instantiate', () => {
@@ -8,24 +14,73 @@ describe('CommandLine', () => {
 	})
 
 	it('should not be extensible', () => {
-		expect(() => new (class extends CommandLine {})()).toThrow(
-			FinalClassWasExtended,
-		)
-	})
-})
-
-describe('CommandLine.getPositionalArguments()', () => {
-	it.todo('should get positional arguments')
-})
-
-describe('CommandLine.getOptions(Options)', () => {
-	describe('when default values are not set', () => {
-		it.todo('should only get available options')
+		expect(() => new (class extends CommandLine {})()).toThrow(Error)
 	})
 
-	describe('when default values are set', () => {
-		it.todo('should get available options')
-		it.todo('should get default values for unavailable options')
+	type TestCase = {
+		argv: string[]
+		options: Record<string, string | boolean>
+		positionalArguments: string[]
+	}
+
+	describe.each([
+		['with no arguments', { argv: [], options: {}, positionalArguments: [] }],
+		[
+			'with positional arguments',
+			{
+				argv: ['hello', 'world'],
+				options: {},
+				positionalArguments: ['hello', 'world'],
+			},
+		],
+		[
+			'with flags',
+			{
+				argv: ['-a', 'hello', '-bc', 'world', '-d', 'true'],
+				options: { a: 'hello', b: true, c: 'world', d: true },
+				positionalArguments: [],
+			},
+		],
+		[
+			'with options',
+			{
+				argv: ['--a', '--b=hello', '--c', 'world', '--d', 'false'],
+				options: { a: true, b: 'hello', c: 'world', d: false },
+				positionalArguments: [],
+			},
+		],
+		[
+			'with all kinds of arguments',
+			{
+				argv: ['a', '-b', '-c', 'd', '-ef', '-gh', 'i', '--j', '--k', 'l', 'm'],
+				options: {
+					b: true,
+					c: 'd',
+					// eslint-disable-next-line id-denylist -- e is fine.
+					e: true,
+					f: true,
+					g: true,
+					h: 'i',
+					j: true,
+					k: 'l',
+				},
+				positionalArguments: ['a', 'm'],
+			},
+		],
+	])('%s', (_: string, testCase: TestCase) => {
+		beforeEach(() => {
+			process.argv = ['node', 'command', ...testCase.argv]
+		})
+
+		it('should have correct options', () => {
+			expect(new CommandLine().options).toEqual(testCase.options)
+		})
+
+		it('should have correct positionalArguments', () => {
+			expect(new CommandLine().positionalArguments).toEqual(
+				testCase.positionalArguments,
+			)
+		})
 	})
 })
 

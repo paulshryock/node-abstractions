@@ -9,6 +9,7 @@ type ContentTypeHandlers = Record<string, ContentTypeHandler>
  * Network input class.
  *
  * @since unreleased
+ * @deprecated
  */
 export class NetworkInput extends Input {
 	/**

@@ -3,6 +3,7 @@ import { StorageException } from './StorageException.ts'
 /**
  * Record storage exception.
  *
+ * @alpha
  * @since 0.1.1
  */
 export class RecordStorageException extends StorageException {}

@@ -4,6 +4,7 @@ import { Configuration } from './Input.ts'
  * Process configuration class for building configuration data.
  *
  * @since unreleased
+ * @deprecated
  */
 export class ProcessConfigurator {
 	[index: string]: unknown

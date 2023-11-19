@@ -21,6 +21,7 @@ import { FileSystem } from './FileSystem.ts'
 /**
  * Local file system class.
  *
+ * @alpha
  * @since 0.1.1
  */
 export class LocalFileSystem implements FileSystem {

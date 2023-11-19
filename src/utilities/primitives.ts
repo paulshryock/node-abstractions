@@ -12,6 +12,7 @@ export type Entries = ReturnType<
  * Final class.
  *
  * @internal
+ * @alpha
  * @since unreleased
  */
 export interface FinalClass {

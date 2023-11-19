@@ -3,6 +3,7 @@ import { Storage } from './Storage.ts'
 /**
  * Record from storage.
  *
+ * @alpha
  * @since 0.1.1
  */
 export type StorageRecord = Record<string, unknown> & {

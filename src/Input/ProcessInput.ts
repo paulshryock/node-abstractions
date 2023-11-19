@@ -6,6 +6,7 @@ import { ProcessConfigurator } from './ProcessConfigurator.ts'
  * Gets process input.
  *
  * @since 0.1.3
+ * @deprecated
  */
 export class ProcessInput extends Input {
 	/**

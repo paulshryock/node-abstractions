@@ -2,6 +2,7 @@
  * Program output.
  *
  * @since unreleased
+ * @deprecated
  */
 export interface Output {
 	/**

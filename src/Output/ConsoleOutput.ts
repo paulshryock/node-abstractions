@@ -8,6 +8,7 @@ import { Output } from './Output.ts'
  * @since 0.1.0
  * @since unreleased - Removed all methods except error.
  * @since unreleased - Added out method.
+ * @deprecated
  */
 export class ConsoleOutput implements Output {
 	/**

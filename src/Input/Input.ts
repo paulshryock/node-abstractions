@@ -20,6 +20,7 @@ interface EnvironmentVariables {
  * Input class.
  *
  * @since unreleased
+ * @deprecated
  */
 export abstract class Input {
 	/**

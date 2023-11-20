@@ -1,12 +1,6 @@
-import { afterAll, beforeEach, describe, expect, it } from '@jest/globals'
+import { afterAll, beforeEach, describe, expect, it, jest } from '@jest/globals'
 import { CommandLine } from '../../src/CommandLine/CommandLine.ts'
 import process from 'node:process'
-
-const processArgv = process.argv
-
-afterAll(() => {
-	process.argv = processArgv
-})
 
 describe('CommandLine', () => {
 	it('should instantiate', () => {
@@ -17,16 +11,13 @@ describe('CommandLine', () => {
 		expect(() => new (class extends CommandLine {})()).toThrow(Error)
 	})
 
-	type TestCase = {
-		argv: string[]
-		options: Record<string, string | boolean>
-		positionalArguments: string[]
-	}
-
 	describe.each([
-		['with no arguments', { argv: [], options: {}, positionalArguments: [] }],
 		[
-			'with positional arguments',
+			'when there are no arguments',
+			{ argv: [], options: {}, positionalArguments: [] },
+		],
+		[
+			'when there are positional arguments',
 			{
 				argv: ['hello', 'world'],
 				options: {},
@@ -34,7 +25,7 @@ describe('CommandLine', () => {
 			},
 		],
 		[
-			'with flags',
+			'when there are flags',
 			{
 				argv: ['-a', 'hello', '-bc', 'world', '-d', 'true'],
 				options: { a: 'hello', b: true, c: 'world', d: true },
@@ -42,7 +33,7 @@ describe('CommandLine', () => {
 			},
 		],
 		[
-			'with options',
+			'when there are options',
 			{
 				argv: ['--a', '--b=hello', '--c', 'world', '--d', 'false'],
 				options: { a: true, b: 'hello', c: 'world', d: false },
@@ -50,7 +41,7 @@ describe('CommandLine', () => {
 			},
 		],
 		[
-			'with all kinds of arguments',
+			'when there are all kinds of arguments',
 			{
 				argv: ['a', '-b', '-c', 'd', '-ef', '-gh', 'i', '--j', '--k', 'l', 'm'],
 				options: {
@@ -67,21 +58,37 @@ describe('CommandLine', () => {
 				positionalArguments: ['a', 'm'],
 			},
 		],
-	])('%s', (_: string, testCase: TestCase) => {
-		beforeEach(() => {
-			process.argv = ['node', 'command', ...testCase.argv]
-		})
+	])(
+		'%s',
+		(
+			_: string,
+			testCase: {
+				argv: string[]
+				options: Record<string, string | boolean>
+				positionalArguments: string[]
+			},
+		) => {
+			const processArgv = process.argv
 
-		it('should have correct options', () => {
-			expect(new CommandLine().options).toEqual(testCase.options)
-		})
+			beforeEach(() => {
+				process.argv = ['node', 'command', ...testCase.argv]
+			})
 
-		it('should have correct positionalArguments', () => {
-			expect(new CommandLine().positionalArguments).toEqual(
-				testCase.positionalArguments,
-			)
-		})
-	})
+			afterAll(() => {
+				process.argv = processArgv
+			})
+
+			it('should have correct options', () => {
+				expect(new CommandLine().options).toEqual(testCase.options)
+			})
+
+			it('should have correct positionalArguments', () => {
+				expect(new CommandLine().positionalArguments).toEqual(
+					testCase.positionalArguments,
+				)
+			})
+		},
+	)
 })
 
 describe('CommandLine.ask(Question)', () => {
@@ -90,7 +97,25 @@ describe('CommandLine.ask(Question)', () => {
 })
 
 describe('CommandLine.out(message)', () => {
-	it.todo('should write a message to stdout')
+	const stdoutWrite = process.stdout.write.bind(process.stdout)
+
+	beforeEach(() => {
+		;(process.stdout.write as jest.Mock) = jest.fn()
+	})
+
+	afterAll(() => {
+		process.stdout.write = stdoutWrite
+	})
+
+	it('should write a message to stdout', () => {
+		new CommandLine().out('hello world')
+
+		// eslint-disable-next-line @typescript-eslint/unbound-method -- Works fine.
+		expect(process.stdout.write).toHaveBeenCalledWith(
+			expect.stringContaining('hello world'),
+			expect.anything(),
+		)
+	})
 })
 
 describe('CommandLine.out(message, { trace: true })', () => {

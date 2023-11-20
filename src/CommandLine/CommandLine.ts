@@ -1,6 +1,7 @@
+import { argv, stderr, stdout } from 'node:process'
+import { Console } from 'node:console'
 import { FinalClassWasExtended } from '../Exception/Exception.ts'
 import { CommandLineOptions as Options } from './CommandLineOptions.ts'
-import process from 'node:process'
 
 /**
  * Represents a command line interface for terminal input and output.
@@ -9,19 +10,35 @@ import process from 'node:process'
  * @alpha
  */
 export class CommandLine {
+	/**
+	 * All options from command line process, including short and long flags.
+	 *
+	 * Boolean strings are converted to boolean.
+	 *
+	 * @since unreleased
+	 */
 	public options: Options
+
+	/**
+	 * Positional arguments from command line process.
+	 *
+	 * @since unreleased
+	 */
 	public positionalArguments: string[]
 
 	/**
-	 * Constructs a command line abstraction.
+	 * Constructs a command line interface abstraction.
 	 *
+	 * @param {Console} console Debugging console which writes to streams.
 	 * @throws {FinalClassWasExtended}
 	 * @since  unreleased
 	 */
-	public constructor() {
+	public constructor(
+		private console: Console = new Console({ stderr, stdout }),
+	) {
 		if (new.target !== CommandLine) throw new FinalClassWasExtended(CommandLine)
 
-		const args = process.argv.slice(2)
+		const args = argv.slice(2)
 
 		this.options = new Options(args)
 		this.positionalArguments = args.reduce(
@@ -31,6 +48,17 @@ export class CommandLine {
 					: allArgs,
 			[],
 		)
+	}
+
+	/**
+	 * Writes a message to stdout.
+	 *
+	 * @param  {string} message Message to write to stdout.
+	 * @return {void}
+	 * @since unreleased
+	 */
+	public out(message: string): void {
+		this.console.log(message)
 	}
 
 	/**

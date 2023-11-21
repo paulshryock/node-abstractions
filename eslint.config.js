@@ -281,6 +281,7 @@ export default [
 		plugins: { jest },
 		rules: {
 			...jest.configs.recommended.rules,
+			'id-denylist': ['error', 'data', 'err', 'cb', 'callback'],
 			'max-lines': 'off',
 			'max-lines-per-function': 'off',
 		},

@@ -25,18 +25,85 @@ describe('CommandLine', () => {
 			},
 		],
 		[
+			/** @todo Make this its own test. */
 			'when there are flags',
 			{
-				argv: ['-a', 'hello', '-bc', 'world', '-d', 'true'],
-				options: { a: 'hello', b: true, c: 'world', d: true },
+				argv: [
+					// String.
+					'-a',
+					'a',
+					// Compound booleans.
+					'-bc',
+					// Compound boolean and string.
+					'-de',
+					'e',
+					// String true.
+					'-f',
+					'true',
+					// String false.
+					'-g',
+					'false',
+					// Equals string.
+					'-h=h',
+					// Equals string in double quotes.
+					'-i="i"',
+					// Equals string in escaped double quotes.
+					'-j="j"',
+					// Equals string in single quotes.
+					"-k='k'",
+					// String in double quotes.
+					'-l',
+					'"l"',
+					// String in single quotes.
+					'-m',
+					"'m'",
+					// String in escaped double quotes.
+					'-n',
+					'"n"',
+				],
+				options: {
+					a: 'a',
+					b: true,
+					c: true,
+					d: true,
+					e: 'e',
+					f: true,
+					g: false,
+					h: 'h',
+					i: 'i',
+					j: 'j',
+					k: 'k',
+					l: 'l',
+					m: 'm',
+					n: 'n',
+				},
 				positionalArguments: [],
 			},
 		],
 		[
+			/** @todo Make this its own test. */
 			'when there are options',
 			{
-				argv: ['--a', '--b=hello', '--c', 'world', '--d', 'false'],
-				options: { a: true, b: 'hello', c: 'world', d: false },
+				argv: [
+					'--a',
+					'--b=hello',
+					'--c',
+					'world',
+					'--d',
+					'false',
+					'--e=hi',
+					'--f="universe"',
+					"-g='sup'",
+				],
+				options: {
+					a: true,
+					b: 'hello',
+					c: 'world',
+					d: false,
+					e: 'hi',
+					f: 'universe',
+					g: 'sup',
+				},
 				positionalArguments: [],
 			},
 		],
@@ -47,7 +114,6 @@ describe('CommandLine', () => {
 				options: {
 					b: true,
 					c: 'd',
-					// eslint-disable-next-line id-denylist -- e is fine.
 					e: true,
 					f: true,
 					g: true,

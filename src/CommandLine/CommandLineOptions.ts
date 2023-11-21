@@ -39,16 +39,27 @@ export class CommandLineOptions {
 
 				const args = this.splitShortFlagsToArgs(arg)
 
-				return [...allArgs, ...args, value].filter(
-					(item) => typeof item !== 'undefined',
-				)
+				return [...allArgs, ...args, value]
+					.filter((item) => typeof item !== 'undefined')
+					.map((value) => this.removeEnclosingQuotes(value))
 			},
 			[],
 		)
 	}
 
 	/**
-	 * Sets configuration props from options.
+	 * Removes enclosing quotes from a string value.
+	 *
+	 * @param  {string} value String value which might have enclosing quotes.
+	 * @return {string}       Value without enclosing quotes.
+	 * @since  unreleased
+	 */
+	private removeEnclosingQuotes(value: string): string {
+		return value.replaceAll(/(?<quote>^\\?['"]|\\?['"]$)/gu, '')
+	}
+
+	/**
+	 * Sets properties from private options.
 	 *
 	 * @internal
 	 * @return {void}
@@ -71,7 +82,7 @@ export class CommandLineOptions {
 	}
 
 	/**
-	 * Changes string 'true'/'false' values to boolean true/false.
+	 * Converts string 'true'/'false' values to boolean true/false.
 	 *
 	 * @internal
 	 * @return {void}

@@ -162,9 +162,10 @@ describe('CommandLine.ask(Question)', () => {
 	it.todo('should return an answer from stdin')
 })
 
-describe('CommandLine.out(message)', () => {
-	const stdoutWrite = process.stdout.write.bind(process.stdout)
+const stdoutWrite = process.stdout.write.bind(process.stdout)
+const stderrWrite = process.stderr.write.bind(process.stderr)
 
+describe('CommandLine.out(message)', () => {
 	beforeEach(() => {
 		;(process.stdout.write as jest.Mock) = jest.fn()
 	})
@@ -185,7 +186,25 @@ describe('CommandLine.out(message)', () => {
 })
 
 describe('CommandLine.out(message, { trace: true })', () => {
-	it.todo('should write a stack trace to stdout')
+	beforeEach(() => {
+		;(process.stdout.write as jest.Mock) = jest.fn()
+		;(process.stderr.write as jest.Mock) = jest.fn()
+	})
+
+	afterAll(() => {
+		process.stdout.write = stdoutWrite
+		process.stderr.write = stderrWrite
+	})
+
+	it('should write a stack trace to stderr', () => {
+		new CommandLine().out('hello world', { trace: true })
+
+		// eslint-disable-next-line @typescript-eslint/unbound-method -- Works fine.
+		expect(process.stderr.write).toHaveBeenCalledWith(
+			expect.stringContaining('abstractions/src/CommandLine/CommandLine.ts'),
+			expect.anything(),
+		)
+	})
 })
 
 describe('CommandLine.error(Error)', () => {

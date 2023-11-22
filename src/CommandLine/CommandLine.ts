@@ -4,6 +4,15 @@ import { FinalClassWasExtended } from '../Exception/Exception.ts'
 import { CommandLineOptions as Options } from './CommandLineOptions.ts'
 
 /**
+ * Options for command line message output.
+ *
+ * @since unreleased
+ */
+type OutOptions = {
+	trace: boolean
+}
+
+/**
  * Represents a command line interface for terminal input and output.
  *
  * @throws {FinalClassWasExtended}
@@ -53,12 +62,15 @@ export class CommandLine {
 	/**
 	 * Writes a message to stdout.
 	 *
-	 * @param  {string} message Message to write to stdout.
+	 * @param  {string}     message Message to write to stdout.
+	 * @param  {OutOptions} options Options for message output.
 	 * @return {void}
 	 * @since unreleased
 	 */
-	public out(message: string): void {
+	public out(message: string, options?: OutOptions): void {
 		this.console.log(message)
+
+		if (options?.trace) this.console.trace(message)
 	}
 
 	/**

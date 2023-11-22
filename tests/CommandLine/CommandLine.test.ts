@@ -208,9 +208,43 @@ describe('CommandLine.out(message, { trace: true })', () => {
 })
 
 describe('CommandLine.error(Error)', () => {
-	it.todo('should write an Error message to stderr')
+	beforeEach(() => {
+		;(process.stderr.write as jest.Mock) = jest.fn()
+	})
+
+	afterAll(() => {
+		process.stderr.write = stderrWrite
+	})
+
+	it('should write an error message to stderr', () => {
+		new CommandLine().error(new Error('something bad happened'))
+
+		// eslint-disable-next-line @typescript-eslint/unbound-method -- Works fine.
+		expect(process.stderr.write).toHaveBeenCalledWith(
+			expect.stringContaining('something bad happened'),
+			expect.anything(),
+		)
+	})
 })
 
 describe('CommandLine.error(Error, { trace: true })', () => {
-	it.todo('should write a stack trace to stderr')
+	beforeEach(() => {
+		;(process.stderr.write as jest.Mock) = jest.fn()
+	})
+
+	afterAll(() => {
+		process.stderr.write = stderrWrite
+	})
+
+	it('should write a stack trace to stderr', () => {
+		new CommandLine().error(new Error('something bad happened'), {
+			trace: true,
+		})
+
+		// eslint-disable-next-line @typescript-eslint/unbound-method -- Works fine.
+		expect(process.stderr.write).toHaveBeenCalledWith(
+			expect.stringContaining('abstractions/src/CommandLine/CommandLine.ts'),
+			expect.anything(),
+		)
+	})
 })

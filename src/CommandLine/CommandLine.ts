@@ -60,7 +60,7 @@ export class CommandLine {
 	}
 
 	/**
-	 * Writes a message to stdout.
+	 * Writes a message to stdout. Optionally writes stack trace to stderr.
 	 *
 	 * @param  {string}     message Message to write to stdout.
 	 * @param  {OutOptions} options Options for message output.
@@ -71,6 +71,20 @@ export class CommandLine {
 		this.console.log(message)
 
 		if (options?.trace) this.console.trace(message)
+	}
+
+	/**
+	 * Writes an exception message to stderr. Optionally alos writes stack trace.
+	 *
+	 * @param  {Error}      exception Exception with message to write.
+	 * @param  {OutOptions} options   Options for message output.
+	 * @return {void}
+	 * @since unreleased
+	 */
+	public error(exception: Error, options?: OutOptions): void {
+		this.console.error(exception.message)
+
+		if (options?.trace) this.console.trace(exception.message)
 	}
 
 	/**

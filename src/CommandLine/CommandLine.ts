@@ -1,17 +1,18 @@
 import * as readline from 'node:readline/promises'
 import { IO, OutputOptions } from '../IO/IO.ts'
 import {
-	CommandLineOptions as Options,
 	CommandLineStreams as Streams,
 	COMMAND_LINE_STREAMS as STREAMS,
 } from './utilities.ts'
 import { argv } from 'node:process'
 import { Console } from 'node:console'
 import { FinalClassWasExtended } from '../Exception/Exception.ts'
+import { CommandLineOptions as Options } from './CommandLineOptions.ts'
+import { CommandLinePositionalArguments as PositionalArguments } from './CommandLinePositionalArguments.ts'
 import { StackTrace } from '../StackTrace/StackTrace.ts'
 
 /**
- * Represents a command line interface for terminal input and output.
+ * Means of writing to and reading from the command line.
  *
  * @throws {FinalClassWasExtended}
  * @alpha
@@ -25,7 +26,7 @@ export class CommandLine implements IO {
 	private readonly console: Console
 
 	/**
-	 * All options from command line process, including short and long flags.
+	 * All options from the current process, including short and long flags.
 	 *
 	 * Boolean strings are converted to boolean.
 	 *
@@ -34,7 +35,7 @@ export class CommandLine implements IO {
 	public readonly options: Options
 
 	/**
-	 * Positional arguments from command line process.
+	 * Positional arguments from the current process.
 	 *
 	 * @since unreleased
 	 */
@@ -55,13 +56,7 @@ export class CommandLine implements IO {
 
 		const args = argv.slice(2)
 		this.options = new Options(args)
-		this.positionalArguments = args.reduce(
-			(allArgs: string[], currentArg: string, index: number) =>
-				this.isPositionalArg(currentArg, index, args)
-					? [...allArgs, currentArg]
-					: allArgs,
-			[],
-		)
+		this.positionalArguments = new PositionalArguments(args).toArray()
 	}
 
 	/**
@@ -108,25 +103,5 @@ export class CommandLine implements IO {
 		const message = `${error.name}: ${error.message}`
 
 		this.console[method](message)
-	}
-
-	/**
-	 * Checks whether an arg at a given index is a positional arg.
-	 *
-	 * @internal
-	 * @param  {string}   arg   Argument to check.
-	 * @param  {number}   index Index of argument to check.
-	 * @param  {string[]} args  All arguments.
-	 * @return {boolean}        Whether the argument is a positional arg.
-	 * @since  unreleased
-	 * @todo   Refactor.
-	 */
-	private isPositionalArg(arg: string, index: number, args: string[]): boolean {
-		const previousArg = args[index - 1]
-
-		return !(
-			arg.startsWith('-') ||
-			(previousArg?.startsWith('-') && !previousArg.includes('='))
-		)
 	}
 }

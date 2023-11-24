@@ -1,3 +1,8 @@
+/**
+ * Means of writing to and reading from input, output, and error streams.
+ *
+ * @since unreleased
+ */
 export interface IO {
 	/**
 	 * Prints question to output stream and reads answer from input stream.

@@ -1,8 +1,10 @@
 import { afterAll, beforeEach, describe, expect, it, jest } from '@jest/globals'
 import { CommandLine } from '../../src/CommandLine/CommandLine.ts'
+import { Duplex } from 'node:stream'
 import process from 'node:process'
+import { CommandLineStreams as Streams } from '../../src/CommandLine/utilities.ts'
 
-describe('CommandLine', () => {
+describe('CommandLine instance', () => {
 	it('should instantiate', () => {
 		expect(() => new CommandLine()).not.toThrow()
 	})
@@ -10,7 +12,9 @@ describe('CommandLine', () => {
 	it('should not be extensible', () => {
 		expect(() => new (class extends CommandLine {})()).toThrow(Error)
 	})
+})
 
+describe('CommandLine instance properties', () => {
 	describe.each([
 		[
 			'when there are no arguments',
@@ -157,94 +161,93 @@ describe('CommandLine', () => {
 	)
 })
 
-describe('CommandLine.ask(Question)', () => {
-	it.todo('should write a question to stdout')
-	it.todo('should return an answer from stdin')
-})
+describe('CommandLine instance methods', () => {
+	let streams: Streams
 
-const stdoutWrite = process.stdout.write.bind(process.stdout)
-const stderrWrite = process.stderr.write.bind(process.stderr)
-
-describe('CommandLine.out(message)', () => {
 	beforeEach(() => {
-		;(process.stdout.write as jest.Mock) = jest.fn()
+		streams = {
+			stderr: new Duplex(),
+			stdin: new Duplex(),
+			stdout: new Duplex(),
+		}
+		;(streams.stderr.write as jest.Mock) = jest.fn()
+		;(streams.stdout.write as jest.Mock) = jest.fn()
+
+		streams.stderr.write.bind(streams.stderr)
+		streams.stdout.write.bind(streams.stdout)
 	})
 
-	afterAll(() => {
-		process.stdout.write = stdoutWrite
-	})
+	describe('CommandLine.ask(question)', () => {
+		it('should write a question to stdout', () => {
+			new CommandLine(streams).ask('hello?').catch((error) => {
+				throw error
+			})
 
-	it('should write a message to stdout', () => {
-		new CommandLine().out('hello world')
+			streams.stdin.push(null)
 
-		// eslint-disable-next-line @typescript-eslint/unbound-method -- Works fine.
-		expect(process.stdout.write).toHaveBeenCalledWith(
-			expect.stringContaining('hello world'),
-			expect.anything(),
-		)
-	})
-})
-
-describe('CommandLine.out(message, { trace: true })', () => {
-	beforeEach(() => {
-		;(process.stdout.write as jest.Mock) = jest.fn()
-		;(process.stderr.write as jest.Mock) = jest.fn()
-	})
-
-	afterAll(() => {
-		process.stdout.write = stdoutWrite
-		process.stderr.write = stderrWrite
-	})
-
-	it('should write a stack trace to stderr', () => {
-		new CommandLine().out('hello world', { trace: true })
-
-		// eslint-disable-next-line @typescript-eslint/unbound-method -- Works fine.
-		expect(process.stderr.write).toHaveBeenCalledWith(
-			expect.stringContaining('abstractions/src/CommandLine/CommandLine.ts'),
-			expect.anything(),
-		)
-	})
-})
-
-describe('CommandLine.error(Error)', () => {
-	beforeEach(() => {
-		;(process.stderr.write as jest.Mock) = jest.fn()
-	})
-
-	afterAll(() => {
-		process.stderr.write = stderrWrite
-	})
-
-	it('should write an error message to stderr', () => {
-		new CommandLine().error(new Error('something bad happened'))
-
-		// eslint-disable-next-line @typescript-eslint/unbound-method -- Works fine.
-		expect(process.stderr.write).toHaveBeenCalledWith(
-			expect.stringContaining('something bad happened'),
-			expect.anything(),
-		)
-	})
-})
-
-describe('CommandLine.error(Error, { trace: true })', () => {
-	beforeEach(() => {
-		;(process.stderr.write as jest.Mock) = jest.fn()
-	})
-
-	afterAll(() => {
-		process.stderr.write = stderrWrite
-	})
-
-	it('should write a stack trace to stderr', () => {
-		new CommandLine().error(new Error('something bad happened'), {
-			trace: true,
+			// eslint-disable-next-line @typescript-eslint/unbound-method -- Works fine.
+			expect(streams.stdout.write).toHaveBeenCalledWith(
+				expect.stringContaining('hello?'),
+			)
 		})
 
-		// eslint-disable-next-line @typescript-eslint/unbound-method -- Works fine.
-		expect(process.stderr.write).toHaveBeenCalledWith(
-			expect.stringContaining('abstractions/src/CommandLine/CommandLine.ts'),
-			expect.anything(),
-		)
+		it('should return an answer from stdin', async () => {
+			const answer = new CommandLine(streams).ask('hello?')
+
+			streams.stdin.push('world\n')
+			streams.stdin.push(null)
+
+			await expect(answer).resolves.toBe('world')
+		})
+	})
+
+	describe('CommandLine.out(message)', () => {
+		it('should write a message to stdout', () => {
+			new CommandLine(streams).out('hello world')
+
+			// eslint-disable-next-line @typescript-eslint/unbound-method -- Works fine.
+			expect(streams.stdout.write).toHaveBeenCalledWith(
+				expect.stringContaining('hello world'),
+				expect.anything(),
+			)
+		})
+	})
+
+	describe('CommandLine.out(message, { trace: true })', () => {
+		it('should write a stack trace to stdout', () => {
+			new CommandLine(streams).out('hello world', { trace: true })
+
+			// eslint-disable-next-line @typescript-eslint/unbound-method -- Works fine.
+			expect(streams.stdout.write).toHaveBeenCalledWith(
+				expect.stringContaining('Trace: '),
+				expect.anything(),
+			)
+		})
+	})
+
+	describe('CommandLine.error(Error)', () => {
+		it('should write an error message to stderr', () => {
+			new CommandLine(streams).error(new Error('something bad happened'))
+
+			// eslint-disable-next-line @typescript-eslint/unbound-method -- Works fine.
+			expect(streams.stderr.write).toHaveBeenCalledWith(
+				expect.stringContaining('something bad happened'),
+				expect.anything(),
+			)
+		})
+	})
+
+	describe('CommandLine.error(Error, { trace: true })', () => {
+		it('should write a stack trace to stderr', () => {
+			const exception = new Error('something bad happened')
+
+			new CommandLine(streams).error(exception, { trace: true })
+
+			// eslint-disable-next-line @typescript-eslint/unbound-method -- Works fine.
+			expect(streams.stderr.write).toHaveBeenCalledWith(
+				expect.stringContaining('Trace: '),
+				expect.anything(),
+			)
+		})
 	})
 })

@@ -1,16 +1,14 @@
-import { argv, stderr, stdout } from 'node:process'
+import * as readline from 'node:readline/promises'
+import { IO, OutputOptions } from '../IO/IO.ts'
+import {
+	CommandLineOptions as Options,
+	CommandLineStreams as Streams,
+	COMMAND_LINE_STREAMS as STREAMS,
+} from './utilities.ts'
+import { argv } from 'node:process'
 import { Console } from 'node:console'
 import { FinalClassWasExtended } from '../Exception/Exception.ts'
-import { CommandLineOptions as Options } from './CommandLineOptions.ts'
-
-/**
- * Options for command line message output.
- *
- * @since unreleased
- */
-type OutOptions = {
-	trace: boolean
-}
+import { StackTrace } from '../StackTrace/StackTrace.ts'
 
 /**
  * Represents a command line interface for terminal input and output.
@@ -18,7 +16,14 @@ type OutOptions = {
  * @throws {FinalClassWasExtended}
  * @alpha
  */
-export class CommandLine {
+export class CommandLine implements IO {
+	/**
+	 * Console interface for writing to the console.
+	 *
+	 * @since unreleased
+	 */
+	private readonly console: Console
+
 	/**
 	 * All options from command line process, including short and long flags.
 	 *
@@ -26,29 +31,29 @@ export class CommandLine {
 	 *
 	 * @since unreleased
 	 */
-	public options: Options
+	public readonly options: Options
 
 	/**
 	 * Positional arguments from command line process.
 	 *
 	 * @since unreleased
 	 */
-	public positionalArguments: string[]
+	public readonly positionalArguments: string[]
 
 	/**
 	 * Constructs a command line interface abstraction.
 	 *
-	 * @param {Console} console Debugging console which writes to streams.
+	 * @param {Streams} streams (optional) Command line interface streams.
 	 * @throws {FinalClassWasExtended}
 	 * @since  unreleased
 	 */
-	public constructor(
-		private console: Console = new Console({ stderr, stdout }),
-	) {
+	public constructor(private readonly streams: Streams = STREAMS) {
 		if (new.target !== CommandLine) throw new FinalClassWasExtended(CommandLine)
 
-		const args = argv.slice(2)
+		const { stderr, stdout } = this.streams
+		this.console = new Console({ stderr, stdout })
 
+		const args = argv.slice(2)
 		this.options = new Options(args)
 		this.positionalArguments = args.reduce(
 			(allArgs: string[], currentArg: string, index: number) =>
@@ -60,31 +65,49 @@ export class CommandLine {
 	}
 
 	/**
-	 * Writes a message to stdout. Optionally writes stack trace to stderr.
+	 * Prints question to output stream and reads answer from input stream.
 	 *
-	 * @param  {string}     message Message to write to stdout.
-	 * @param  {OutOptions} options Options for message output.
-	 * @return {void}
-	 * @since unreleased
+	 * @param  {string}          question Question to print to output stream.
+	 * @return {Promise<string>}          Answer read from input stream.
+	 * @since  unreleased
 	 */
-	public out(message: string, options?: OutOptions): void {
-		this.console.log(message)
+	public async ask(question: string): Promise<string> {
+		const { stdin: input, stdout: output } = this.streams
+		const rl = readline.createInterface({ input, output })
 
-		if (options?.trace) this.console.trace(message)
+		const answer = await rl.question(`${question} `)
+		rl.close()
+
+		return answer
 	}
 
 	/**
-	 * Writes an exception message to stderr. Optionally alos writes stack trace.
+	 * Writes message to output stream. Optionally includes a stack trace.
 	 *
-	 * @param  {Error}      exception Exception with message to write.
-	 * @param  {OutOptions} options   Options for message output.
+	 * @param  {string}        message Message to write to output stream.
+	 * @param  {OutputOptions} options Output options.
 	 * @return {void}
 	 * @since unreleased
 	 */
-	public error(exception: Error, options?: OutOptions): void {
-		this.console.error(exception.message)
+	public out(message: string, options?: OutputOptions): void {
+		const output = options?.trace ? new StackTrace(message).toString() : message
 
-		if (options?.trace) this.console.trace(exception.message)
+		this.console.log(output)
+	}
+
+	/**
+	 * Writes error message to error stream. Optionally includes a stack trace.
+	 *
+	 * @param  {Error}         error   Error to write to error stream.
+	 * @param  {OutputOptions} options Output options.
+	 * @return {void}
+	 * @since  unreleased
+	 */
+	public error(error: Error, options?: OutputOptions): void {
+		const method = options?.trace ? 'trace' : 'error'
+		const message = `${error.name}: ${error.message}`
+
+		this.console[method](message)
 	}
 
 	/**

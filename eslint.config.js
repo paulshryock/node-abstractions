@@ -44,10 +44,6 @@ export default [
 			'func-style': ['error', 'declaration'],
 			'grouped-accessor-pairs': ['error', 'getBeforeSet'],
 			'id-denylist': ['error', 'data', 'err', 'e', 'cb', 'callback'],
-			'id-match': [
-				'error',
-				'^(_+)?(([a-z]+([A-Z][a-z]+)*)|([A-Z]+(_[A-Z]+)*)|(([A-Z][a-z]+)+))?$',
-			],
 			'jsdoc/check-access': 'error',
 			'jsdoc/check-alignment': 'error',
 			'jsdoc/check-line-alignment': ['error', 'always'],

@@ -1,15 +1,33 @@
 import * as readline from 'node:readline/promises'
-import { IO, OutputOptions } from '../IO/IO.ts'
-import {
-	CommandLineStreams as Streams,
-	COMMAND_LINE_STREAMS as STREAMS,
-} from './utilities.ts'
-import { argv } from 'node:process'
+import { argv, stderr, stdin, stdout } from 'node:process'
 import { Console } from 'node:console'
+import { Duplex } from 'node:stream'
 import { FinalClassWasExtended } from '../Exception/Exception.ts'
-import { CommandLineOptions as Options } from './CommandLineOptions.ts'
-import { CommandLinePositionalArguments as PositionalArguments } from './CommandLinePositionalArguments.ts'
+import { Options } from './Options.ts'
+import { PositionalArguments } from './PositionalArguments.ts'
 import { StackTrace } from '../StackTrace/StackTrace.ts'
+
+/**
+ * Command line interface streams.
+ *
+ * @since unreleased
+ */
+export type Streams = {
+	stderr: Duplex
+	stdin: Duplex
+	stdout: Duplex
+}
+
+/**
+ * Default command line interface streams.
+ *
+ * @since unreleased
+ */
+export const STREAMS: Streams = {
+	stderr,
+	stdin,
+	stdout,
+}
 
 /**
  * Means of writing to and reading from the command line.
@@ -17,7 +35,7 @@ import { StackTrace } from '../StackTrace/StackTrace.ts'
  * @throws {FinalClassWasExtended}
  * @alpha
  */
-export class CommandLine implements IO {
+export class CommandLine {
 	/**
 	 * Console interface for writing to the console.
 	 *
@@ -44,7 +62,7 @@ export class CommandLine implements IO {
 	/**
 	 * Constructs a command line interface abstraction.
 	 *
-	 * @param {Streams} streams (optional) Command line interface streams.
+	 * @param {Streams} streams Command line interface streams.
 	 * @throws {FinalClassWasExtended}
 	 * @since  unreleased
 	 */
@@ -104,4 +122,13 @@ export class CommandLine implements IO {
 
 		this.console[method](message)
 	}
+}
+
+/**
+ * Output options for IO methods.
+ *
+ * @since unreleased
+ */
+export type OutputOptions = {
+	trace: boolean
 }

@@ -2,7 +2,7 @@
  * @internal
  * @since unreleased
  */
-export class CommandLinePositionalArguments {
+export class PositionalArguments {
 	/**
 	 * Positional arguments from current process.
 	 *

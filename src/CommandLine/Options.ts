@@ -5,7 +5,7 @@
  * @todo  Refactor and make this immutable.
  * @todo  Remove private options.
  */
-export class CommandLineOptions {
+export class Options {
 	[index: string]: unknown
 
 	#args: string[]

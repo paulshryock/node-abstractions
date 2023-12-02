@@ -32,7 +32,7 @@ jobs:
           END_TIME: ${{ vars.END_TIME }}
           START_TIME: ${{ vars.START_TIME }}
       - name: Fail if run time is 10 minutes or more
-        if: $RUN_TIME_MINUTES >= 10
+        if: vars.$RUN_TIME_MINUTES >= 10
         run: exit 1
         env:
           RUN_TIME_MINUTES: ${{ vars.RUN_TIME_MINUTES }}

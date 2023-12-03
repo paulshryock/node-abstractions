@@ -41,7 +41,14 @@ export class CommandLine {
 	 *
 	 * @since unreleased
 	 */
-	private readonly console: Console
+	readonly #console: Console
+
+	/**
+	 * Input, output, and error streams.
+	 *
+	 * @since unreleased
+	 */
+	readonly #streams: Streams
 
 	/**
 	 * All options from the current process, including short and long flags.
@@ -66,11 +73,12 @@ export class CommandLine {
 	 * @throws {FinalClassWasExtended}
 	 * @since  unreleased
 	 */
-	public constructor(private readonly streams: Streams = STREAMS) {
+	public constructor(streams: Streams = STREAMS) {
 		if (new.target !== CommandLine) throw new FinalClassWasExtended(CommandLine)
 
-		const { stderr, stdout } = this.streams
-		this.console = new Console({ stderr, stdout })
+		this.#streams = streams
+		const { stderr, stdout } = this.#streams
+		this.#console = new Console({ stderr, stdout })
 
 		const args = argv.slice(2)
 		this.options = new Options(args)
@@ -85,7 +93,7 @@ export class CommandLine {
 	 * @since  unreleased
 	 */
 	public async ask(question: string): Promise<string> {
-		const { stdin: input, stdout: output } = this.streams
+		const { stdin: input, stdout: output } = this.#streams
 		const rl = readline.createInterface({ input, output })
 
 		const answer = await rl.question(`${question} `)
@@ -105,7 +113,7 @@ export class CommandLine {
 	public out(message: string, options?: OutputOptions): void {
 		const output = options?.trace ? new StackTrace(message).toString() : message
 
-		this.console.log(output)
+		this.#console.log(output)
 	}
 
 	/**
@@ -120,7 +128,7 @@ export class CommandLine {
 		const method = options?.trace ? 'trace' : 'error'
 		const message = `${error.name}: ${error.message}`
 
-		this.console[method](message)
+		this.#console[method](message)
 	}
 }
 

@@ -3,7 +3,6 @@ name: timer
 run-name: Timer
 
 on:
-  push:
   workflow_dispatch:
 
 concurrency:
@@ -29,5 +28,5 @@ jobs:
       - name: Get run time minutes
         run: RUN_TIME_MINUTES=$((($END_TIME - $START_TIME)/60))
       - name: Fail if run time is 10 minutes or more
-        if: $RUN_TIME_MINUTES >= 10
+        if: RUN_TIME_MINUTES >= 10
         run: exit 1

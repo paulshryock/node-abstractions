@@ -282,5 +282,12 @@ export default [
 			'max-lines-per-function': 'off',
 		},
 	},
+	{
+		files: ['tests/acceptance/compile.test.ts'],
+		rules: {
+			'@typescript-eslint/no-unsafe-assignment': 'off',
+			'@typescript-eslint/no-unsafe-call': 'off',
+		},
+	},
 	eslintConfigPrettier,
 ]

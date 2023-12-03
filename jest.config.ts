@@ -18,6 +18,8 @@ const config: Config = {
 		},
 	},
 	errorOnDeprecated: true,
+	testMatch: ['<rootDir>/tests/**/*.test.ts'],
+	testPathIgnorePatterns: ['/tests/acceptance/'],
 }
 
 export default config

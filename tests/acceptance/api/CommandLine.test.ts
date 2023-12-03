@@ -1,38 +1,31 @@
 import { beforeAll, describe, expect, it } from '@jest/globals'
 import { join } from 'node:path'
 
-let CommandLine: {
-	new (streams?: unknown): typeof CommandLine
-	options: unknown
-	positionalArguments: unknown
-	ask(question: string): Promise<string>
-	out(message: string, options?: { trace: boolean }): void
-	error(error: Error, options?: { trace: boolean }): void
-}
+let ClassUnderTest: { new (): typeof ClassUnderTest }
+const publicProperties = ['options', 'positionalArguments']
+const publicMethods = ['constructor', 'ask', 'error', 'out']
 
 beforeAll(async () => {
 	const pathToBundle = join(__dirname, '..', '..', '..', 'dist', 'index.js')
-	const { CommandLine: CL } = (await import(pathToBundle)) as {
-		CommandLine: typeof CommandLine
+	const { CommandLine } = (await import(pathToBundle)) as {
+		CommandLine: typeof ClassUnderTest
 	}
-	CommandLine = CL
+	ClassUnderTest = CommandLine
 })
 
 describe('CommandLine API', () => {
 	it('should have expected public properties', () => {
-		const publicProperties = ['options', 'positionalArguments']
+		const instanceProperties = Object.keys(new ClassUnderTest())
 
-		expect(Object.keys(new CommandLine())).toEqual(publicProperties)
+		expect(instanceProperties.sort()).toEqual(publicProperties.sort())
 	})
 
 	it('should have expected public methods', () => {
 		const prototype = Object.getPrototypeOf(
-			new CommandLine(),
-		) as typeof CommandLine
-		const publicMethods = ['constructor', 'ask', 'error', 'out']
+			new ClassUnderTest(),
+		) as typeof ClassUnderTest
+		const prototypeMethods = Object.getOwnPropertyNames(prototype)
 
-		expect(Object.getOwnPropertyNames(prototype).sort()).toEqual(
-			publicMethods.sort(),
-		)
+		expect(prototypeMethods.sort()).toEqual(publicMethods.sort())
 	})
 })

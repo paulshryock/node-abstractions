@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get start time
-        run: echo "START_TIME=$(date +%s)" >> $GITHUB_ENV
+        run: START_TIME=$(date +%s)
   do-something:
     runs-on: ubuntu-latest
     steps:
@@ -25,9 +25,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get end time
-        run: echo "END_TIME=$(date +%s)" >> $GITHUB_ENV
+        run: END_TIME=$(date +%s)
       - name: Get run time minutes
-        run: echo "RUN_TIME_MINUTES=$((($END_TIME - $START_TIME)/60))" >> $GITHUB_ENV
+        run: RUN_TIME_MINUTES=$((($END_TIME - $START_TIME)/60))
       - name: Fail if run time is 10 minutes or more
         if: $RUN_TIME_MINUTES >= 10
         run: exit 1

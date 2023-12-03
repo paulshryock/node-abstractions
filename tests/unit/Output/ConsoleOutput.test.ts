@@ -1,7 +1,7 @@
 import { describe, expect, jest, test } from '@jest/globals'
 import { stderr, stdout } from 'node:process'
-import { ConsoleOutput } from '../../src/Output/ConsoleOutput.ts'
-import { mockStream } from '../testing-utilities/streams.ts'
+import { ConsoleOutput } from '../../../src/Output/ConsoleOutput.ts'
+import { mockStream } from '../../testing-utilities/streams.ts'
 
 describe('ConsoleOutput', () => {
 	describe('ConsoleOutput.out', () => {

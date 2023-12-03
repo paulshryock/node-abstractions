@@ -2,7 +2,7 @@ import { describe, expect, it } from '@jest/globals'
 import {
 	Exception,
 	FinalClassWasExtended,
-} from '../../src/Exception/Exception.ts'
+} from '../../../src/Exception/Exception.ts'
 
 describe('Exception', () => {
 	it('should extend Error', () => {

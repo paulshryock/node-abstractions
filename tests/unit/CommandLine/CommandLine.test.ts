@@ -1,5 +1,5 @@
 import { afterAll, beforeEach, describe, expect, it, jest } from '@jest/globals'
-import { CommandLine, Streams } from '../../src/CommandLine/CommandLine.ts'
+import { CommandLine, Streams } from '../../../src/CommandLine/CommandLine.ts'
 import { Duplex } from 'node:stream'
 import process from 'node:process'
 

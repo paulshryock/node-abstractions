@@ -5,7 +5,7 @@ import {
 	FileOrDirectoryNotFound,
 	FileSystemException,
 	FileSystemExceptionMessage,
-} from '../../src/FileSystem/FileSystemException.ts'
+} from '../../../src/FileSystem/FileSystemException.ts'
 
 describe.each([
 	new DirectoryNotFound(''),

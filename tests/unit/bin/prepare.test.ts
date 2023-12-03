@@ -12,7 +12,7 @@ beforeEach(() => {
 })
 
 describe('prepare script', () => {
-	const filePath = resolve(__dirname, '../../bin/prepare.ts')
+	const filePath = resolve(__dirname, '../../../bin/prepare.ts')
 
 	it('should install husky if ci is not defined', async () => {
 		delete env.CI

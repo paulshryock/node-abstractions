@@ -10,8 +10,8 @@ import {
 	DirectoryNotFound,
 	FileNotFound,
 	FileOrDirectoryNotFound,
-} from '../../src/FileSystem/FileSystemException.ts'
-import { LocalFileSystem } from '../../src/FileSystem/LocalFileSystem.ts'
+} from '../../../src/FileSystem/FileSystemException.ts'
+import { LocalFileSystem } from '../../../src/FileSystem/LocalFileSystem.ts'
 import mockFs from 'mock-fs'
 
 describe('LocalFileSystem', () => {

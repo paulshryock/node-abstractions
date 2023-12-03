@@ -1,5 +1,5 @@
 import { describe, expect, it } from '@jest/globals'
-import { NetworkInput } from '../../src/Input/NetworkInput.ts'
+import { NetworkInput } from '../../../src/Input/NetworkInput.ts'
 
 type Configuration = Record<string, unknown>
 

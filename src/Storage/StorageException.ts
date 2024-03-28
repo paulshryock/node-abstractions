@@ -1,7 +1,7 @@
 import { Exception } from '../Exception/Exception.ts'
 
 /**
- * Storage exception.
+ * Application exception relating to storage.
  *
  * @alpha
  * @since 0.1.1

@@ -9,7 +9,7 @@ export type Entries = ReturnType<
 >
 
 /**
- * Final class.
+ * Final class which cannot be extended.
  *
  * @internal
  * @alpha

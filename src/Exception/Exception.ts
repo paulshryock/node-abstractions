@@ -1,7 +1,7 @@
 import { FinalClass } from '../utilities/primitives.ts'
 
 /**
- * Exception.
+ * Application exception.
  *
  * @since 0.1.1
  */

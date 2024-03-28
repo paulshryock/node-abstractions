@@ -1,7 +1,7 @@
 import { Exception } from '../Exception/Exception.ts'
 
 /**
- * File system exception message.
+ * Messages for exceptions relating to the file system.
  *
  * @since 0.1.1
  */
@@ -13,7 +13,7 @@ export enum FileSystemExceptionMessage {
 }
 
 /**
- * File system exception.
+ * Application exception relating to the file system.
  *
  * @since 0.1.1
  */

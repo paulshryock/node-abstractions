@@ -1,7 +1,7 @@
 import { StorageException } from './StorageException.ts'
 
 /**
- * Record storage exception.
+ * Application exceptions relating to record storage.
  *
  * @alpha
  * @since 0.1.1

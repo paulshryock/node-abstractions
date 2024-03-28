@@ -5,7 +5,7 @@ import { resolve } from 'node:path'
 // eslint-disable-next-line no-var -- var is hoisted with jest.mock.
 var mockInstall = jest.fn()
 
-jest.mock('husky', () => ({ install: mockInstall }))
+jest.mock('husky', () => mockInstall)
 
 beforeEach(() => {
 	jest.resetModules()

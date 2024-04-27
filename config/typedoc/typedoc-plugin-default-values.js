@@ -6,6 +6,8 @@ import {
 	TypeScript,
 } from 'typedoc'
 
+/* eslint complexity: ["error", 5] -- save method needs more complexity. */
+
 /**
  * Loads TypeDoc plugin.
  *
@@ -70,7 +72,7 @@ class DefaultValuesPlugin {
 		const node =
 			reflection.project.getSymbolFromReflection(reflection)?.declarations?.[0]
 
-		if (!node || !node.initializer) return
+		if (!node?.initializer) return
 
 		this.defaultValues.set(
 			reflection,

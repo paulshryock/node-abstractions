@@ -55,7 +55,7 @@
 		"@babel/core": "7.25.2",
 		"@babel/preset-env": "7.25.3",
 		"@babel/preset-typescript": "7.24.7",
-		"@eslint-community/eslint-plugin-eslint-comments": "4.3.0",
+		"@eslint-community/eslint-plugin-eslint-comments": "4.4.0",
 		"@jest/globals": "29.7.0",
 		"@types/fs-extra": "11.0.4",
 		"@types/mock-fs": "4.13.4",

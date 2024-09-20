@@ -39,7 +39,7 @@ export interface RecordStorage extends Storage {
 	/**
 	 * Creates multiple new records in storage.
 	 *
-	 * @param  {StorageRecord} record Records to store.
+	 * @param  {StorageRecord} records Records to store.
 	 * @return {Promise<void>}
 	 * @throws {import('./RecordStorageException.ts').RecordNotCreated}
 	 * @since  0.1.1

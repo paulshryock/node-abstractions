@@ -1,7 +1,8 @@
 import { afterAll, beforeEach, describe, expect, it, jest } from '@jest/globals'
-import { CommandLine, Streams } from '../../../src/CommandLine/CommandLine.ts'
+import { CommandLine } from '../../../src/CommandLine/CommandLine.ts'
 import { Duplex } from 'node:stream'
 import process from 'node:process'
+import { Streams } from '../../../src/CommandLine/Streams.ts'
 
 describe('CommandLine instance', () => {
 	it('should instantiate', () => {

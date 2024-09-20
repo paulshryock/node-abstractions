@@ -1,33 +1,11 @@
 import * as readline from 'node:readline/promises'
-import { argv, stderr, stdin, stdout } from 'node:process'
+import { Streams, STREAMS } from './Streams.ts'
+import { argv } from 'node:process'
 import { Console } from 'node:console'
-import { Duplex } from 'node:stream'
 import { FinalClassWasExtended } from '../Exception/Exception.ts'
 import { Options } from './Options.ts'
 import { PositionalArguments } from './PositionalArguments.ts'
 import { StackTrace } from '../StackTrace/StackTrace.ts'
-
-/**
- * Command line interface streams.
- *
- * @since unreleased
- */
-export type Streams = {
-	stderr: Duplex
-	stdin: Duplex
-	stdout: Duplex
-}
-
-/**
- * Default command line interface streams.
- *
- * @since unreleased
- */
-export const STREAMS: Streams = {
-	stderr,
-	stdin,
-	stdout,
-}
 
 /**
  * Means of writing to and reading from the command line.

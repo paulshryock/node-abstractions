@@ -34,7 +34,7 @@ export interface RecordStorage extends Storage {
 	 * @throws {import('./RecordStorageException.ts').RecordNotCreated}
 	 * @since  0.1.1
 	 */
-	createRecord(record: StorageRecord): Promise<void>
+	create(record: StorageRecord): Promise<void>
 
 	/**
 	 * Creates multiple new records in storage.
@@ -44,7 +44,7 @@ export interface RecordStorage extends Storage {
 	 * @throws {import('./RecordStorageException.ts').RecordNotCreated}
 	 * @since  0.1.1
 	 */
-	createRecords(records: StorageRecord[]): Promise<void>
+	createMany(records: StorageRecord[]): Promise<void>
 
 	/**
 	 * Gets a record from storage.
@@ -55,7 +55,7 @@ export interface RecordStorage extends Storage {
 	 * @throws {import('./RecordStorageException.ts').RecordNotFound}
 	 * @since  0.1.1
 	 */
-	getRecord(id: number, type: string): Promise<StorageRecord>
+	get(id: number, type: string): Promise<StorageRecord>
 
 	/**
 	 * Gets records from storage.
@@ -64,7 +64,7 @@ export interface RecordStorage extends Storage {
 	 * @return {Promise<StorageRecord[]>}       The records from storage.
 	 * @since  0.1.1
 	 */
-	getRecords(query: RecordQuery): Promise<StorageRecord[]>
+	getMany(query: RecordQuery): Promise<StorageRecord[]>
 
 	/**
 	 * Updates an existing record.
@@ -74,7 +74,7 @@ export interface RecordStorage extends Storage {
 	 * @throws {import('./RecordStorageException.ts').RecordNotUpdated}
 	 * @since  0.1.1
 	 */
-	updateRecord(record: StorageRecord): Promise<void>
+	update(record: StorageRecord): Promise<void>
 
 	/**
 	 * Updates multiple existing records.
@@ -83,7 +83,7 @@ export interface RecordStorage extends Storage {
 	 * @return {Promise<void>}
 	 * @since  0.1.1
 	 */
-	updateRecords(records: StorageRecord[]): Promise<void>
+	updateMany(records: StorageRecord[]): Promise<void>
 
 	/**
 	 * Deletes a record.
@@ -93,7 +93,7 @@ export interface RecordStorage extends Storage {
 	 * @throws {import('./RecordStorageException.ts').RecordNotDeleted}
 	 * @since  0.1.1
 	 */
-	deleteRecord(record: StorageRecord): Promise<void>
+	delete(record: StorageRecord): Promise<void>
 
 	/**
 	 * Deletes multiple records.
@@ -102,5 +102,5 @@ export interface RecordStorage extends Storage {
 	 * @return {Promise<void>}
 	 * @since  0.1.1
 	 */
-	deleteRecords(query: RecordQuery): Promise<void>
+	deleteMany(query: RecordQuery): Promise<void>
 }

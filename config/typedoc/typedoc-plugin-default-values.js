@@ -62,15 +62,14 @@ class DefaultValuesPlugin {
 	 * Saves default values.
 	 *
 	 * @param  {Context}    _context   Current state the converter is in.
-	 * @param  {Reflection} reflection Reflection object.
+	 * @param  {Reflection} reflection Reflection instance.
 	 * @return {void}
 	 * @since  0.1.1
 	 */
 	save(_context, reflection) {
-		const node =
-			reflection.project.getSymbolFromReflection(reflection)?.declarations?.[0]
+		const node = this.#getReflectionNode(reflection)
 
-		if (!node || !node.initializer) return
+		if (!node?.initializer) return
 
 		this.defaultValues.set(
 			reflection,
@@ -92,5 +91,17 @@ class DefaultValuesPlugin {
 		for (const [refl, init] of this.defaultValues) refl.defaultValue = init
 
 		this.defaultValues.clear()
+	}
+
+	/**
+	 * Gets the first declared reflection node.
+	 *
+	 * @param  {Reflection} reflection Reflection instance.
+	 * @return {unknown}               Reflection node.
+	 * @since  unreleased
+	 */
+	#getReflectionNode(reflection) {
+		return reflection.project.getSymbolFromReflection(reflection)
+			?.declarations?.[0]
 	}
 }

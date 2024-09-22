@@ -52,7 +52,7 @@ export default [
 			'jsdoc/check-syntax': 'error',
 			'jsdoc/check-tag-names': [
 				'error',
-				{ definedTags: ['alpha', 'beta', 'rc'], typed: true },
+				{ definedTags: ['alpha', 'beta'], typed: true },
 			],
 			'jsdoc/check-types': 'error',
 			'jsdoc/empty-tags': 'error',

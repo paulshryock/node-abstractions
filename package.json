@@ -87,8 +87,5 @@
 	},
 	"engines": {
 		"node": ">=14.13.1"
-	},
-	"dependencies": {
-		"fs-extra": "11.2.0"
 	}
 }

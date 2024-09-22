@@ -32,41 +32,47 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v0.1.3](https://github.com/paulshryock/node-abstractions.git/releases/tag/v0.1.3) - 2023-10-01
 
-## Added
+### Added
 
--   ProcessInput.
--   Rewrite LocalFileSystem.copy with standard library.
--   Uninstall fs-extra.
+-   Add `ProcessInput`.
+
+### Changed
+
+-   Rewrite `LocalFileSystem.copy` with standard library.
+
+### Removed
+
+-   Uninstall `fs-extra`.
 
 ## [v0.1.2](https://github.com/paulshryock/node-abstractions.git/releases/tag/v0.1.2) - 2023-09-20
 
-## Added
+### Added
 
--   Export Record and Storage classes with Exceptions.
+-   Export `Record` and `Storage` classes with Exceptions.
 
 ## [v0.1.1](https://github.com/paulshryock/node-abstractions.git/releases/tag/v0.1.1) - 2023-09-18
 
-## Added
+### Added
 
--   Exception.
--   FileSystem.
--   FileSystemException.
--   LocalFileSystem.
--   MessageStringable.
--   RecordStorage.
--   RecordStorageException.
--   Storage.
--   StorageException.
--   Stringable.
--   Install fs-extra.
+-   Add `Exception`.
+-   Add `FileSystem`.
+-   Add `FileSystemException`.
+-   Add `LocalFileSystem`.
+-   Add `MessageStringable`.
+-   Add `RecordStorage`.
+-   Add `RecordStorageException`.
+-   Add `Storage`.
+-   Add `StorageException`.
+-   Add `Stringable`.
+-   Install `fs-extra`.
 
-## Changed
+### Changed
 
--   Allow Output methods' first parameter to be Stringable.
+-   Allow Output methods' first parameter to be `Stringable`.
 
 ## [v0.1.0](https://github.com/paulshryock/node-abstractions/releases/tag/v0.1.0) - 2023-06-09
 
-## Added
+### Added
 
--   Console.
--   ConsoleOutput.
+-   Add `Console` interface.
+-   Add `ConsoleOutput` class.

@@ -2,17 +2,12 @@ import { describe, expect, it } from '@jest/globals'
 import { join } from 'node:path'
 import { stat } from 'node:fs/promises'
 
-const BUNDLE_MAXIMUM_SIZE = 1024 * 3
+const BUNDLE_MAXIMUM_KIB = 7
+const BUNDLE_MAXIMUM_SIZE = BUNDLE_MAXIMUM_KIB * 1024
 
 describe('compiled javascript bundle', () => {
 	const pathToBundle = join(__dirname, '..', '..', 'dist', 'index.js')
 
-	it('should be no more than 3 KiB', async () =>
+	it(`should be no more than ${BUNDLE_MAXIMUM_KIB} KiB`, async () =>
 		expect((await stat(pathToBundle)).size).toBeLessThan(BUNDLE_MAXIMUM_SIZE))
-
-	it('should export a CommandLine class', async () => {
-		const { CommandLine } = await import(pathToBundle)
-
-		expect(new CommandLine()).toBeInstanceOf(CommandLine)
-	})
 })

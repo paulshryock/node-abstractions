@@ -1,15 +1,16 @@
 import { afterAll, beforeEach, describe, expect, it, jest } from '@jest/globals'
-import { CommandLine } from '../../../src/CommandLine/CommandLine.ts'
 import { Duplex } from 'node:stream'
 import { FinalClassWasExtended } from '../../../src/Exception/Exception.ts'
+import { LocalCommandLine } from '../../../src/CommandLine/LocalCommandLine.ts'
 import process from 'node:process'
 import { Streams } from '../../../src/CommandLine/Streams.ts'
 
-it('should instantiate', () => expect(() => new CommandLine()).not.toThrow())
+it('should instantiate', () =>
+	expect(() => new LocalCommandLine()).not.toThrow())
 
 describe('when attempting to extend this class', () => {
 	it('should throw an exception', () =>
-		expect(() => new (class extends CommandLine {})()).toThrow(
+		expect(() => new (class extends LocalCommandLine {})()).toThrow(
 			FinalClassWasExtended,
 		))
 })
@@ -154,10 +155,10 @@ describe.each([
 		})
 
 		it('should have correct options', () =>
-			expect(new CommandLine().options).toEqual(testCase.options))
+			expect(new LocalCommandLine().options).toEqual(testCase.options))
 
 		it('should have correct positional arguments', () =>
-			expect(new CommandLine().positionalArguments).toEqual(
+			expect(new LocalCommandLine().positionalArguments).toEqual(
 				testCase.positionalArguments,
 			))
 	},
@@ -179,9 +180,9 @@ describe('when streams are bound', () => {
 		streams.stdout.write.bind(streams.stdout)
 	})
 
-	describe('CommandLine.ask(question)', () => {
+	describe('LocalCommandLine.ask(question)', () => {
 		it('should write a question to stdout', () => {
-			new CommandLine(streams).ask('hello?').catch((error) => {
+			new LocalCommandLine(streams).ask('hello?').catch((error) => {
 				throw error
 			})
 
@@ -194,7 +195,7 @@ describe('when streams are bound', () => {
 		})
 
 		it('should return an answer from stdin', async () => {
-			const answer = new CommandLine(streams).ask('hello?')
+			const answer = new LocalCommandLine(streams).ask('hello?')
 
 			streams.stdin.push('world\n')
 			streams.stdin.push(null)
@@ -203,9 +204,9 @@ describe('when streams are bound', () => {
 		})
 	})
 
-	describe('CommandLine.out(message)', () => {
+	describe('LocalCommandLine.out(message)', () => {
 		it('should write a message to stdout', () => {
-			new CommandLine(streams).out('hello world')
+			new LocalCommandLine(streams).out('hello world')
 
 			// eslint-disable-next-line @typescript-eslint/unbound-method -- Works fine.
 			expect(streams.stdout.write).toHaveBeenCalledWith(
@@ -215,9 +216,9 @@ describe('when streams are bound', () => {
 		})
 	})
 
-	describe('CommandLine.out(message, { trace: true })', () => {
+	describe('LocalCommandLine.out(message, { trace: true })', () => {
 		it('should write a stack trace to stdout', () => {
-			new CommandLine(streams).out('hello world', { trace: true })
+			new LocalCommandLine(streams).out('hello world', { trace: true })
 
 			// eslint-disable-next-line @typescript-eslint/unbound-method -- Works fine.
 			expect(streams.stdout.write).toHaveBeenCalledWith(
@@ -227,9 +228,9 @@ describe('when streams are bound', () => {
 		})
 	})
 
-	describe('CommandLine.error(Error)', () => {
+	describe('LocalCommandLine.error(Error)', () => {
 		it('should write an error message to stderr', () => {
-			new CommandLine(streams).error(new Error('something bad happened'))
+			new LocalCommandLine(streams).error(new Error('something bad happened'))
 
 			// eslint-disable-next-line @typescript-eslint/unbound-method -- Works fine.
 			expect(streams.stderr.write).toHaveBeenCalledWith(
@@ -239,11 +240,11 @@ describe('when streams are bound', () => {
 		})
 	})
 
-	describe('CommandLine.error(Error, { trace: true })', () => {
+	describe('LocalCommandLine.error(Error, { trace: true })', () => {
 		it('should write a stack trace to stderr', () => {
 			const exception = new Error('something bad happened')
 
-			new CommandLine(streams).error(exception, { trace: true })
+			new LocalCommandLine(streams).error(exception, { trace: true })
 
 			// eslint-disable-next-line @typescript-eslint/unbound-method -- Works fine.
 			expect(streams.stderr.write).toHaveBeenCalledWith(

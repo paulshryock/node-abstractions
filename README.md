@@ -20,7 +20,7 @@ npm install @paulshryock/abstractions
 ## Usage
 
 ```ts
-import { CommandLine, FileSystem, Network, Storage } from '@paulshryock/abstractions'
+import { CommandLine, FileSystem } from '@paulshryock/abstractions'
 ```
 
 ## Support

@@ -12,20 +12,20 @@ import { StackTrace } from '../StackTrace/StackTrace.ts'
  * Means of writing to and reading from the command line.
  *
  * @throws {FinalClassWasExtended}
- * @since  unreleased
+ * @since  0.2.0
  */
 export class LocalCommandLine implements CommandLine {
 	/**
 	 * Console interface for writing to the console.
 	 *
-	 * @since unreleased
+	 * @since 0.2.0
 	 */
 	readonly #console: Console
 
 	/**
 	 * Input, output, and error streams.
 	 *
-	 * @since unreleased
+	 * @since 0.2.0
 	 */
 	readonly #streams: Streams
 
@@ -34,14 +34,14 @@ export class LocalCommandLine implements CommandLine {
 	 *
 	 * Boolean strings are converted to boolean.
 	 *
-	 * @since unreleased
+	 * @since 0.2.0
 	 */
 	public readonly options: Options
 
 	/**
 	 * Positional arguments from the current process.
 	 *
-	 * @since unreleased
+	 * @since 0.2.0
 	 */
 	public readonly positionalArguments: string[]
 
@@ -50,7 +50,7 @@ export class LocalCommandLine implements CommandLine {
 	 *
 	 * @param {Streams} streams Command line interface streams.
 	 * @throws {FinalClassWasExtended}
-	 * @since  unreleased
+	 * @since  0.2.0
 	 */
 	public constructor(streams: Streams = STREAMS) {
 		if (new.target !== LocalCommandLine)
@@ -70,7 +70,7 @@ export class LocalCommandLine implements CommandLine {
 	 *
 	 * @param  {string}          question Question to print to output stream.
 	 * @return {Promise<string>}          Answer read from input stream.
-	 * @since  unreleased
+	 * @since  0.2.0
 	 */
 	public async ask(question: string): Promise<string> {
 		const { stdin: input, stdout: output } = this.#streams
@@ -88,7 +88,7 @@ export class LocalCommandLine implements CommandLine {
 	 * @param  {string}                   message Message for output stream.
 	 * @param  {CommandLineOutputOptions} options Output options.
 	 * @return {void}
-	 * @since  unreleased
+	 * @since  0.2.0
 	 */
 	public out(message: string, options?: CommandLineOutputOptions): void {
 		const output = options?.trace ? new StackTrace(message).toString() : message
@@ -102,7 +102,7 @@ export class LocalCommandLine implements CommandLine {
 	 * @param  {Error}                    error   Error for error stream.
 	 * @param  {CommandLineOutputOptions} options Output options.
 	 * @return {void}
-	 * @since  unreleased
+	 * @since  0.2.0
 	 */
 	public error(error: Error, options?: CommandLineOutputOptions): void {
 		const method = options?.trace ? 'trace' : 'error'

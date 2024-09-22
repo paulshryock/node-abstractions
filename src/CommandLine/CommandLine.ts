@@ -3,7 +3,7 @@ import { Options } from './Options.ts'
 /**
  * Means of writing to and reading from the command line.
  *
- * @since unreleased
+ * @since 0.2.0
  */
 export interface CommandLine {
 	/**
@@ -11,14 +11,14 @@ export interface CommandLine {
 	 *
 	 * Boolean strings are converted to boolean.
 	 *
-	 * @since unreleased
+	 * @since 0.2.0
 	 */
 	options: Options
 
 	/**
 	 * Positional arguments from the current process.
 	 *
-	 * @since unreleased
+	 * @since 0.2.0
 	 */
 	positionalArguments: string[]
 
@@ -27,7 +27,7 @@ export interface CommandLine {
 	 *
 	 * @param  {string}          question Question to print to output stream.
 	 * @return {Promise<string>}          Answer read from input stream.
-	 * @since  unreleased
+	 * @since  0.2.0
 	 */
 	ask(question: string): Promise<string>
 
@@ -37,7 +37,7 @@ export interface CommandLine {
 	 * @param  {string}                   message Message for output stream.
 	 * @param  {CommandLineOutputOptions} options Output options.
 	 * @return {void}
-	 * @since unreleased
+	 * @since 0.2.0
 	 */
 	out(message: string, options?: CommandLineOutputOptions): void
 
@@ -47,7 +47,7 @@ export interface CommandLine {
 	 * @param  {Error}                    error   Error for error stream.
 	 * @param  {CommandLineOutputOptions} options Output options.
 	 * @return {void}
-	 * @since  unreleased
+	 * @since  0.2.0
 	 */
 	error(error: Error, options?: CommandLineOutputOptions): void
 }
@@ -55,7 +55,7 @@ export interface CommandLine {
 /**
  * Output options for IO methods.
  *
- * @since unreleased
+ * @since 0.2.0
  */
 export type CommandLineOutputOptions = {
 	trace: boolean

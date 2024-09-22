@@ -1,9 +1,7 @@
 /**
  * Command line options.
  *
- * @since unreleased
- * @todo  Refactor and make this immutable.
- * @todo  Remove private options.
+ * @since 0.2.0
  */
 export class Options {
 	[index: string]: unknown
@@ -15,7 +13,7 @@ export class Options {
 	 * Constructs process configuration object from args.
 	 *
 	 * @param {string[]} args Process args to build configuration from.
-	 * @since unreleased
+	 * @since 0.2.0
 	 */
 	public constructor(args: string[]) {
 		this.#args = args
@@ -30,7 +28,7 @@ export class Options {
 	 *
 	 * @internal
 	 * @return {void}
-	 * @since  unreleased
+	 * @since  0.2.0
 	 */
 	private setPrivateOptions(): void {
 		this.#options = this.#args.reduce(
@@ -54,7 +52,7 @@ export class Options {
 	 *
 	 * @param  {string} value String value which might have enclosing quotes.
 	 * @return {string}       Value without enclosing quotes.
-	 * @since  unreleased
+	 * @since  0.2.0
 	 */
 	private removeEnclosingQuotes(value: string): string {
 		return value.replaceAll(/(?<quote>^\\?['"]|\\?['"]$)/gu, '')
@@ -65,7 +63,7 @@ export class Options {
 	 *
 	 * @internal
 	 * @return {void}
-	 * @since  unreleased
+	 * @since  0.2.0
 	 */
 	private buildFromPrivateOptions(): void {
 		this.#options.forEach((option: string, index: number) => {
@@ -88,7 +86,7 @@ export class Options {
 	 *
 	 * @internal
 	 * @return {void}
-	 * @since unreleased
+	 * @since 0.2.0
 	 */
 	private convertBooleanOptions(): void {
 		for (const prop in this) {
@@ -106,8 +104,7 @@ export class Options {
 	 * @param  {string}  arg   Current arg being filtered.
 	 * @param  {number}  index Current arg index.
 	 * @return {boolean}       Whether the arg is a positional arg.
-	 * @since  unreleased
-	 * @todo   Refactor.
+	 * @since  0.2.0
 	 */
 	private isPositionalArg(arg: string, index: number): boolean {
 		const previousArg = this.#args[index - 1]
@@ -130,7 +127,7 @@ export class Options {
 	 * splitShortFlagsToArgs('--abc') === ['--abc']
 	 * @example
 	 * splitShortFlagsToArgs('-abc') === ['-a', '-b', '-c']
-	 * @since  unreleased
+	 * @since  0.2.0
 	 */
 	private splitShortFlagsToArgs(arg: string): string[] {
 		return /^-[^-]/u.test(arg)

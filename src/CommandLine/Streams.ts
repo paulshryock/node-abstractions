@@ -4,7 +4,7 @@ import { Duplex } from 'node:stream'
 /**
  * Command line interface streams.
  *
- * @since unreleased
+ * @since 0.2.0
  */
 export type Streams = {
 	stderr: Duplex
@@ -15,7 +15,7 @@ export type Streams = {
 /**
  * Default command line interface streams.
  *
- * @since unreleased
+ * @since 0.2.0
  */
 export const STREAMS: Streams = {
 	stderr,

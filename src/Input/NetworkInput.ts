@@ -55,7 +55,6 @@ export class NetworkInput {
 	 *
 	 * @return {Promise<Configuration>} Configuration data.
 	 * @since  unreleased
-	 * @todo   Refactor.
 	 */
 	public async getConfiguration(): Promise<Configuration> {
 		const configuration: Configuration = {

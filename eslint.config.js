@@ -52,7 +52,7 @@ export default [
 			'jsdoc/check-syntax': 'error',
 			'jsdoc/check-tag-names': [
 				'error',
-				{ definedTags: ['alpha', 'beta'], typed: true },
+				{ definedTags: ['alpha', 'beta', 'rc'], typed: true },
 			],
 			'jsdoc/check-types': 'error',
 			'jsdoc/empty-tags': 'error',
@@ -230,6 +230,7 @@ export default [
 		},
 		settings: {
 			jsdoc: {
+				mode: 'typescript',
 				tagNamePreference: {
 					return: 'return',
 					returns: 'return',

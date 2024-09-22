@@ -16,7 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
--   CommandLine.
+-   Export stable `CommandLine` and `FileSystem` interfaces.
+-   Export stable `LocalCommandLine`, `LocalFileSystem`, and `Exception` classes.
 
 ### Changed
 
@@ -24,7 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
--   Output.
+-   Remove all other exports.
 
 ### Fixed
 

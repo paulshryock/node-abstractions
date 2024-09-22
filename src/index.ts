@@ -1,4 +1,5 @@
 export type { CommandLine } from './CommandLine/CommandLine.ts'
-export { LocalCommandLine } from './CommandLine/LocalCommandLine.ts'
+export type { Exception } from './Exception/Exception.ts'
 export type { FileSystem } from './FileSystem/FileSystem.ts'
+export { LocalCommandLine } from './CommandLine/LocalCommandLine.ts'
 export { LocalFileSystem } from './FileSystem/LocalFileSystem.ts'

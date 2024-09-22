@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   **Fixed** for any bug fixes.
 -   **Security** in case of vulnerabilities.
 
-## [Unreleased](https://github.com/paulshryock/node-abstractions.git/compare/HEAD..v0.2.0)
+## [Unreleased](https://github.com/paulshryock/node-abstractions.git/compare/HEAD..v0.2.1)
 
 ### Added
 
@@ -25,6 +25,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Security
+
+## [v0.2.1](https://github.com/paulshryock/node-abstractions.git/releases/tag/v0.2.1) - 2024-09-22
+
+### Removed
+
+-   Uninstall `fs-extra`. (I thought this thing was uninstalled in v0.1.3!)
 
 ## [v0.2.0](https://github.com/paulshryock/node-abstractions.git/releases/tag/v0.2.0) - 2024-09-22
 
@@ -49,7 +55,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
--   Uninstall `fs-extra`.
+-   Remove `fs-extra`.
 
 ## [v0.1.2](https://github.com/paulshryock/node-abstractions.git/releases/tag/v0.1.2) - 2023-09-20
 

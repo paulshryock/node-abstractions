@@ -12,7 +12,6 @@ export type Entries = ReturnType<
  * Final class which cannot be extended.
  *
  * @internal
- * @alpha
  * @since unreleased
  */
 export interface FinalClass {

@@ -12,7 +12,6 @@ import { StackTrace } from '../StackTrace/StackTrace.ts'
  * Means of writing to and reading from the command line.
  *
  * @throws {FinalClassWasExtended}
- * @alpha
  * @since  unreleased
  */
 export class LocalCommandLine implements CommandLine {

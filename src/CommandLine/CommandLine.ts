@@ -3,7 +3,6 @@ import { Options } from './Options.ts'
 /**
  * Means of writing to and reading from the command line.
  *
- * @alpha
  * @since unreleased
  */
 export interface CommandLine {
@@ -56,7 +55,6 @@ export interface CommandLine {
 /**
  * Output options for IO methods.
  *
- * @alpha
  * @since unreleased
  */
 export type CommandLineOutputOptions = {

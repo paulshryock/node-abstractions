@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   Do not export `Exception` utility class since it is for internal use.
 -   Remove `StackTrace` utility class since it is no longer needed.
+-   Remove legacy `NetworkInput` class.
 
 ### Fixed
 

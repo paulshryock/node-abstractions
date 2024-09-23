@@ -29,8 +29,9 @@ export class LocalFileSystem implements FileSystem {
 	 *
 	 * @internal
 	 * @since 0.1.1
+	 * @since unreleased - Made private and readonly.
 	 */
-	private ACTIONS = {
+	readonly #ACTIONS = {
 		copy: { file: copyFile },
 		move: { directory: rename, file: rename },
 	}
@@ -197,7 +198,7 @@ export class LocalFileSystem implements FileSystem {
 	 * @since  0.1.1
 	 */
 	public async copy(src: string, dest: string): Promise<void> {
-		await this.copyOrMove('copy', src, dest)
+		await this.#copyOrMove('copy', src, dest)
 	}
 
 	/**
@@ -210,7 +211,7 @@ export class LocalFileSystem implements FileSystem {
 	 * @since  0.1.1
 	 */
 	public async move(src: string, dest: string): Promise<void> {
-		await this.copyOrMove('move', src, dest)
+		await this.#copyOrMove('move', src, dest)
 	}
 
 	/**
@@ -235,17 +236,18 @@ export class LocalFileSystem implements FileSystem {
 	 * @param  {string}          dest   Destination path.
 	 * @return {Promise<void>}
 	 * @since  0.1.1
+	 * @since  unreleased - Made private.
 	 */
-	private async copyOrMove(
+	async #copyOrMove(
 		action: 'copy' | 'move',
 		src: string,
 		dest: string,
 	): Promise<void> {
 		if (!(await this.exists(src))) throw new FileOrDirectoryNotFound(src)
 
-		if (await this.isFile(src)) return this.copyOrMoveFile(action, src, dest)
+		if (await this.isFile(src)) return this.#copyOrMoveFile(action, src, dest)
 
-		await this.copyOrMoveDirectory(action, src, dest)
+		await this.#copyOrMoveDirectory(action, src, dest)
 	}
 
 	/**
@@ -257,17 +259,18 @@ export class LocalFileSystem implements FileSystem {
 	 * @param  {string}          dest   Destination path.
 	 * @return {Promise<void>}
 	 * @since  0.1.1
+	 * @since  unreleased - Made private.
 	 */
-	private async copyOrMoveFile(
+	async #copyOrMoveFile(
 		action: 'copy' | 'move',
 		src: string,
 		dest: string,
 	): Promise<void> {
 		if (await this.isDirectory(dest))
-			return this.ACTIONS[action].file(src, `${dest}/${parse(src).base}`)
+			return this.#ACTIONS[action].file(src, `${dest}/${parse(src).base}`)
 
 		await mkdir(dirname(dest), { recursive: true })
-		await this.ACTIONS[action].file(src, dest)
+		await this.#ACTIONS[action].file(src, dest)
 	}
 
 	/**
@@ -279,8 +282,9 @@ export class LocalFileSystem implements FileSystem {
 	 * @param  {string}          dest   Destination path.
 	 * @return {Promise<void>}
 	 * @since  0.1.1
+	 * @since  unreleased - Made private.
 	 */
-	private async copyOrMoveDirectory(
+	async #copyOrMoveDirectory(
 		action: 'copy' | 'move',
 		src: string,
 		dest: string,
@@ -293,9 +297,9 @@ export class LocalFileSystem implements FileSystem {
 
 		await mkdir(dirname(destination), { recursive: true })
 
-		if (action === 'copy') return this.copyDirectory(src, destination)
+		if (action === 'copy') return this.#copyDirectory(src, destination)
 
-		await this.ACTIONS[action].directory(src, destination)
+		await this.#ACTIONS[action].directory(src, destination)
 	}
 
 	/**
@@ -306,11 +310,12 @@ export class LocalFileSystem implements FileSystem {
 	 * @param  {string}        dest Destination path to copy the directory to.
 	 * @return {Promise<void>}
 	 * @since  0.1.3
+	 * @since  unreleased - Made private.
 	 */
-	private async copyDirectory(src: string, dest: string): Promise<void> {
+	async #copyDirectory(src: string, dest: string): Promise<void> {
 		for (const item of await this.readDirectory(src))
 			if (await this.isFile(`${src}/${item}`))
 				await this.copy(`${src}/${item}`, `${dest}/${item}`)
-			else await this.copyDirectory(`${src}/${item}`, `${dest}/${item}`)
+			else await this.#copyDirectory(`${src}/${item}`, `${dest}/${item}`)
 	}
 }

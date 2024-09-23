@@ -36,7 +36,7 @@ export class LocalCommandLine implements CommandLine {
 	 *
 	 * @since 0.2.0
 	 */
-	public readonly options: Options
+	public readonly options: Record<string, boolean | number | string>
 
 	/**
 	 * Positional arguments from the current process.
@@ -61,7 +61,7 @@ export class LocalCommandLine implements CommandLine {
 		this.#console = new Console({ stderr, stdout })
 
 		const args = argv.slice(2)
-		this.options = new Options(args)
+		this.options = new Options(args).toRecord()
 		this.positionalArguments = new PositionalArguments(args).toArray()
 	}
 

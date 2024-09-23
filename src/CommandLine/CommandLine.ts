@@ -1,5 +1,3 @@
-import { Options } from './Options.ts'
-
 /**
  * Means of writing to and reading from the command line.
  *
@@ -12,8 +10,9 @@ export interface CommandLine {
 	 * Boolean strings are converted to boolean.
 	 *
 	 * @since 0.2.0
+	 * @since unreleased -- Changed type to Record.
 	 */
-	options: Options
+	options: Record<string, boolean | number | string>
 
 	/**
 	 * Positional arguments from the current process.

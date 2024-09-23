@@ -24,6 +24,16 @@ export class Options {
 	}
 
 	/**
+	 * Converts this to record of key/value pairs.
+	 *
+	 * @return {Record<string, boolean|number|string>} Key/value pairs.
+	 * @since  unreleased
+	 */
+	public toRecord(): Record<string, boolean | number | string> {
+		return { ...this } as Record<string, boolean | number | string>
+	}
+
+	/**
 	 * Sets private options from process args, filtering out positional args.
 	 *
 	 * @internal

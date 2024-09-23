@@ -1,8 +1,10 @@
 import { FinalClass } from '../utilities/primitives.ts'
 
 /**
- * Application exception.
+ * An exception breaks the normal flow of execution and executes a
+ * pre-registered exception handler.
  *
+ * @see   https://en.wikipedia.org/wiki/Exception_handling
  * @since 0.1.1
  */
 export class Exception extends Error {}

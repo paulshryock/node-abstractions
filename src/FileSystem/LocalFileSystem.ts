@@ -16,14 +16,14 @@ import {
 	FileOrDirectoryNotFound,
 } from './FileSystemException.ts'
 import { dirname, join, parse } from 'node:path'
-import { FileSystem } from './FileSystem.ts'
+import { VirtualFileSystem } from './VirtualFileSystem.ts'
 
 /**
  * Local file system class.
  *
  * @since 0.1.1
  */
-export class LocalFileSystem implements FileSystem {
+export class LocalFileSystem implements VirtualFileSystem {
 	/**
 	 * Callbacks for each file system action.
 	 *

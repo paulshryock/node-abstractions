@@ -6,7 +6,6 @@ import { Console } from 'node:console'
 import { FinalClassWasExtended } from '../Exception/Exception.ts'
 import { Options } from './Options.ts'
 import { PositionalArguments } from './PositionalArguments.ts'
-import { StackTrace } from '../StackTrace/StackTrace.ts'
 
 /**
  * Means of writing to and reading from the command line.
@@ -91,7 +90,38 @@ export class LocalCommandLine implements CommandLine {
 	 * @since  0.2.0
 	 */
 	public out(message: string, options?: CommandLineOutputOptions): void {
-		const output = options?.trace ? new StackTrace(message).toString() : message
+		/**
+		 * Utility class for generating a stack trace.
+		 *
+		 * **Non-standard**: This feature is non-standard and is not on a standards
+		 * track. Do not use it on production sites facing the Web: it will not
+		 * work for every user. There may also be large incompatibilities between
+		 * implementations and the behavior may change in the future.
+		 *
+		 * **Note**: The `stack` property is de facto implemented by all major
+		 * JavaScript engines, and [the JavaScript standards committee is looking
+		 * to standardize it](https://github.com/tc39/proposal-error-stacks). You
+		 * cannot rely on the precise content of the stack string due to
+		 * implementation inconsistencies, but you can generally assume it exists
+		 * and use it for debugging purposes.
+		 *
+		 * @see   https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/stack
+		 * @since unreleased
+		 */
+		class Trace extends Error {
+			/**
+			 * Constructs a Trace instance.
+			 *
+			 * @param {string} message A human-readable description of the error.
+			 * @since unreleased
+			 */
+			public constructor(message: string) {
+				super(message)
+				this.name = this.constructor.name
+			}
+		}
+
+		const output = options?.trace ? new Trace(message).stack : message
 
 		this.#console.log(output)
 	}

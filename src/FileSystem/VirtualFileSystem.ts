@@ -3,7 +3,7 @@
  *
  * @since 0.1.1
  */
-export interface FileSystem {
+export interface VirtualFileSystem {
 	/**
 	 * Reads a file.
 	 *

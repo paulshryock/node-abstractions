@@ -10,7 +10,6 @@ import { PositionalArguments } from './PositionalArguments.ts'
 /**
  * Means of writing to and reading from the command line.
  *
- * @throws {FinalClassWasExtended}
  * @since  0.2.0
  */
 export class LocalCommandLine implements CommandLine {

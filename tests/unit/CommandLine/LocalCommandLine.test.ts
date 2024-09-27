@@ -6,7 +6,7 @@ import process from 'node:process'
 import { Streams } from '../../../src/CommandLine/Streams.ts'
 
 it('should instantiate', () =>
-	expect(() => new LocalCommandLine()).not.toThrow())
+	expect(new LocalCommandLine()).toBeInstanceOf(LocalCommandLine))
 
 describe('when attempting to extend this class', () => {
 	it('should throw an exception', () =>

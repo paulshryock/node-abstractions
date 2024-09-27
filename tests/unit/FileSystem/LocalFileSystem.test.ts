@@ -11,6 +11,7 @@ import {
 	FileNotFound,
 	FileOrDirectoryNotFound,
 } from '../../../src/FileSystem/FileSystemException.ts'
+import { FinalClassWasExtended } from '../../../src/Exception/Exception.ts'
 import { LocalFileSystem } from '../../../src/FileSystem/LocalFileSystem.ts'
 import mockFs from 'mock-fs'
 
@@ -23,6 +24,16 @@ describe('LocalFileSystem', () => {
 	const newPath = `new/${path}`
 	const oldData = 'old data'
 	const newData = 'new data'
+
+	it('should instantiate', () =>
+		expect(new LocalFileSystem()).toBeInstanceOf(LocalFileSystem))
+
+	describe('when attempting to extend this class', () => {
+		it('should throw an exception', () =>
+			expect(() => new (class extends LocalFileSystem {})()).toThrow(
+				FinalClassWasExtended,
+			))
+	})
 
 	describe('readFile', () => {
 		describe('when a file does not exist', () => {

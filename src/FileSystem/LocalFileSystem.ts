@@ -16,6 +16,7 @@ import {
 	FileOrDirectoryNotFound,
 } from './FileSystemException.ts'
 import { dirname, join, parse } from 'node:path'
+import { FinalClassWasExtended } from '../Exception/Exception.ts'
 import { VirtualFileSystem } from './VirtualFileSystem.ts'
 
 /**
@@ -34,6 +35,17 @@ export class LocalFileSystem implements VirtualFileSystem {
 	readonly #ACTIONS = {
 		copy: { file: copyFile },
 		move: { directory: rename, file: rename },
+	}
+
+	/**
+	 * Constructs a local file system.
+	 *
+	 * @throws {FinalClassWasExtended}
+	 * @since  unreleased
+	 */
+	public constructor() {
+		if (new.target !== LocalFileSystem)
+			throw new FinalClassWasExtended(LocalFileSystem)
 	}
 
 	/**

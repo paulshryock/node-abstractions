@@ -28,6 +28,7 @@
 		"./dist/index.js",
 		"./dist/index.d.ts"
 	],
+	"sideEffects": false,
 	"scripts": {
 		"precompile": "rm -rf dist",
 		"compile": "esbuild src/index.ts --bundle --format=esm --minify-syntax --minify-whitespace --outfile=dist/index.js --platform=node",

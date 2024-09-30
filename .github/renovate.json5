@@ -1,6 +1,7 @@
 {
-	extends: ['config:base', ':pinAllExceptPeerDependencies'],
 	assigneesFromCodeOwners: true,
+	dependencyDashboard: false,
+	extends: ['config:base', ':pinAllExceptPeerDependencies'],
 	labels: ['dependencies'],
 	packageRules: [
 		{

@@ -8,12 +8,12 @@ assignees: ''
 
 ## User story
 
--   AS A
--   I WANT TO
--   SO THAT
+- AS A
+- I WANT TO
+- SO THAT
 
 ## Acceptance criteria
 
--   GIVEN
--   WHEN
--   THEN
+- GIVEN
+- WHEN
+- THEN

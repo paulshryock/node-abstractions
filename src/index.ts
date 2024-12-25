@@ -1,4 +1,4 @@
-export type { CommandLine } from './CommandLine/CommandLine.ts'
+export type { VirtualCommandLine } from './CommandLine/VirtualCommandLine.ts'
 export type { VirtualFileSystem } from './FileSystem/VirtualFileSystem.ts'
-export { LocalCommandLine } from './CommandLine/LocalCommandLine.ts'
+export { CommandLine } from './CommandLine/CommandLine.ts'
 export { LocalFileSystem } from './FileSystem/LocalFileSystem.ts'

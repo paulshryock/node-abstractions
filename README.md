@@ -19,8 +19,48 @@ npm install @paulshryock/abstractions
 
 ## Usage
 
+### Command Line
+
+`VirtualCommandLine` is an interface representing a command line abstraction. `CommandLine` is a concrete implementation of a command line which makes use of native Node.js stdout and stderr streams.
+
 ```ts
-import { CommandLine, FileSystem } from '@paulshryock/abstractions'
+import { CommandLine, VirtualCommandLine } from '@paulshryock/abstractions'
+
+class MyClass {
+    public construct(private commandLine: VirtualCommandLine) {}
+
+    /** Prints 'Hello, world!' to stdout. */
+    public printHelloWorldToStdout(): void {
+        this.commandLine.out('Hello, world!')
+    }
+
+    /**
+     * Prints 'What is your name?' to stdout and waits for an answer. Then
+     * prints 'Hello, Paul!' to stdout (if the name given is 'Paul').
+     */
+    public async printHelloNameToStdout(): Promise<void> {
+        const name = await this.commandLine.ask('What is your name?')
+
+        this.commandLine.out(`Hello, ${name}!`)
+    }
+
+    /** Prints 'Hello, error!' to stderr. */
+    public printHelloErrorToStderr(): void {
+        this.commandLine.error('Hello, error!', { trace: true })
+    }
+}
+
+const myClass = new MyClass(new CommandLine())
+
+myClass.printHelloWorldToStdout()
+myClass.printHelloNameToStdout()
+myClass.printHelloErrorToStderr()
+```
+
+### File System
+
+```ts
+import { FileSystem } from '@paulshryock/abstractions'
 ```
 
 ## Support

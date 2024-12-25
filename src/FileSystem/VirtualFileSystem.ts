@@ -110,6 +110,7 @@ export interface VirtualFileSystem {
 	 * @return {Promise<void>}
 	 * @throws {import('./FileSystem/FileSystemException.ts').FileSystemException}
 	 * @since  0.1.1
+	 * @todo   Should this be IEEE Std 1003.2 (“POSIX.2”) compatible?
 	 */
 	copy(src: string, dest: string): Promise<void>
 

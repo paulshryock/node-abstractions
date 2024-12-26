@@ -1,8 +1,4 @@
 import * as readline from 'node:readline/promises'
-import {
-	CommandLineOutputOptions,
-	VirtualCommandLine,
-} from './VirtualCommandLine.ts'
 import { Streams, STREAMS } from './Streams.ts'
 import { argv } from 'node:process'
 import { Console } from 'node:console'
@@ -11,12 +7,12 @@ import { Options } from './Options.ts'
 import { PositionalArguments } from './PositionalArguments.ts'
 
 /**
- * Means of writing to and reading from the command line.
+ * Reads and writes messages to and from the command line.
  *
  * @since 0.2.0 - Named LocalCommandLine.
  * @since unreleased - Renamed to CommandLine.
  */
-export class CommandLine implements VirtualCommandLine {
+export class CommandLine {
 	/**
 	 * Console interface for writing to the console.
 	 *
@@ -32,9 +28,9 @@ export class CommandLine implements VirtualCommandLine {
 	readonly #streams: Streams
 
 	/**
-	 * All options from the current process, including short and long flags.
+	 * All short and long options from the current process.
 	 *
-	 * Boolean strings are converted to boolean.
+	 * Boolean strings ('true'|'false') are converted to boolean.
 	 *
 	 * @since 0.2.0
 	 */
@@ -142,4 +138,13 @@ export class CommandLine implements VirtualCommandLine {
 
 		this.#console[method](message)
 	}
+}
+
+/**
+ * Output options for IO methods.
+ *
+ * @since 0.2.0
+ */
+export type CommandLineOutputOptions = {
+	trace: boolean
 }

@@ -8,21 +8,21 @@ import { FinalClassWasExtended } from '../Exception/Exception.ts'
 /**
  * Possible response body types.
  *
- * @since unreleased
+ * @since 0.3.0
  */
 type ResponseBody = ReadableStream | string | null
 
 /**
  * Fetch API HTTP client.
  *
- * @since unreleased
+ * @since 0.3.0
  */
 export class FetchHttpClient {
 	/**
 	 * Constructs a Fetch API HTTP client.
 	 *
 	 * @throws {FinalClassWasExtended}
-	 * @since unreleased
+	 * @since 0.3.0
 	 */
 	public constructor() {
 		if (new.target !== FetchHttpClient)
@@ -35,7 +35,7 @@ export class FetchHttpClient {
 	 * @param  {Request}           request HTTP request to send.
 	 * @return {Promise<Response>}         HTTP response.
 	 * @throws {HttpClientException}
-	 * @since  unreleased
+	 * @since  0.3.0
 	 */
 	public async sendRequest(request: Request): Promise<Response> {
 		return fetch(request).catch((exception) => {
@@ -58,7 +58,7 @@ export class FetchHttpClient {
 	 *
 	 * @param  {Response}              response Response to get body from.
 	 * @return {Promise<ResponseBody>}          Response body by Content-Type.
-	 * @since  unreleased
+	 * @since  0.3.0
 	 */
 	public async getResponseBody(response: Response): Promise<ResponseBody> {
 		const contentType = this.#getContentType(response)
@@ -74,7 +74,7 @@ export class FetchHttpClient {
 	 *
 	 * @param  {Response} response HTTP response to get the Content-Type from.
 	 * @return {string}            Content-Type header value.
-	 * @since  unreleased
+	 * @since  0.3.0
 	 */
 	#getContentType(response: Response): string {
 		return `${response.headers.get('Content-Type')?.split(';')?.[0]}`
@@ -85,7 +85,7 @@ export class FetchHttpClient {
 	 *
 	 * @param  {unknown} exception Maybe an abort signal exception.
 	 * @return {boolean}           Whether the exception is from an abort signal.
-	 * @since  unreleased
+	 * @since  0.3.0
 	 */
 	#isAbortSignalException(exception: unknown): boolean {
 		return exception instanceof DOMException && exception.name === 'AbortError'

@@ -12,9 +12,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Fixed** for any bug fixes.
 - **Security** in case of vulnerabilities.
 
-## [Unreleased](https://github.com/paulshryock/node-abstractions.git/compare/HEAD..v0.2.1)
+## [Unreleased](https://github.com/paulshryock/node-abstractions.git/compare/HEAD..v0.3.0)
 
 ### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [v0.3.0](https://github.com/paulshryock/node-abstractions.git/releases/tag/v0.3.0) - 2024-12-26
 
 ### Changed
 
@@ -22,18 +34,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Rename `LocalCommandLine` class to `CommandLine`.
 - Change `CommandLine.error` first argument to string.
 
-### Deprecated
-
 ### Removed
 
 - Do not export `Exception` utility class since it is for internal use.
 - Remove `StackTrace` utility class since it is no longer needed.
 - Remove legacy `NetworkInput` class.
 - Remove `CommandLine` interface.
-
-### Fixed
-
-### Security
 
 ## [v0.2.1](https://github.com/paulshryock/node-abstractions.git/releases/tag/v0.2.1) - 2024-09-22
 

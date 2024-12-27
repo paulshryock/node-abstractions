@@ -6,7 +6,7 @@ import { stderr, stdout } from 'node:process'
  *
  * @param  {typeof stderr | typeof stdout} stream Stream to mock.
  * @return {void}
- * @since  unreleased
+ * @since  0.3.0
  */
 export function mockStream(stream: typeof stderr | typeof stdout): void {
 	const originalStream = stream.write.bind(globalThis)

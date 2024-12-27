@@ -2,7 +2,7 @@
  * Final class which cannot be extended.
  *
  * @internal
- * @since unreleased
+ * @since 0.3.0
  */
 export interface FinalClass {
 	constructor: {

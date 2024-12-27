@@ -30,7 +30,7 @@ export class LocalFileSystem implements VirtualFileSystem {
 	 *
 	 * @internal
 	 * @since 0.1.1
-	 * @since unreleased - Made private and readonly.
+	 * @since 0.3.0 - Made private and readonly.
 	 */
 	readonly #ACTIONS = {
 		copy: { file: copyFile },
@@ -41,7 +41,7 @@ export class LocalFileSystem implements VirtualFileSystem {
 	 * Constructs a local file system.
 	 *
 	 * @throws {FinalClassWasExtended}
-	 * @since  unreleased
+	 * @since  0.3.0
 	 */
 	public constructor() {
 		if (new.target !== LocalFileSystem)
@@ -248,7 +248,7 @@ export class LocalFileSystem implements VirtualFileSystem {
 	 * @param  {string}          dest   Destination path.
 	 * @return {Promise<void>}
 	 * @since  0.1.1
-	 * @since  unreleased - Made private.
+	 * @since  0.3.0 - Made private.
 	 */
 	async #copyOrMove(
 		action: 'copy' | 'move',
@@ -271,7 +271,7 @@ export class LocalFileSystem implements VirtualFileSystem {
 	 * @param  {string}          dest   Destination path.
 	 * @return {Promise<void>}
 	 * @since  0.1.1
-	 * @since  unreleased - Made private.
+	 * @since  0.3.0 - Made private.
 	 */
 	async #copyOrMoveFile(
 		action: 'copy' | 'move',
@@ -294,7 +294,7 @@ export class LocalFileSystem implements VirtualFileSystem {
 	 * @param  {string}          dest   Destination path.
 	 * @return {Promise<void>}
 	 * @since  0.1.1
-	 * @since  unreleased - Made private.
+	 * @since  0.3.0 - Made private.
 	 */
 	async #copyOrMoveDirectory(
 		action: 'copy' | 'move',
@@ -322,7 +322,7 @@ export class LocalFileSystem implements VirtualFileSystem {
 	 * @param  {string}        dest Destination path to copy the directory to.
 	 * @return {Promise<void>}
 	 * @since  0.1.3
-	 * @since  unreleased - Made private.
+	 * @since  0.3.0 - Made private.
 	 */
 	async #copyDirectory(src: string, dest: string): Promise<void> {
 		for (const item of await this.readDirectory(src))

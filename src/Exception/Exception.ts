@@ -3,7 +3,7 @@ import { FinalClass } from '../utilities/primitives.ts'
 /**
  * Options for the parent constructor containing an optional cause.
  *
- * @since unreleased
+ * @since 0.3.0
  */
 type ErrorOptions = {
 	/** The error that caused the newly created error. */
@@ -23,7 +23,7 @@ export class Exception extends Error {
 	 *
 	 * @param {string|undefined}       message Human-readable description.
 	 * @param {ErrorOptions|undefined} options Options with an optional cause.
-	 * @since unreleased
+	 * @since 0.3.0
 	 */
 	public constructor(message?: string, options?: ErrorOptions) {
 		super(message, options)

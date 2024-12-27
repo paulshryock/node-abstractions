@@ -27,7 +27,7 @@ export class Options {
 	 * Converts this to record of key/value pairs.
 	 *
 	 * @return {Record<string, boolean|number|string>} Key/value pairs.
-	 * @since  unreleased
+	 * @since  0.3.0
 	 */
 	public toRecord(): Record<string, boolean | number | string> {
 		return { ...this } as Record<string, boolean | number | string>

@@ -104,14 +104,14 @@ export class CommandLine {
 		 * and use it for debugging purposes.
 		 *
 		 * @see   https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/stack
-		 * @since unreleased
+		 * @since 0.3.0
 		 */
 		class Trace extends Error {
 			/**
 			 * Constructs a Trace instance.
 			 *
 			 * @param {string} message A human-readable description of the error.
-			 * @since unreleased
+			 * @since 0.3.0
 			 */
 			public constructor(message: string) {
 				super(message)

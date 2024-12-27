@@ -22,6 +22,7 @@ export class FetchHttpClient {
 	 * Constructs a Fetch API HTTP client.
 	 *
 	 * @throws {FinalClassWasExtended}
+	 *
 	 * @since 0.3.0
 	 */
 	public constructor() {
@@ -35,6 +36,7 @@ export class FetchHttpClient {
 	 * @param  {Request}           request HTTP request to send.
 	 * @return {Promise<Response>}         HTTP response.
 	 * @throws {HttpClientException}
+	 *
 	 * @since  0.3.0
 	 */
 	public async sendRequest(request: Request): Promise<Response> {
@@ -58,6 +60,7 @@ export class FetchHttpClient {
 	 *
 	 * @param  {Response}              response Response to get body from.
 	 * @return {Promise<ResponseBody>}          Response body by Content-Type.
+	 *
 	 * @since  0.3.0
 	 */
 	public async getResponseBody(response: Response): Promise<ResponseBody> {
@@ -74,6 +77,7 @@ export class FetchHttpClient {
 	 *
 	 * @param  {Response} response HTTP response to get the Content-Type from.
 	 * @return {string}            Content-Type header value.
+	 *
 	 * @since  0.3.0
 	 */
 	#getContentType(response: Response): string {
@@ -85,6 +89,7 @@ export class FetchHttpClient {
 	 *
 	 * @param  {unknown} exception Maybe an abort signal exception.
 	 * @return {boolean}           Whether the exception is from an abort signal.
+	 *
 	 * @since  0.3.0
 	 */
 	#isAbortSignalException(exception: unknown): boolean {

@@ -15,6 +15,7 @@ type ErrorOptions = {
  * pre-registered exception handler.
  *
  * @see   https://en.wikipedia.org/wiki/Exception_handling
+ *
  * @since 0.1.1
  */
 export class Exception extends Error {
@@ -23,6 +24,7 @@ export class Exception extends Error {
 	 *
 	 * @param {string|undefined}       message Human-readable description.
 	 * @param {ErrorOptions|undefined} options Options with an optional cause.
+	 *
 	 * @since 0.3.0
 	 */
 	public constructor(message?: string, options?: ErrorOptions) {
@@ -44,6 +46,7 @@ export class FinalClassWasExtended extends Exception {
 	 * Constructs a FinalClassWasExtended exception.
 	 *
 	 * @param {string} finalClass Final class which was extended.
+	 *
 	 * @since 0.2.0
 	 */
 	public constructor(finalClass: FinalClass) {

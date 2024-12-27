@@ -23,6 +23,7 @@ export class FileSystemException extends Exception {
 	 *
 	 * @param {string}       path    Path to directory.
 	 * @param {ErrorOptions} options Error options.
+	 *
 	 * @since 0.1.1
 	 */
 	public constructor(

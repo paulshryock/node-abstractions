@@ -48,6 +48,7 @@ export class CommandLine {
 	 *
 	 * @param {Streams} streams Command line interface streams.
 	 * @throws {FinalClassWasExtended}
+	 *
 	 * @since  0.2.0
 	 */
 	public constructor(streams: Streams = STREAMS) {
@@ -67,6 +68,7 @@ export class CommandLine {
 	 *
 	 * @param  {string}          question Question to print to output stream.
 	 * @return {Promise<string>}          Answer read from input stream.
+	 *
 	 * @since  0.2.0
 	 */
 	public async ask(question: string): Promise<string> {
@@ -85,6 +87,7 @@ export class CommandLine {
 	 * @param  {string}                   message Message for output stream.
 	 * @param  {CommandLineOutputOptions} options Output options.
 	 * @return {void}
+	 *
 	 * @since  0.2.0
 	 */
 	public out(message: string, options?: CommandLineOutputOptions): void {
@@ -104,6 +107,7 @@ export class CommandLine {
 		 * and use it for debugging purposes.
 		 *
 		 * @see   https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/stack
+		 *
 		 * @since 0.3.0
 		 */
 		class Trace extends Error {
@@ -111,6 +115,7 @@ export class CommandLine {
 			 * Constructs a Trace instance.
 			 *
 			 * @param {string} message A human-readable description of the error.
+			 *
 			 * @since 0.3.0
 			 */
 			public constructor(message: string) {
@@ -130,6 +135,7 @@ export class CommandLine {
 	 * @param  {string}                   message Error message for error stream.
 	 * @param  {CommandLineOutputOptions} options Output options.
 	 * @return {void}
+	 *
 	 * @since  0.2.0
 	 * @since  unreleased - Changed first argument from `Error` to `string`.
 	 */

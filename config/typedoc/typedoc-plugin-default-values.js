@@ -11,6 +11,7 @@ import {
  *
  * @param  {{ application: Application }} options Plugin load options.
  * @return {void}
+ *
  * @since  0.1.1
  */
 export function load({ application }) {
@@ -48,6 +49,7 @@ class DefaultValuesPlugin {
 	 * DefaultValuesPlugin class constructor.
 	 *
 	 * @param {Map<Reflection, string>} defaultValues Map of default values.
+	 *
 	 * @since 0.1.1
 	 */
 	constructor(defaultValues = new Map()) {
@@ -64,6 +66,7 @@ class DefaultValuesPlugin {
 	 * @param  {Context}    _context   Current state the converter is in.
 	 * @param  {Reflection} reflection Reflection instance.
 	 * @return {void}
+	 *
 	 * @since  0.1.1
 	 */
 	save(_context, reflection) {
@@ -85,6 +88,7 @@ class DefaultValuesPlugin {
 	 * Clears default values.
 	 *
 	 * @return {void}
+	 *
 	 * @since  0.1.1
 	 */
 	clear() {
@@ -98,6 +102,7 @@ class DefaultValuesPlugin {
 	 *
 	 * @param  {Reflection} reflection Reflection instance.
 	 * @return {unknown}               Reflection node.
+	 *
 	 * @since  0.2.0
 	 */
 	#getReflectionNode(reflection) {

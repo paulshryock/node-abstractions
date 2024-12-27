@@ -19,7 +19,7 @@ npm install @paulshryock/abstractions
 
 ## API
 
-### Command Line
+### `CommandLine`
 
 Reads and writes messages to and from the command line.
 
@@ -60,7 +60,7 @@ Writes message to output stream. Optionally includes a stack trace.
 
 Writes error message to error stream. Optionally includes a stack trace.
 
-#### Useage examples
+#### Usage examples
 
 ```ts
 import { CommandLine } from '@paulshryock/abstractions'
@@ -109,10 +109,123 @@ myClass.printHelloNameToStdout()
 myClass.printHelloErrorToStderr()
 ```
 
-### File System
+### `LocalFileSystem`
+
+#### Public methods
+
+##### `readFile(path)`
+
+- `path`: `<string>` Path to file.
+- Returns: `<Promise<string>>` File contents.
+
+Reads a file.
+
+##### `writeFile(path, content)`
+
+- `path`: `<string>` Path to file.
+- `content`: `<string>` Content to write to file.
+- Returns: `<Promise<void>>`
+
+Writes to a file.
+
+##### `appendFile(path, content)`
+
+- `path`: `<string>` Path to file.
+- `content`: `<string>` Content to write to file.
+- Returns: `<Promise<void>>`
+
+Appends to a file.
+
+##### `deleteFile(path)`
+
+- `path`: `<string>` Path to file.
+- Returns: `<Promise<void>>`
+
+Deletes a file.
+
+##### `isFile(path)`
+
+- `path`: `<string>` Path to file.
+- Returns: `<Promise<boolean>>` Whether or not the path is a file.
+
+Checks if a path is a file.
+
+##### `createDirectory(path)`
+
+- `path`: `<string>` Path to directory.
+- Returns: `<Promise<void>>`
+
+Creates a directory.
+
+##### `readDirectory(path)`
+
+- `path`: `<string>` Path to directory.
+- Returns: `<Promise<string[]>>` Contents of the directory.
+
+Reads a directory and returns the contents.
+
+##### `readDirectoryRecursive(path)`
+
+- `path`: `<string>` Path to directory.
+- Returns: `<Promise<string[]>>` Recursive contents of the directory.
+
+Reads a directory and returns the contents.
+
+Reads a directory and returns the contents recursively.
+
+##### `deleteDirectory(path)`
+
+- `path`: `<string>` Path to directory.
+- Returns: `<Promise<void>>`
+
+Deletes a directory.
+
+##### `isDirectory(path)`
+
+- `path`: `<string>` Path to directory.
+- Returns: `<Promise<boolean>>` Whether or not the path is a directory.
+
+Checks if a path is a directory.
+
+##### `copy(src, dest)`
+
+- `src`: `<string>` Source path.
+- `dest`: `<string>` Destination path.
+- Returns: `<Promise<void>>`
+
+Copies a file or directory to another location.
+
+When `src` and `dest` are path names to files, the program copies the contents of the first file to the second file, creating the second file if necessary.
+
+When `src` is a path name of a file and `dest` is a path to a directory, then the program copies the source file into the destination directory, creating the file if necessary.
+
+When `src` and `dest` are both the path names to two directories, the program copies the source directory into the destination directory, creating any files or directories needed. If the destination directory already exists, the source is copied into the destination, while a new directory is created if the destination does not exist.
+
+##### `move(src, dest)`
+
+- `src`: `<string>` Source path.
+- `dest`: `<string>` Destination path.
+- Returns: `<Promise<void>>`
+
+Moves a file or directory to another location.
+
+##### `exists(path)`
+
+- `path`: `<string>` Path to directory.
+- Returns: `<Promise<boolean>>` Whether or not the path is an existing file or directory.
+
+Checks if a file or directory exists.
+
+#### Usage examples
 
 ```ts
-import { FileSystem } from '@paulshryock/abstractions'
+import { LocalFileSystem, VirtualFileSystem } from '@paulshryock/abstractions'
+
+class MyClass {
+    public constructor(private fileSystem = VirtualFileSystem) {}
+}
+
+const myClass = new MyClass(new LocalFileSystem())
 ```
 
 ## Support

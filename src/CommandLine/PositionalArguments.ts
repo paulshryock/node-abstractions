@@ -1,5 +1,6 @@
 /**
  * @internal
+ *
  * @since 0.2.0
  */
 export class PositionalArguments {
@@ -14,6 +15,7 @@ export class PositionalArguments {
 	 * Filters positional arguments from a list of all process arguments.
 	 *
 	 * @param {string[]} args All process arguments.
+	 *
 	 * @since 0.2.0
 	 */
 	public constructor(args: string[]) {
@@ -33,6 +35,7 @@ export class PositionalArguments {
 	 * Returns positional arguments as an array.
 	 *
 	 * @return {string[]} Positional arguments represented as an array.
+	 *
 	 * @since  0.2.0
 	 */
 	public toArray(): string[] {

@@ -1,3 +1,10 @@
+/* @ts-expect-error -- Types are used in @throws tags. */
+import {
+	DirectoryNotFound,
+	FileNotFound,
+	FileSystemException,
+} from './FileSystemException.ts'
+
 /**
  * File system abstraction.
  *
@@ -8,8 +15,9 @@ export interface VirtualFileSystem {
 	 * Reads a file.
 	 *
 	 * @param  {string}          path Path to file.
-	 * @return {Promise<string>}
-	 * @throws {import('./FileSystem/FileSystemException.ts').FileNotFound}
+	 * @return {Promise<string>}      File contents.
+	 * @throws {FileNotFound}
+	 *
 	 * @since  0.1.1
 	 */
 	readFile(path: string): Promise<string>
@@ -20,6 +28,7 @@ export interface VirtualFileSystem {
 	 * @param  {string}        path    Path to file.
 	 * @param  {string}        content Content to write to file.
 	 * @return {Promise<void>}
+	 *
 	 * @since  0.1.1
 	 */
 	writeFile(path: string, content: string): Promise<void>
@@ -30,6 +39,7 @@ export interface VirtualFileSystem {
 	 * @param  {string}        path    Path to file.
 	 * @param  {string}        content Content to write to file.
 	 * @return {Promise<void>}
+	 *
 	 * @since  0.1.1
 	 */
 	appendFile(path: string, content: string): Promise<void>
@@ -39,7 +49,8 @@ export interface VirtualFileSystem {
 	 *
 	 * @param  {string}        path Path to file.
 	 * @return {Promise<void>}
-	 * @throws {import('./FileSystem/FileSystemException.ts').FileNotFound}
+	 * @throws {FileNotFound}
+	 *
 	 * @since  0.1.1
 	 */
 	deleteFile(path: string): Promise<void>
@@ -48,7 +59,8 @@ export interface VirtualFileSystem {
 	 * Checks if a path is a file.
 	 *
 	 * @param  {string}           path Path to file.
-	 * @return {Promise<boolean>}
+	 * @return {Promise<boolean>}      Whether or not the path is a file.
+	 *
 	 * @since  0.1.1
 	 */
 	isFile(path: string): Promise<boolean>
@@ -58,6 +70,7 @@ export interface VirtualFileSystem {
 	 *
 	 * @param  {string}        path Path to directory.
 	 * @return {Promise<void>}
+	 *
 	 * @since  0.1.1
 	 */
 	createDirectory(path: string): Promise<void>
@@ -66,8 +79,9 @@ export interface VirtualFileSystem {
 	 * Reads a directory and returns the contents.
 	 *
 	 * @param  {string}            path Path to directory.
-	 * @return {Promise<string[]>}
-	 * @throws {import('./FileSystem/FileSystemException.ts').DirectoryNotFound}
+	 * @return {Promise<string[]>}      Contents of the directory.
+	 * @throws {DirectoryNotFound}
+	 *
 	 * @since  0.1.1
 	 */
 	readDirectory(path: string): Promise<string[]>
@@ -76,8 +90,9 @@ export interface VirtualFileSystem {
 	 * Reads a directory and returns the contents recursively.
 	 *
 	 * @param  {string}            path Path to directory.
-	 * @return {Promise<string[]>}
-	 * @throws {import('./FileSystem/FileSystemException.ts').DirectoryNotFound}
+	 * @return {Promise<string[]>}      Recursive contents of the directory.
+	 * @throws {DirectoryNotFound}
+	 *
 	 * @since  0.1.1
 	 */
 	readDirectoryRecursive(path: string): Promise<string[]>
@@ -87,7 +102,8 @@ export interface VirtualFileSystem {
 	 *
 	 * @param  {string}        path Path to directory.
 	 * @return {Promise<void>}
-	 * @throws {import('./FileSystem/FileSystemException.ts').DirectoryNotFound}
+	 * @throws {DirectoryNotFound}
+	 *
 	 * @since  0.1.1
 	 */
 	deleteDirectory(path: string): Promise<void>
@@ -96,8 +112,9 @@ export interface VirtualFileSystem {
 	 * Checks if a path is a directory.
 	 *
 	 * @param  {string}           path Path to directory.
-	 * @return {Promise<boolean>}
-	 * @throws {import('./FileSystem/FileSystemException.ts').DirectoryNotFound}
+	 * @return {Promise<boolean>}      Whether or not the path is a directory.
+	 * @throws {DirectoryNotFound}
+	 *
 	 * @since  0.1.1
 	 */
 	isDirectory(path: string): Promise<boolean>
@@ -105,12 +122,26 @@ export interface VirtualFileSystem {
 	/**
 	 * Copies a file or directory to another location.
 	 *
+	 * When `src` and `dest` are path names to files, the program copies the
+	 * contents of the first file to the second file, creating the second file if
+	 * necessary.
+	 *
+	 * When `src` is a path name of a file and `dest` is a path to a directory,
+	 * then the program copies the source file into the destination directory,
+	 * creating the file if necessary.
+	 *
+	 * When `src` and `dest` are both the path names to two directories, the
+	 * program copies the source directory into the destination directory,
+	 * creating any files or directories needed. If the destination directory
+	 * already exists, the source is copied into the destination, while a new
+	 * directory is created if the destination does not exist.
+	 *
 	 * @param  {string}        src  Source path.
 	 * @param  {string}        dest Destination path.
 	 * @return {Promise<void>}
-	 * @throws {import('./FileSystem/FileSystemException.ts').FileSystemException}
+	 * @throws {FileSystemException}
+	 *
 	 * @since  0.1.1
-	 * @todo   Should this be IEEE Std 1003.2 (“POSIX.2”) compatible?
 	 */
 	copy(src: string, dest: string): Promise<void>
 
@@ -120,7 +151,8 @@ export interface VirtualFileSystem {
 	 * @param  {string}        src  Source path.
 	 * @param  {string}        dest Destination path.
 	 * @return {Promise<void>}
-	 * @throws {import('./FileSystem/FileSystemException.ts').FileSystemException}
+	 * @throws {FileSystemException}
+	 *
 	 * @since  0.1.1
 	 */
 	move(src: string, dest: string): Promise<void>
@@ -129,7 +161,9 @@ export interface VirtualFileSystem {
 	 * Checks if a file or directory exists.
 	 *
 	 * @param  {string}           path Path to file or directory.
-	 * @return {Promise<boolean>}
+	 * @return {Promise<boolean>}      Whether or not the path is an existing
+	 *                                 file or directory.
+	 *
 	 * @since  0.1.1
 	 */
 	exists(path: string): Promise<boolean>

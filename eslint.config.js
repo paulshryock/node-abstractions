@@ -110,8 +110,22 @@ export default [
 			'jsdoc/require-throws': 'error',
 			'jsdoc/require-yields': 'error',
 			'jsdoc/require-yields-check': 'error',
-			'jsdoc/sort-tags': 'error',
-			'jsdoc/tag-lines': ['error', 'never', { startLines: 1 }],
+			'jsdoc/sort-tags': [
+				'error',
+				{
+					tagSequence: [
+						{ tags: ['typedef', 'type', 'template', 'internal', 'external'] },
+						{ tags: ['copyright', 'license'] },
+						{ tags: ['example'] },
+						{
+							tags: ['param', 'return', 'returns', 'yields', 'emits', 'throws'],
+						},
+						{ tags: ['see', 'link'] },
+						{ tags: ['since', 'deprecated', 'todo'] },
+					],
+				},
+			],
+			'jsdoc/tag-lines': ['error', 'any', { count: 1, startLines: 1 }],
 			'jsdoc/valid-types': 'error',
 			'max-depth': ['error', 4],
 			'max-lines': [

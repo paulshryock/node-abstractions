@@ -14,6 +14,8 @@ import {
 	DirectoryNotFound,
 	FileNotFound,
 	FileOrDirectoryNotFound,
+	/* @ts-expect-error -- Type used in @throws tag. */
+	FileSystemException,
 } from './FileSystemException.ts'
 import { dirname, join, parse } from 'node:path'
 import { FinalClassWasExtended } from '../Exception/Exception.ts'
@@ -29,6 +31,7 @@ export class LocalFileSystem implements VirtualFileSystem {
 	 * Callbacks for each file system action.
 	 *
 	 * @internal
+	 *
 	 * @since 0.1.1
 	 * @since 0.3.0 - Made private and readonly.
 	 */
@@ -41,6 +44,7 @@ export class LocalFileSystem implements VirtualFileSystem {
 	 * Constructs a local file system.
 	 *
 	 * @throws {FinalClassWasExtended}
+	 *
 	 * @since  0.3.0
 	 */
 	public constructor() {
@@ -52,8 +56,9 @@ export class LocalFileSystem implements VirtualFileSystem {
 	 * Reads a file.
 	 *
 	 * @param  {string}          path Path to file.
-	 * @return {Promise<string>}      Contents of file.
+	 * @return {Promise<string>}      File contents.
 	 * @throws {FileNotFound}
+	 *
 	 * @since  0.1.1
 	 */
 	public async readFile(path: string): Promise<string> {
@@ -68,6 +73,7 @@ export class LocalFileSystem implements VirtualFileSystem {
 	 * @param  {string}        path    Path to file.
 	 * @param  {string}        content Content to write to file.
 	 * @return {Promise<void>}
+	 *
 	 * @since  0.1.1
 	 */
 	public async writeFile(path: string, content: string): Promise<void> {
@@ -82,6 +88,7 @@ export class LocalFileSystem implements VirtualFileSystem {
 	 * @param  {string}        path    Path to file.
 	 * @param  {string}        content Content to write to file.
 	 * @return {Promise<void>}
+	 *
 	 * @since  0.1.1
 	 */
 	public async appendFile(path: string, content: string): Promise<void> {
@@ -95,6 +102,7 @@ export class LocalFileSystem implements VirtualFileSystem {
 	 * @param  {string}        path Path to file.
 	 * @return {Promise<void>}
 	 * @throws {FileNotFound}
+	 *
 	 * @since  0.1.1
 	 */
 	public async deleteFile(path: string): Promise<void> {
@@ -109,6 +117,7 @@ export class LocalFileSystem implements VirtualFileSystem {
 	 *
 	 * @param  {string}           path Path to file.
 	 * @return {Promise<boolean>}      Whether the path points to a file.
+	 *
 	 * @since  0.1.1
 	 */
 	public async isFile(path: string): Promise<boolean> {
@@ -124,6 +133,7 @@ export class LocalFileSystem implements VirtualFileSystem {
 	 *
 	 * @param  {string}        path Path to directory.
 	 * @return {Promise<void>}
+	 *
 	 * @since  0.1.1
 	 */
 	public async createDirectory(path: string): Promise<void> {
@@ -136,6 +146,7 @@ export class LocalFileSystem implements VirtualFileSystem {
 	 * @param  {string}            path Path to directory.
 	 * @return {Promise<string[]>}      Directory contents.
 	 * @throws {DirectoryNotFound}
+	 *
 	 * @since  0.1.1
 	 */
 	public async readDirectory(path: string): Promise<string[]> {
@@ -150,6 +161,7 @@ export class LocalFileSystem implements VirtualFileSystem {
 	 * @param  {string}            path Path to directory.
 	 * @return {Promise<string[]>}      Directory contents.
 	 * @throws {DirectoryNotFound}
+	 *
 	 * @since  0.1.1
 	 */
 	public async readDirectoryRecursive(path: string): Promise<string[]> {
@@ -175,6 +187,7 @@ export class LocalFileSystem implements VirtualFileSystem {
 	 * @param  {string}        path Path to directory.
 	 * @return {Promise<void>}
 	 * @throws {DirectoryNotFound}
+	 *
 	 * @since  0.1.1
 	 */
 	public async deleteDirectory(path: string): Promise<void> {
@@ -190,6 +203,7 @@ export class LocalFileSystem implements VirtualFileSystem {
 	 * @param  {string}           path Path to directory.
 	 * @return {Promise<boolean>}      Whether the path points to a directory.
 	 * @throws {DirectoryNotFound}
+	 *
 	 * @since  0.1.1
 	 */
 	public async isDirectory(path: string): Promise<boolean> {
@@ -203,10 +217,25 @@ export class LocalFileSystem implements VirtualFileSystem {
 	/**
 	 * Copies a file or directory to another location.
 	 *
+	 * When `src` and `dest` are path names to files, the program copies the
+	 * contents of the first file to the second file, creating the second file if
+	 * necessary.
+	 *
+	 * When `src` is a path name of a file and `dest` is a path to a directory,
+	 * then the program copies the source file into the destination directory,
+	 * creating the file if necessary.
+	 *
+	 * When `src` and `dest` are both the path names to two directories, the
+	 * program copies the source directory into the destination directory,
+	 * creating any files or directories needed. If the destination directory
+	 * already exists, the source is copied into the destination, while a new
+	 * directory is created if the destination does not exist.
+	 *
 	 * @param  {string}        src  Source path.
 	 * @param  {string}        dest Destination path.
 	 * @return {Promise<void>}
-	 * @throws {import('./FileSystemException.ts').FileSystemException}
+	 * @throws {FileSystemException}
+	 *
 	 * @since  0.1.1
 	 */
 	public async copy(src: string, dest: string): Promise<void> {
@@ -219,7 +248,8 @@ export class LocalFileSystem implements VirtualFileSystem {
 	 * @param  {string}        src  Source path.
 	 * @param  {string}        dest Destination path.
 	 * @return {Promise<void>}
-	 * @throws {import('./FileSystemException.ts').FileSystemException}
+	 * @throws {FileSystemException}
+	 *
 	 * @since  0.1.1
 	 */
 	public async move(src: string, dest: string): Promise<void> {
@@ -231,6 +261,7 @@ export class LocalFileSystem implements VirtualFileSystem {
 	 *
 	 * @param  {string}           path Path to file or directory.
 	 * @return {Promise<boolean>}      Whether the file or directory exists.
+	 *
 	 * @since  0.1.1
 	 */
 	public async exists(path: string): Promise<boolean> {
@@ -243,10 +274,13 @@ export class LocalFileSystem implements VirtualFileSystem {
 	 * Copies or moves a file or directory to another location.
 	 *
 	 * @internal
+	 *
 	 * @param  {'copy' | 'move'} action Action to perform.
 	 * @param  {string}          src    Source path.
 	 * @param  {string}          dest   Destination path.
 	 * @return {Promise<void>}
+	 * @throws {FileSystemException}
+	 *
 	 * @since  0.1.1
 	 * @since  0.3.0 - Made private.
 	 */
@@ -266,10 +300,12 @@ export class LocalFileSystem implements VirtualFileSystem {
 	 * Copies or moves a file to another location.
 	 *
 	 * @internal
+	 *
 	 * @param  {'copy' | 'move'} action Action to perform.
 	 * @param  {string}          src    Source path.
 	 * @param  {string}          dest   Destination path.
 	 * @return {Promise<void>}
+	 *
 	 * @since  0.1.1
 	 * @since  0.3.0 - Made private.
 	 */
@@ -289,10 +325,12 @@ export class LocalFileSystem implements VirtualFileSystem {
 	 * Copies or moves a directory to another location.
 	 *
 	 * @internal
+	 *
 	 * @param  {'copy' | 'move'} action Action to perform.
 	 * @param  {string}          src    Source path.
 	 * @param  {string}          dest   Destination path.
 	 * @return {Promise<void>}
+	 *
 	 * @since  0.1.1
 	 * @since  0.3.0 - Made private.
 	 */
@@ -318,9 +356,11 @@ export class LocalFileSystem implements VirtualFileSystem {
 	 * Recursively creates directories and files to copy a directory.
 	 *
 	 * @internal
+	 *
 	 * @param  {string}        src  Directory to copy.
 	 * @param  {string}        dest Destination path to copy the directory to.
 	 * @return {Promise<void>}
+	 *
 	 * @since  0.1.3
 	 * @since  0.3.0 - Made private.
 	 */

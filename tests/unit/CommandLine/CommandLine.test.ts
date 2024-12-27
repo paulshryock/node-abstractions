@@ -182,9 +182,8 @@ describe('when streams are bound', () => {
 
 	describe('CommandLine.ask(question)', () => {
 		it('should write a question to stdout', () => {
-			new CommandLine(streams).ask('hello?').catch((error) => {
-				throw error
-			})
+			// eslint-disable-next-line @typescript-eslint/no-floating-promises -- Works fine.
+			new CommandLine(streams).ask('hello?')
 
 			streams.stdin.push(null)
 
@@ -228,9 +227,11 @@ describe('when streams are bound', () => {
 		})
 	})
 
-	describe('CommandLine.error(Error)', () => {
+	describe('CommandLine.error(message)', () => {
 		it('should write an error message to stderr', () => {
-			new CommandLine(streams).error(new Error('something bad happened'))
+			const exception = new Error('something bad happened')
+
+			new CommandLine(streams).error(exception.message)
 
 			// eslint-disable-next-line @typescript-eslint/unbound-method -- Works fine.
 			expect(streams.stderr.write).toHaveBeenCalledWith(
@@ -240,11 +241,11 @@ describe('when streams are bound', () => {
 		})
 	})
 
-	describe('CommandLine.error(Error, { trace: true })', () => {
+	describe('CommandLine.error(message, { trace: true })', () => {
 		it('should write a stack trace to stderr', () => {
 			const exception = new Error('something bad happened')
 
-			new CommandLine(streams).error(exception, { trace: true })
+			new CommandLine(streams).error(exception.message, { trace: true })
 
 			// eslint-disable-next-line @typescript-eslint/unbound-method -- Works fine.
 			expect(streams.stderr.write).toHaveBeenCalledWith(

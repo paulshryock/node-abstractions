@@ -17,17 +17,66 @@ Reduce accidental complexity and focus on application business logic.
 npm install @paulshryock/abstractions
 ```
 
-## Usage
+## API
 
 ### Command Line
 
-`CommandLine` makes use of Node.js stdout and stderr streams.
+Reads and writes messages to and from the command line.
+
+#### Public properties
+
+1. **`options`**: `Record<string, boolean | number | string>`
+
+    All short and long options from the current process. Boolean strings (`'true'`|`'false'`) are converted to boolean.
+
+1. **`positionalArguments`**: `string[]`
+
+    Positional arguments from the current process.
+
+#### Public methods
+
+##### `ask(question)`
+
+- `question`: `<string>` Question to print to output stream.
+- Returns: `<Promise<string>>` Answer read from input stream.
+
+Prints question to output stream and reads answer from input stream.
+
+##### `out(message[, options])`
+
+- `message`: `<string>` Message for output stream.
+- `options`: `<Object>`
+    - `trace`: `<boolean>` Whether or not to include a stack trace.
+- Returns: `<void>`
+
+Writes message to output stream. Optionally includes a stack trace.
+
+##### `error(error[, options])`
+
+- `error`: `string` Error message for error stream.
+- `options`: `<Object>`
+    - `trace`: `<boolean>` Whether or not to include a stack trace.
+- Returns: `<void>`
+
+Writes error message to error stream. Optionally includes a stack trace.
+
+#### Useage examples
 
 ```ts
 import { CommandLine } from '@paulshryock/abstractions'
 
 class MyClass {
     public construct(private commandLine: CommandLine) {}
+
+    /** Gets all short and long options from the current process. */
+    public getOptions(): Record<string, boolean | number | string> {
+        return this.commandLine.options
+    }
+
+    /** Gets positional arguments from the current process. */
+    public getPositionalArguments(): string[] {
+        return this.commandLine.positionalArguments
+    }
 
     /** Prints 'Hello, world!' to stdout. */
     public printHelloWorldToStdout(): void {
@@ -44,13 +93,16 @@ class MyClass {
         this.commandLine.out(`Hello, ${name}!`)
     }
 
-    /** Prints 'Hello, error!' to stderr. */
+    /** Prints 'Hello, error!' with a stack trace to stderr. */
     public printHelloErrorToStderr(): void {
         this.commandLine.error('Hello, error!', { trace: true })
     }
 }
 
 const myClass = new MyClass(new CommandLine())
+
+const options = myClass.getOptions()
+const positionalArguments = myClass.getPositionalArguments()
 
 myClass.printHelloWorldToStdout()
 myClass.printHelloNameToStdout()

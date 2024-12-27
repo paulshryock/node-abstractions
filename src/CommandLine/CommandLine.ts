@@ -127,16 +127,14 @@ export class CommandLine {
 	/**
 	 * Writes error message to error stream. Optionally includes a stack trace.
 	 *
-	 * @param  {Error}                    error   Error for error stream.
+	 * @param  {string}                   message Error message for error stream.
 	 * @param  {CommandLineOutputOptions} options Output options.
 	 * @return {void}
 	 * @since  0.2.0
+	 * @since  unreleased - Changed first argument from `Error` to `string`.
 	 */
-	public error(error: Error, options?: CommandLineOutputOptions): void {
-		const method = options?.trace ? 'trace' : 'error'
-		const message = `${error.name}: ${error.message}`
-
-		this.#console[method](message)
+	public error(message: string, options?: CommandLineOutputOptions): void {
+		this.#console[options?.trace ? 'trace' : 'error'](message)
 	}
 }
 
@@ -146,5 +144,6 @@ export class CommandLine {
  * @since 0.2.0
  */
 export type CommandLineOutputOptions = {
+	/** Whether or not to include a stack trace. */
 	trace: boolean
 }

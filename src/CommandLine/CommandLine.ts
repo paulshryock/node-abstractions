@@ -10,7 +10,7 @@ import { PositionalArguments } from './PositionalArguments.ts'
  * Reads and writes messages to and from the command line.
  *
  * @since 0.2.0 - Named LocalCommandLine.
- * @since unreleased - Renamed to CommandLine.
+ * @since 0.3.0 - Renamed to CommandLine.
  */
 export class CommandLine {
 	/**
@@ -137,7 +137,7 @@ export class CommandLine {
 	 * @return {void}
 	 *
 	 * @since  0.2.0
-	 * @since  unreleased - Changed first argument from `Error` to `string`.
+	 * @since  0.3.0 - Changed first argument from `Error` to `string`.
 	 */
 	public error(message: string, options?: CommandLineOutputOptions): void {
 		this.#console[options?.trace ? 'trace' : 'error'](message)

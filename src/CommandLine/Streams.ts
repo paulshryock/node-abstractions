@@ -1,5 +1,5 @@
+import { Readable, Writable } from 'node:stream'
 import { stderr, stdin, stdout } from 'node:process'
-import { Duplex } from 'node:stream'
 
 /**
  * Command line interface streams.
@@ -7,9 +7,9 @@ import { Duplex } from 'node:stream'
  * @since 0.2.0
  */
 export type Streams = {
-	stderr: Duplex
-	stdin: Duplex
-	stdout: Duplex
+	stderr: Writable
+	stdin: Readable
+	stdout: Writable
 }
 
 /**

@@ -1,7 +1,7 @@
-import * as readline from 'node:readline/promises'
 import { Streams, STREAMS } from './Streams.ts'
 import { argv } from 'node:process'
 import { Console } from 'node:console'
+import { createInterface } from 'node:readline/promises'
 import { FinalClassWasExtended } from '../Exception/Exception.ts'
 import { Options } from './Options.ts'
 import { PositionalArguments } from './PositionalArguments.ts'
@@ -73,7 +73,7 @@ export class CommandLine {
 	 */
 	public async ask(question: string): Promise<string> {
 		const { stdin: input, stdout: output } = this.#streams
-		const rl = readline.createInterface({ input, output })
+		const rl = createInterface({ input, output })
 
 		const answer = await rl.question(`${question} `)
 		rl.close()

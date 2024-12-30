@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Fixed** for any bug fixes.
 - **Security** in case of vulnerabilities.
 
-## [Unreleased](https://github.com/paulshryock/node-abstractions.git/compare/HEAD..v0.3.0)
+## [Unreleased](https://github.com/paulshryock/node-abstractions.git/compare/HEAD..v0.3.1)
 
 ### Added
 
@@ -25,6 +25,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Security
+
+## [v0.3.1](https://github.com/paulshryock/node-abstractions.git/releases/tag/v0.3.1) - 2024-12-29
+
+### Changed
+
+- Decrease specificity of CommandLine stream types.
+
+### Removed
+
+- Import less of node:readline module.
 
 ## [v0.3.0](https://github.com/paulshryock/node-abstractions.git/releases/tag/v0.3.0) - 2024-12-26
 

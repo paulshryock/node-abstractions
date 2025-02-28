@@ -6,18 +6,15 @@ import {
 import { FinalClassWasExtended } from '../Exception/Exception.ts'
 
 /**
- * Possible response body types.
+ * Sends requests and returns responses.
+ *
+ * Inspired by PSR-18.
+ *
+ * @see   {@link https://www.php-fig.org/psr/psr-18/#clientinterface}
  *
  * @since 0.3.0
  */
-type ResponseBody = ReadableStream | string | null
-
-/**
- * Fetch API HTTP client.
- *
- * @since 0.3.0
- */
-export class FetchHttpClient {
+export class HttpClient {
 	/**
 	 * Constructs a Fetch API HTTP client.
 	 *
@@ -26,8 +23,7 @@ export class FetchHttpClient {
 	 * @since 0.3.0
 	 */
 	public constructor() {
-		if (new.target !== FetchHttpClient)
-			throw new FinalClassWasExtended(FetchHttpClient)
+		if (new.target !== HttpClient) throw new FinalClassWasExtended(HttpClient)
 	}
 
 	/**
@@ -64,12 +60,14 @@ export class FetchHttpClient {
 	 * @since  0.3.0
 	 */
 	public async getResponseBody(response: Response): Promise<ResponseBody> {
-		const contentType = this.#getContentType(response)
-
-		if (['text/plain', 'text/html'].includes(contentType))
-			return response.text()
-
-		return response.body
+		switch (this.#getContentType(response)) {
+			case 'application/json':
+			case 'text/html':
+			case 'text/plain':
+				return response.text()
+			default:
+				return response.body
+		}
 	}
 
 	/**
@@ -96,3 +94,10 @@ export class FetchHttpClient {
 		return exception instanceof DOMException && exception.name === 'AbortError'
 	}
 }
+
+/**
+ * Possible response body types.
+ *
+ * @since 0.3.0
+ */
+type ResponseBody = ReadableStream | string | null

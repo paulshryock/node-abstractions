@@ -11,20 +11,20 @@ import {
 	NetworkFailure,
 	RequestAborted,
 } from '../../../src/HttpClient/HttpClientException.ts'
-import { FetchHttpClient } from '../../../src/HttpClient/FetchHttpClient.ts'
 import { FinalClassWasExtended } from '../../../src/Exception/Exception.ts'
+import { HttpClient } from '../../../src/HttpClient/HttpClient.ts'
 
 it('should instantiate', () =>
-	expect(new FetchHttpClient()).toBeInstanceOf(FetchHttpClient))
+	expect(new HttpClient()).toBeInstanceOf(HttpClient))
 
 describe('when attempting to extend this class', () => {
 	it('should throw an exception', () =>
-		expect(() => new (class extends FetchHttpClient {})()).toThrow(
+		expect(() => new (class extends HttpClient {})()).toThrow(
 			FinalClassWasExtended,
 		))
 })
 
-describe('FetchHttpClient.sendRequest(Request)', () => {
+describe('HttpClient.sendRequest(Request)', () => {
 	const fetchOriginal = global.fetch
 
 	beforeEach(() => {
@@ -43,9 +43,7 @@ describe('FetchHttpClient.sendRequest(Request)', () => {
 
 		it('should throw a network failure exception', async () => {
 			await expect(() =>
-				new FetchHttpClient().sendRequest(
-					new Request('https://www.example.com/'),
-				),
+				new HttpClient().sendRequest(new Request('https://www.example.com/')),
 			).rejects.toThrow(NetworkFailure)
 		})
 	})
@@ -59,9 +57,9 @@ describe('FetchHttpClient.sendRequest(Request)', () => {
 		it('should throw a request aborted exception', async () => {
 			const request = new Request('https://www.example.com/')
 
-			await expect(() =>
-				new FetchHttpClient().sendRequest(request),
-			).rejects.toThrow(RequestAborted)
+			await expect(() => new HttpClient().sendRequest(request)).rejects.toThrow(
+				RequestAborted,
+			)
 		})
 	})
 
@@ -74,29 +72,27 @@ describe('FetchHttpClient.sendRequest(Request)', () => {
 		it('should throw the exception', async () => {
 			const request = new Request('https://www.example.com/')
 
-			await expect(() =>
-				new FetchHttpClient().sendRequest(request),
-			).rejects.toThrow(HttpClientException)
+			await expect(() => new HttpClient().sendRequest(request)).rejects.toThrow(
+				HttpClientException,
+			)
 		})
 	})
 
 	it('should send a request', async () => {
-		await new FetchHttpClient().sendRequest(
-			new Request('https://www.example.com/'),
-		)
+		await new HttpClient().sendRequest(new Request('https://www.example.com/'))
 
 		expect(fetch).toHaveBeenCalled()
 	})
 })
 
-describe('FetchHttpClient.getResponseBody(Response)', () => {
+describe('HttpClient.getResponseBody(Response)', () => {
 	describe('when a response has no body', () => {
 		const response = new Response()
 
 		it('should return null', async () => {
-			await expect(
-				new FetchHttpClient().getResponseBody(response),
-			).resolves.toBe(null)
+			await expect(new HttpClient().getResponseBody(response)).resolves.toBe(
+				null,
+			)
 		})
 	})
 
@@ -105,15 +101,16 @@ describe('FetchHttpClient.getResponseBody(Response)', () => {
 		const response = new Response(body)
 
 		it('should return the body text', async () => {
-			await expect(
-				new FetchHttpClient().getResponseBody(response),
-			).resolves.toBe(body)
+			await expect(new HttpClient().getResponseBody(response)).resolves.toBe(
+				body,
+			)
 		})
 	})
 
 	describe.each([
-		['text/plain', 'plain text'],
+		['application/json', '{"hello":"json"}'],
 		['text/html', 'html text'],
+		['text/plain', 'plain text'],
 	])(
 		'when a response content type is "%s"',
 		(contentType: string, body: string) => {
@@ -122,9 +119,9 @@ describe('FetchHttpClient.getResponseBody(Response)', () => {
 			})
 
 			it('should return the body text', async () => {
-				await expect(
-					new FetchHttpClient().getResponseBody(response),
-				).resolves.toBe(body)
+				await expect(new HttpClient().getResponseBody(response)).resolves.toBe(
+					body,
+				)
 			})
 		},
 	)

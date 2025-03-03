@@ -184,26 +184,23 @@ describe('LocalFileSystem', () => {
 		describe('when path does not exist', () => {
 			beforeEach(() => mockFs({}))
 
-			it('should return false', async () => {
-				expect(await new LocalFileSystem().isFile(path)).toBe(false)
-			})
+			it('should return false', async () =>
+				expect(await new LocalFileSystem().isFile(path)).toBe(false))
 		})
 
 		describe('when path does exist', () => {
 			describe('when path is not a file', () => {
 				beforeEach(() => mockFs({ path: { to: { file: {} } } }))
 
-				it('should return false', async () => {
-					expect(await new LocalFileSystem().isFile(path)).toBe(false)
-				})
+				it('should return false', async () =>
+					expect(await new LocalFileSystem().isFile(path)).toBe(false))
 			})
 
 			describe('when path is a file', () => {
 				beforeEach(() => mockFs({ path: { to: { file: oldData } } }))
 
-				it('should return true', async () => {
-					expect(await new LocalFileSystem().isFile(path)).toBe(true)
-				})
+				it('should return true', async () =>
+					expect(await new LocalFileSystem().isFile(path)).toBe(true))
 			})
 		})
 	})
@@ -259,31 +256,28 @@ describe('LocalFileSystem', () => {
 			describe('when the directory is empty', () => {
 				beforeEach(() => mockFs({ path: { to: {} } }))
 
-				it('should return an empty array', async () => {
+				it('should return an empty array', async () =>
 					expect(
 						await new LocalFileSystem().readDirectory(pathDirectory),
-					).toStrictEqual([])
-				})
+					).toStrictEqual([]))
 			})
 
 			describe('when the directory contains files', () => {
 				beforeEach(() => mockFs({ path: { to: { file: oldData } } }))
 
-				it('should return an array of relative file paths', async () => {
+				it('should return an array of relative file paths', async () =>
 					expect(
 						await new LocalFileSystem().readDirectory(pathDirectory),
-					).toStrictEqual(['file'])
-				})
+					).toStrictEqual(['file']))
 			})
 
 			describe('when the directory contains directories', () => {
 				beforeEach(() => mockFs({ path: { to: { file: {} } } }))
 
-				it('should return an array of relative directory paths', async () => {
+				it('should return an array of relative directory paths', async () =>
 					expect(
 						await new LocalFileSystem().readDirectory(pathDirectory),
-					).toStrictEqual(['file'])
-				})
+					).toStrictEqual(['file']))
 			})
 		})
 	})
@@ -306,9 +300,7 @@ describe('LocalFileSystem', () => {
 						to: {
 							directory: {
 								file: '',
-								nested: {
-									file: '',
-								},
+								nested: { file: '' },
 							},
 							file: '',
 						},
@@ -372,26 +364,23 @@ describe('LocalFileSystem', () => {
 		describe('when path does not exist', () => {
 			beforeEach(() => mockFs({}))
 
-			it('should return false', async () => {
-				expect(await new LocalFileSystem().isDirectory(path)).toBe(false)
-			})
+			it('should return false', async () =>
+				expect(await new LocalFileSystem().isDirectory(path)).toBe(false))
 		})
 
 		describe('when path does exist', () => {
 			describe('when path is not a directory', () => {
 				beforeEach(() => mockFs({ path: { to: { file: oldData } } }))
 
-				it('should return false', async () => {
-					expect(await new LocalFileSystem().isDirectory(path)).toBe(false)
-				})
+				it('should return false', async () =>
+					expect(await new LocalFileSystem().isDirectory(path)).toBe(false))
 			})
 
 			describe('when path is a directory', () => {
 				beforeEach(() => mockFs({ path: { to: { file: {} } } }))
 
-				it('should return true', async () => {
-					expect(await new LocalFileSystem().isDirectory(path)).toBe(true)
-				})
+				it('should return true', async () =>
+					expect(await new LocalFileSystem().isDirectory(path)).toBe(true))
 			})
 		})
 	})
@@ -680,9 +669,8 @@ describe('LocalFileSystem', () => {
 		describe('when file or directory does not exist', () => {
 			beforeEach(() => mockFs({}))
 
-			it('should return false', async () => {
-				expect(await new LocalFileSystem().exists(path)).toBe(false)
-			})
+			it('should return false', async () =>
+				expect(await new LocalFileSystem().exists(path)).toBe(false))
 		})
 
 		describe('when file or directory does exist', () => {
@@ -692,9 +680,8 @@ describe('LocalFileSystem', () => {
 				['file', path],
 				['directory', 'path/to'],
 			])('should return true', (testCase: string, pathToItem: string) => {
-				test(`${testCase}`, async () => {
-					expect(await new LocalFileSystem().exists(pathToItem)).toBe(true)
-				})
+				test(`${testCase}`, async () =>
+					expect(await new LocalFileSystem().exists(pathToItem)).toBe(true))
 			})
 		})
 	})

@@ -154,30 +154,56 @@ export class LocalFileSystem implements VirtualFileSystem {
 	}
 
 	/**
-	 * Reads a directory and returns the contents.
+	 * Lists directory contents. Alias of list().
 	 *
 	 * @param  {string}            path Path to directory.
-	 * @return {Promise<string[]>}      Directory contents.
+	 * @return {Promise<string[]>}      List of directory contents.
 	 * @throws {DirectoryNotFound}
 	 *
 	 * @since  0.1.1
 	 */
 	public async readDirectory(path: string): Promise<string[]> {
+		return this.list(path)
+	}
+
+	/**
+	 * Lists directory contents.
+	 *
+	 * @param  {string}            path Path to directory.
+	 * @return {Promise<string[]>}      List of directory contents.
+	 * @throws {DirectoryNotFound}
+	 *
+	 * @since  unreleased
+	 */
+	public async list(path: string): Promise<string[]> {
 		if (!(await this.isDirectory(path))) throw new DirectoryNotFound(path)
 
 		return readdir(path)
 	}
 
 	/**
-	 * Reads a directory and returns the contents recursively.
+	 * Lists directory contents recursively. Alias of listRecursive().
 	 *
 	 * @param  {string}            path Path to directory.
-	 * @return {Promise<string[]>}      Directory contents.
+	 * @return {Promise<string[]>}      Recursive contents of the directory.
 	 * @throws {DirectoryNotFound}
 	 *
 	 * @since  0.1.1
 	 */
 	public async readDirectoryRecursive(path: string): Promise<string[]> {
+		return this.listRecursive(path)
+	}
+
+	/**
+	 * Lists directory contents recursively.
+	 *
+	 * @param  {string}            path Path to directory.
+	 * @return {Promise<string[]>}      Recursive list of directory contents.
+	 * @throws {DirectoryNotFound}
+	 *
+	 * @since  unreleased
+	 */
+	public async listRecursive(path: string): Promise<string[]> {
 		if (!(await this.isDirectory(path))) throw new DirectoryNotFound(path)
 
 		const filePaths: string[] = []

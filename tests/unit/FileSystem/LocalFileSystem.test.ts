@@ -4,6 +4,7 @@ import {
 	describe,
 	expect,
 	it,
+	jest,
 	test,
 } from '@jest/globals'
 import {
@@ -14,6 +15,7 @@ import {
 import { FinalClassWasExtended } from '../../../src/Exception/Exception.ts'
 import { LocalFileSystem } from '../../../src/FileSystem/LocalFileSystem.ts'
 import mockFs from 'mock-fs'
+import process from 'node:process'
 
 describe('LocalFileSystem', () => {
 	afterEach(mockFs.restore)
@@ -33,6 +35,26 @@ describe('LocalFileSystem', () => {
 			expect(() => new (class extends LocalFileSystem {})()).toThrow(
 				FinalClassWasExtended,
 			))
+	})
+
+	describe('canRead', () => {
+		describe('when it is not possible to read from the file system', () => {
+			beforeEach(() => {
+				process.permission = { has: jest.fn(() => false) }
+			})
+
+			it('should return false', async () =>
+				expect(await new LocalFileSystem().canRead()).toBe(false))
+		})
+
+		describe('when it is possible to read from the file system', () => {
+			beforeEach(() => {
+				process.permission = { has: jest.fn(() => true) }
+			})
+
+			it('should return true when can read from the file system', async () =>
+				expect(await new LocalFileSystem().canRead()).toBe(true))
+		})
 	})
 
 	describe('readFile', () => {

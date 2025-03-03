@@ -12,6 +12,16 @@ import {
  */
 export interface VirtualFileSystem {
 	/**
+	 * Checks if it is possible to read from the file system.
+	 *
+	 * @return {Promise<boolean>} Possibility to read from the file system.
+	 * @throws {FileSystemException}
+	 *
+	 * @since  unreleased
+	 */
+	canRead(): Promise<boolean>
+
+	/**
 	 * Reads a file.
 	 *
 	 * @param  {string}          path Path to file.

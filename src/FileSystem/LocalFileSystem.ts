@@ -19,6 +19,7 @@ import {
 } from './FileSystemException.ts'
 import { dirname, join, parse } from 'node:path'
 import { FinalClassWasExtended } from '../Exception/Exception.ts'
+import process from 'node:process'
 import { VirtualFileSystem } from './VirtualFileSystem.ts'
 
 /**
@@ -50,6 +51,18 @@ export class LocalFileSystem implements VirtualFileSystem {
 	public constructor() {
 		if (new.target !== LocalFileSystem)
 			throw new FinalClassWasExtended(LocalFileSystem)
+	}
+
+	/**
+	 * Checks if it's possible to read from the file system.
+	 *
+	 * @return {Promise<boolean>} Possibility to read from the file system.
+	 * @throws {FileSystemException}
+	 *
+	 * @since  unreleased
+	 */
+	public canRead(): Promise<boolean> {
+		return Promise.resolve(process.permission.has('fs.read'))
 	}
 
 	/**

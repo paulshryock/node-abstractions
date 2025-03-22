@@ -59,7 +59,7 @@ export class LocalFileSystem implements VirtualFileSystem {
 	 * @return {Promise<boolean>} Possibility to read from the file system.
 	 * @throws {FileSystemException}
 	 *
-	 * @since  unreleased
+	 * @since  0.3.2
 	 */
 	public canRead(): Promise<boolean> {
 		return Promise.resolve(process.permission.has('fs.read'))
@@ -173,7 +173,7 @@ export class LocalFileSystem implements VirtualFileSystem {
 	 * @return {Promise<string[]>}      List of directory contents.
 	 * @throws {DirectoryNotFound}
 	 *
-	 * @since  unreleased
+	 * @since  0.3.2
 	 */
 	public async list(path: string): Promise<string[]> {
 		if (!(await this.isDirectory(path))) throw new DirectoryNotFound(path)
@@ -201,7 +201,7 @@ export class LocalFileSystem implements VirtualFileSystem {
 	 * @return {Promise<string[]>}      Recursive list of directory contents.
 	 * @throws {DirectoryNotFound}
 	 *
-	 * @since  unreleased
+	 * @since  0.3.2
 	 */
 	public async listRecursive(path: string): Promise<string[]> {
 		if (!(await this.isDirectory(path))) throw new DirectoryNotFound(path)

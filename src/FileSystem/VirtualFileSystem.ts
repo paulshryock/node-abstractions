@@ -17,7 +17,7 @@ export interface VirtualFileSystem {
 	 * @return {Promise<boolean>} Possibility to read from the file system.
 	 * @throws {FileSystemException}
 	 *
-	 * @since  unreleased
+	 * @since  0.3.2
 	 */
 	canRead(): Promise<boolean>
 
@@ -92,7 +92,7 @@ export interface VirtualFileSystem {
 	 * @return {Promise<string[]>}      List of directory contents.
 	 * @throws {DirectoryNotFound}
 	 *
-	 * @since  unreleased
+	 * @since  0.3.2
 	 */
 	list(path: string): Promise<string[]>
 
@@ -114,7 +114,7 @@ export interface VirtualFileSystem {
 	 * @return {Promise<string[]>}      Recursive list of directory contents.
 	 * @throws {DirectoryNotFound}
 	 *
-	 * @since  unreleased
+	 * @since  0.3.2
 	 */
 	listRecursive(path: string): Promise<string[]>
 

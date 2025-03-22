@@ -12,11 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Fixed** for any bug fixes.
 - **Security** in case of vulnerabilities.
 
-## [Unreleased](https://github.com/paulshryock/node-abstractions.git/compare/HEAD..v0.3.1)
+## [Unreleased](https://github.com/paulshryock/node-abstractions.git/compare/HEAD..v0.3.2)
 
 ### Added
-
-- Add HttpClient class with two methods.
 
 ### Changed
 
@@ -27,6 +25,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Security
+
+## [v0.3.2](https://github.com/paulshryock/node-abstractions.git/releases/tag/v0.3.2) - 2025-03-22
+
+### Added
+
+- Add HttpClient class.
+- Add VirtualFileSystem list and listRecursive methods.
 
 ## [v0.3.1](https://github.com/paulshryock/node-abstractions.git/releases/tag/v0.3.1) - 2024-12-29
 

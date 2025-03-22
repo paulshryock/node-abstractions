@@ -52,37 +52,6 @@ export class HttpClient {
 	}
 
 	/**
-	 * Gets a response body based on the Content-Type HTTP header or lack thereof.
-	 *
-	 * @param  {Response}              response Response to get body from.
-	 * @return {Promise<ResponseBody>}          Response body by Content-Type.
-	 *
-	 * @since  0.3.0
-	 */
-	public async getResponseBody(response: Response): Promise<ResponseBody> {
-		switch (this.#getContentType(response)) {
-			case 'application/json':
-			case 'text/html':
-			case 'text/plain':
-				return response.text()
-			default:
-				return response.body
-		}
-	}
-
-	/**
-	 * Gets a response's Content-Type HTTP header value.
-	 *
-	 * @param  {Response} response HTTP response to get the Content-Type from.
-	 * @return {string}            Content-Type header value.
-	 *
-	 * @since  0.3.0
-	 */
-	#getContentType(response: Response): string {
-		return `${response.headers.get('Content-Type')?.split(';')?.[0]}`
-	}
-
-	/**
 	 * Checks if an exception is from an abort signal.
 	 *
 	 * @param  {unknown} exception Maybe an abort signal exception.
@@ -94,10 +63,3 @@ export class HttpClient {
 		return exception instanceof DOMException && exception.name === 'AbortError'
 	}
 }
-
-/**
- * Possible response body types.
- *
- * @since 0.3.0
- */
-type ResponseBody = ReadableStream | string | null

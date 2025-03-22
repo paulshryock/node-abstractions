@@ -22,6 +22,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- Remove `HttpClient.getResponseBody` method.
+
 ### Fixed
 
 ### Security
@@ -30,8 +32,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Add HttpClient class.
-- Add VirtualFileSystem list and listRecursive methods.
+- Add `HttpClient` class.
+- Add `VirtualFileSystem.list` and `VirtualFileSystem.listRecursive` methods.
 
 ## [v0.3.1](https://github.com/paulshryock/node-abstractions.git/releases/tag/v0.3.1) - 2024-12-29
 

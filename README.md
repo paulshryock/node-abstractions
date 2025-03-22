@@ -259,13 +259,6 @@ Sends requests and returns responses.
 
 Sends a request and returns a response.
 
-##### `getResponseBody(response)`
-
-- `response`: `<Response>` Response to get body from.
-- Returns: `<Promise<ReadableStream|string|null>>` Response body by Content-Type.
-
-Gets a response body based on the Content-Type HTTP header or lack thereof.
-
 ## Support
 
 - [Ask a question](https://github.com/paulshryock/node-abstractions/issues/new?assignees=&labels=question&projects=&template=1_ask_a_question.md&title=)

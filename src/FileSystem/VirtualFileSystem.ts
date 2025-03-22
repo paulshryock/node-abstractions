@@ -86,17 +86,6 @@ export interface VirtualFileSystem {
 	createDirectory(path: string): Promise<void>
 
 	/**
-	 * Lists directory contents. Alias of list().
-	 *
-	 * @param  {string}            path Path to directory.
-	 * @return {Promise<string[]>}      List of directory contents.
-	 * @throws {DirectoryNotFound}
-	 *
-	 * @since  0.1.1
-	 */
-	readDirectory(path: string): Promise<string[]>
-
-	/**
 	 * Lists directory contents.
 	 *
 	 * @param  {string}            path Path to directory.
@@ -108,15 +97,15 @@ export interface VirtualFileSystem {
 	list(path: string): Promise<string[]>
 
 	/**
-	 * Lists directory contents recursively. Alias of listRecursive().
+	 * Lists directory contents. Alias of list().
 	 *
 	 * @param  {string}            path Path to directory.
-	 * @return {Promise<string[]>}      Recursive contents of the directory.
+	 * @return {Promise<string[]>}      List of directory contents.
 	 * @throws {DirectoryNotFound}
 	 *
 	 * @since  0.1.1
 	 */
-	readDirectoryRecursive(path: string): Promise<string[]>
+	readDirectory(path: string): Promise<string[]>
 
 	/**
 	 * Lists directory contents recursively.
@@ -128,6 +117,17 @@ export interface VirtualFileSystem {
 	 * @since  unreleased
 	 */
 	listRecursive(path: string): Promise<string[]>
+
+	/**
+	 * Lists directory contents recursively. Alias of listRecursive().
+	 *
+	 * @param  {string}            path Path to directory.
+	 * @return {Promise<string[]>}      Recursive contents of the directory.
+	 * @throws {DirectoryNotFound}
+	 *
+	 * @since  0.1.1
+	 */
+	readDirectoryRecursive(path: string): Promise<string[]>
 
 	/**
 	 * Deletes a directory.

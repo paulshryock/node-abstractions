@@ -113,6 +113,12 @@ myClass.printHelloErrorToStderr()
 
 #### Public methods
 
+##### ` canRead()`
+
+- Returns: `Promise<boolean>` Possibility to read from the file system.
+
+Checks if it is possible to read from the file system.
+
 ##### `readFile(path)`
 
 - `path`: `<string>` Path to file.
@@ -157,21 +163,33 @@ Checks if a path is a file.
 
 Creates a directory.
 
+##### `list(path)`
+
+- `path`: `<string>` Path to directory.
+- Returns: `<Promise<string[]>>` Contents of the directory.
+
+Lists directory contents.
+
 ##### `readDirectory(path)`
 
 - `path`: `<string>` Path to directory.
 - Returns: `<Promise<string[]>>` Contents of the directory.
 
-Reads a directory and returns the contents.
+Lists directory contents. Alias of list().
+
+##### `listRecursive(path)`
+
+- `path`: `<string>` Path to directory.
+- Returns: `<Promise<string[]>>` Recursive contents of the directory.
+
+Lists directory contents recursively.
 
 ##### `readDirectoryRecursive(path)`
 
 - `path`: `<string>` Path to directory.
 - Returns: `<Promise<string[]>>` Recursive contents of the directory.
 
-Reads a directory and returns the contents.
-
-Reads a directory and returns the contents recursively.
+Lists directory contents recursively. Alias of listRecursive().
 
 ##### `deleteDirectory(path)`
 
@@ -227,6 +245,26 @@ class MyClass {
 
 const myClass = new MyClass(new LocalFileSystem())
 ```
+
+### `HttpClient`
+
+Sends requests and returns responses.
+
+#### Public methods
+
+##### `sendRequest(request)`
+
+- `request`: `<Request>` HTTP request to send.
+- Returns: `<Promise<Response>>` HTTP response.
+
+Sends a request and returns a response.
+
+##### `getResponseBody(response)`
+
+- `response`: `<Response>` Response to get body from.
+- Returns: `<Promise<ReadableStream|string|null>>` Response body by Content-Type.
+
+Gets a response body based on the Content-Type HTTP header or lack thereof.
 
 ## Support
 

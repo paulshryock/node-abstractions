@@ -1,4 +1,8 @@
+export {
+	CommandLine,
+	type CommandLineOutputOptions,
+} from './CommandLine/CommandLine.ts'
+export type { Streams as CommandLineStreams } from './CommandLine/Streams.ts'
 export type { VirtualFileSystem } from './FileSystem/VirtualFileSystem.ts'
-export { CommandLine } from './CommandLine/CommandLine.ts'
 export { HttpClient } from './HttpClient/HttpClient.ts'
 export { LocalFileSystem } from './FileSystem/LocalFileSystem.ts'

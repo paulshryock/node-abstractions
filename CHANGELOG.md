@@ -22,11 +22,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- Remove `HttpClient.getResponseBody` method.
-
 ### Fixed
 
 ### Security
+
+## [v0.4.0](https://github.com/paulshryock/node-abstractions.git/releases/tag/v0.4.0) - 2025-03-22
+
+### Removed
+
+- Remove `HttpClient.getResponseBody` method.
 
 ## [v0.3.2](https://github.com/paulshryock/node-abstractions.git/releases/tag/v0.3.2) - 2025-03-22
 

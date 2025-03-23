@@ -16,7 +16,7 @@ import { FinalClassWasExtended } from '../Exception/Exception.ts'
  */
 export class HttpClient {
 	/**
-	 * Constructs a Fetch API HTTP client.
+	 * Constructs an HTTP client.
 	 *
 	 * @throws {FinalClassWasExtended}
 	 *

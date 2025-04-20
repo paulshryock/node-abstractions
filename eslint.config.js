@@ -309,5 +309,6 @@ export default [
 			'@typescript-eslint/no-unsafe-call': 'off',
 		},
 	},
+	{ files: ['**/Null*'], rules: { 'no-empty-function': 'off' } },
 	eslintConfigPrettier,
 ]

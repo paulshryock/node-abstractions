@@ -288,6 +288,7 @@ export default [
 				'error',
 				{ argsIgnorePattern: '^_' },
 			],
+			'@typescript-eslint/require-await': 'off',
 			'@typescript-eslint/return-await': 'error',
 		},
 	},

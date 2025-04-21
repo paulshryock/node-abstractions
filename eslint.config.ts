@@ -1,4 +1,5 @@
 import * as typescriptEslintParser from '@typescript-eslint/parser'
+import { ESLint } from 'eslint'
 import eslintComments from '@eslint-community/eslint-plugin-eslint-comments'
 import eslintConfigPrettier from 'eslint-config-prettier'
 import eslintJsonPlugin from 'eslint-plugin-json'
@@ -21,10 +22,16 @@ export default [
 			noInlineConfig: false,
 			reportUnusedDisableDirectives: true,
 		},
-		plugins: { '@eslint-community/eslint-comments': eslintComments, jsdoc },
+		plugins: {
+			'@eslint-community/eslint-comments': eslintComments as ESLint.Plugin,
+			jsdoc,
+		},
 		rules: {
 			...js.configs.recommended.rules,
-			...eslintComments.configs.recommended.rules,
+			...(
+				(eslintComments as ESLint.Plugin).configs
+					?.recommended as ESLint.ConfigData
+			)?.rules,
 			'@eslint-community/eslint-comments/no-unused-disable': 'error',
 			'@eslint-community/eslint-comments/require-description': [
 				'error',
@@ -259,9 +266,12 @@ export default [
 	},
 	{
 		files: ['**/*.json'],
-		plugins: { json: eslintJsonPlugin },
-		processor: eslintJsonPlugin.processors['.json'],
-		rules: eslintJsonPlugin.configs.recommended.rules,
+		plugins: { json: eslintJsonPlugin as ESLint.Plugin },
+		processor: (eslintJsonPlugin as ESLint.Plugin).processors?.['.json'],
+		rules: (
+			(eslintJsonPlugin as ESLint.Plugin).configs
+				?.recommended as ESLint.ConfigData
+		)?.rules,
 	},
 	{
 		files: ['**/*.ts'],
@@ -278,10 +288,7 @@ export default [
 		},
 		plugins: { '@typescript-eslint': typescriptEslint },
 		rules: {
-			...typescriptEslint.configs['eslint-recommended'].overrides.reduce(
-				(all, override) => ({ ...all, ...override.rules }),
-				{},
-			).rules,
+			...typescriptEslint.configs['eslint-recommended'].rules,
 			...typescriptEslint.configs.recommended.rules,
 			...typescriptEslint.configs['recommended-requiring-type-checking'].rules,
 			'@typescript-eslint/no-unused-vars': [

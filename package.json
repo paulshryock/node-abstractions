@@ -38,7 +38,7 @@
 		"format:check": "prettier --check --log-level=warn .",
 		"format:fix": "prettier --log-level=warn --write .",
 		"lint": "npm run lint:check",
-		"lint:check": "eslint .",
+		"lint:check": "npx --node-options='--experimental-strip-types --no-warnings=ExperimentalWarning' eslint --flag unstable_native_nodejs_ts_config",
 		"lint:fix": "npm run lint -- --fix",
 		"prepack": "npm-run-all -p quality docs types -s test:acceptance",
 		"prepare": "npm run ts-node -- bin/prepare.ts",

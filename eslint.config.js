@@ -286,7 +286,12 @@ export default [
 			...typescriptEslint.configs['recommended-requiring-type-checking'].rules,
 			'@typescript-eslint/no-unused-vars': [
 				'error',
-				{ argsIgnorePattern: '^_' },
+				{
+					argsIgnorePattern: '^_',
+					caughtErrorsIgnorePattern: '^_',
+					destructuredArrayIgnorePattern: '^_',
+					varsIgnorePattern: '^_',
+				},
 			],
 			'@typescript-eslint/require-await': 'off',
 			'@typescript-eslint/return-await': 'error',

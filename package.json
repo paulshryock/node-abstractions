@@ -62,7 +62,7 @@
 		"@jest/globals": "29.7.0",
 		"@types/fs-extra": "11.0.4",
 		"@types/mock-fs": "4.13.4",
-		"@types/node": "22.14.1",
+		"@types/node": "22.15.2",
 		"@typescript-eslint/eslint-plugin": "8.31.0",
 		"@typescript-eslint/parser": "8.31.0",
 		"babel-jest": "29.7.0",

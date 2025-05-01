@@ -55,9 +55,9 @@
 		"version": "release-bump -epq --ignore=coverage,dist && git add ."
 	},
 	"devDependencies": {
-		"@babel/core": "7.26.10",
-		"@babel/preset-env": "7.26.9",
-		"@babel/preset-typescript": "7.27.0",
+		"@babel/core": "7.27.1",
+		"@babel/preset-env": "7.27.1",
+		"@babel/preset-typescript": "7.27.1",
 		"@eslint-community/eslint-plugin-eslint-comments": "4.5.0",
 		"@jest/globals": "29.7.0",
 		"@types/fs-extra": "11.0.4",

@@ -83,7 +83,7 @@
 		"release-bump": "3.0.0-alpha.69",
 		"ts-node": "10.9.2",
 		"tslib": "2.8.1",
-		"typedoc": "0.28.4",
+		"typedoc": "0.28.5",
 		"typescript": "5.8.3"
 	},
 	"engines": {

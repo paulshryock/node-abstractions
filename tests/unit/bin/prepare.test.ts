@@ -30,7 +30,8 @@ describe('when ci environment variable is not set', () => {
 	})
 
 	it('should install husky', async () => (
-		await import(filePath), expect(mockInstall).toHaveBeenCalledTimes(1)
+		await import(filePath),
+		expect(mockInstall).toHaveBeenCalledTimes(1)
 	))
 })
 
@@ -40,6 +41,7 @@ describe('when ci environment variable is "true"', () => {
 	})
 
 	it('should not install husky', async () => (
-		await import(filePath), expect(mockInstall).toHaveBeenCalledTimes(0)
+		await import(filePath),
+		expect(mockInstall).toHaveBeenCalledTimes(0)
 	))
 })

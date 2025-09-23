@@ -4,6 +4,7 @@ import {
 	RequestAborted,
 } from './HttpClientException.ts'
 import { FinalClassWasExtended } from '../Exception/Exception.ts'
+import { PsrHttpClient } from './PsrHttpClient.ts'
 
 /**
  * Sends requests and returns responses.
@@ -14,7 +15,7 @@ import { FinalClassWasExtended } from '../Exception/Exception.ts'
  *
  * @since 0.3.0
  */
-export class HttpClient {
+export class HttpClient implements PsrHttpClient {
 	/**
 	 * Constructs an HTTP client.
 	 *

@@ -240,7 +240,7 @@ Checks if a file or directory exists.
 import { LocalFileSystem, VirtualFileSystem } from '@paulshryock/abstractions'
 
 class MyClass {
-    public constructor(private fileSystem = VirtualFileSystem) {}
+    public constructor(private fileSystem: VirtualFileSystem) {}
 }
 
 const myClass = new MyClass(new LocalFileSystem())
@@ -258,6 +258,18 @@ Sends requests and returns responses.
 - Returns: `<Promise<Response>>` HTTP response.
 
 Sends a request and returns a response.
+
+#### Usage examples
+
+```ts
+import { HttpClient, PsrHttpClient } from '@paulshryock/abstractions'
+
+class MyClass {
+    public constructor(private httpClient: PsrHttpClient) {}
+}
+
+const myClass = new MyClass(new HttpClient())
+```
 
 ## Support
 

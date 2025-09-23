@@ -14,7 +14,7 @@ type ErrorOptions = {
  * An exception breaks the normal flow of execution and executes a
  * pre-registered exception handler.
  *
- * @see   https://en.wikipedia.org/wiki/Exception_handling
+ * @see   {@link https://en.wikipedia.org/wiki/Exception_handling}
  *
  * @since 0.1.1
  */

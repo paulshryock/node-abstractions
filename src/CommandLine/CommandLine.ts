@@ -106,7 +106,7 @@ export class CommandLine {
 		 * implementation inconsistencies, but you can generally assume it exists
 		 * and use it for debugging purposes.
 		 *
-		 * @see   https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/stack
+		 * @see   {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/stack}
 		 *
 		 * @since 0.3.0
 		 */

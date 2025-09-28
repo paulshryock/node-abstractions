@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/paulshryock/node-abstractions.git/compare/HEAD..v0.3.2)
 
 ### Added
+- Add `PsrHttpClient` interface based on PSR-18.
 
 ### Changed
 

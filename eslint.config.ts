@@ -2,7 +2,6 @@ import * as typescriptEslintParser from '@typescript-eslint/parser'
 import { ESLint } from 'eslint'
 import eslintComments from '@eslint-community/eslint-plugin-eslint-comments'
 import eslintConfigPrettier from 'eslint-config-prettier'
-import eslintJsonPlugin from 'eslint-plugin-json'
 import { fileURLToPath as fileUrlToPath } from 'node:url'
 import jest from 'eslint-plugin-jest'
 import js from '@eslint/js'
@@ -263,15 +262,6 @@ export default [
 	{
 		files: ['**/*.cjs'],
 		languageOptions: { ecmaVersion: 'latest', sourceType: 'commonjs' },
-	},
-	{
-		files: ['**/*.json'],
-		plugins: { json: eslintJsonPlugin as ESLint.Plugin },
-		processor: (eslintJsonPlugin as ESLint.Plugin).processors?.['.json'],
-		rules: (
-			(eslintJsonPlugin as ESLint.Plugin).configs
-				?.recommended as ESLint.ConfigData
-		)?.rules,
 	},
 	{
 		files: ['**/*.ts'],

@@ -41,7 +41,7 @@
 		"lint:check": "npx --node-options='--experimental-strip-types --no-warnings=ExperimentalWarning' eslint --flag unstable_native_nodejs_ts_config",
 		"lint:fix": "npm run lint -- --fix",
 		"prepack": "npm-run-all -p quality docs types -s test:acceptance",
-		"prepare": "npm run ts-node -- bin/prepare.ts",
+		"prepare": "[[ $CI = true ]] || git config set --local core.hooksPath ./bin/git-hooks/",
 		"quality": "run-p format:check lint typecheck test compile",
 		"test": "node --experimental-vm-modules --no-warnings=ExperimentalWarning node_modules/jest/bin/jest.js",
 		"test:acceptance": "npm test -- --config=jest.config.acceptance.ts",

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+TS_FILES_CHANGED=$(git diff --name-only --staged | \
+  grep -cE '.nvmrc|^package[-\.]|\.ts$|\.cts$|tsconfig.json') \
+  &> /dev/null
+
+[[ $TS_FILES_CHANGED -eq 0 ]] || npm run quality

@@ -1,2 +1,0 @@
-echo '⚙️ Checking code quality.'
-npm run quality

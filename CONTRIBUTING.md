@@ -11,30 +11,30 @@
 
 **Follow these guidelines:**
 
-1. [Use version control](#use-version-control)
-2. [Use trunk-based development](#use-trunk-based-development)
-3. [Use test-driven development](#use-test-driven-development)
-4. [Use continuous integration](#use-continuous-integration)
-5. [Use continuous delivery](#use-continuous-delivery)
-6. [Prioritize throughput and stability](prioritize-throughput-and-stability)
-7. [Use pair programming](#use-pair-programming)
-8. [Keep a changelog](#keep-a-changelog)
-9. [Write documentation](#write-documentation)
-10. [Write maintainable code](#write-maintainable-code)
+1. [Use Version Control](#use-version-control)
+2. [Use Trunk-Based Development](#use-trunk-based-development)
+3. [Use Test-Driven Development](#use-test-driven-development)
+4. [Use Continuous Integration](#use-continuous-integration)
+5. [Use Continuous Delivery](#use-continuous-delivery)
+6. [Prioritize Throughput and Stability](prioritize-throughput-and-stability)
+7. [Use Pair Programming](#use-pair-programming)
+8. [Keep a Changelog](#keep-a-changelog)
+9. [Write Documentation](#write-documentation)
+10. [Write Maintainable Code](#write-maintainable-code)
 
-## Use version control
+## Use Version Control
 
 > "With version control, every change made to the code base is tracked. This allows software developers to see the entire history of who changed what at any given time — and roll back from the current version to an earlier version if they need to. It also creates a single source of truth. Version control serves as a safety net to protect the source code from irreparable harm, giving the development team the freedom to experiment without fear of causing damage or creating code conflicts."
 >
 > https://about.gitlab.com/topics/version-control/
 
-## Use trunk-based development
+## Use Trunk-Based Development
 
 > "Trunk-based development, done in a disciplined way, streamlines the development process, enhances team collaboration, improves code stability, supports efficient CI/CD practices, and may result in less technical debt. While it may be challenging to adapt to this approach if you've been working with a branch-based model, the long-term benefits are worthwhile."
 >
 > https://trishagee.com/2023/05/29/why-i-prefer-trunk-based-development/
 
-## Use test-driven development
+## Use Test-Driven Development
 
 > "TDD (test-driven development), is a technique — or a _process_ for developing software. The goal is to keep code quality high and keep you productive, even as projects grow to be really large and complex. We should like this process because it keeps tight feedback loops. It gives us the ability to produce cleaner, simpler designs and helps us introduce abstractions only when they are absolutely necessary."
 >
@@ -42,33 +42,33 @@
 
 ![Write a failing test, make it pass, refactor, and commit](docs/img/test-driven-development.svg)
 
-## Use continuous integration
+## Use Continuous Integration
 
 Continuous Integration (CI) involves integrating code changes frequently into a single branch while automating the build and test process. Developers commit their changes multiple times a day, triggering automated builds, unit tests, integration tests, and code quality checks. This practice enables early detection of integration issues, promotes collaboration, and maintains a consistently releasable codebase.
 
-## Use continuous delivery
+## Use Continuous Delivery
 
 Continuous Delivery (CD) extends Continuous Integration by not only integrating code changes frequently but also automating the entire software delivery process. This ensures that every commit can be potentially released to production within an hour. CD enables organizations to deliver value to customers more frequently, respond to market demands rapidly, and maintain a high level of software quality.
 
-## Prioritize throughput and stability
+## Prioritize Throughput and Stability
 
 Software engineers at elite organizations prioritize both throughput and stability because they recognize the importance of delivering value to customers at a rapid pace while maintaining a robust and reliable software system. Prioritizing throughput ensures that features, improvements, and bug fixes are delivered quickly, enabling the organization to respond to market demands and stay ahead of competitors.
 
 Simultaneously, emphasizing stability ensures that the software operates consistently and reliably, providing a positive user experience and minimizing disruptions. By striking the right balance between throughput and stability, elite organizations can achieve sustainable growth, customer satisfaction, and maintain a solid foundation for continuous innovation.
 
-## Use pair programming
+## Use Pair Programming
 
 > "Pair programming improves design quality, reduces defects, reduces staffing risk, enhances technical skills, improves team communications and is considered more enjoyable at statistically significant levels."
 >
 > https://web.eecs.umich.edu/~weimerw/2021-481F/readings/pairprogramming.pdf
 
-## Keep a changelog
+## Keep a Changelog
 
 > "A changelog is a file which contains a curated, chronologically ordered list of notable changes for each version of a project. This makes it easier for users and contributors to see precisely what notable changes have been made between each release (or version) of the project. Whether consumers or developers, the end users of software are human beings who care about what's in the software. When the software changes, people want to know why and how."
 >
 > https://keepachangelog.com/
 
-## Write documentation
+## Write Documentation
 
 > "You have written a piece of code, and released it into the world. You have done this because you think that others might find it useful. However, people need to understand why your code might be useful for them, before they decide to use it. Documentation tells people that this project is for them.
 >
@@ -76,7 +76,7 @@ Simultaneously, emphasizing stability ensures that the software operates consist
 >
 > https://www.writethedocs.org/guide/writing/beginners-guide-to-docs/
 
-## Write maintainable code
+## Write Maintainable Code
 
 To write maintainable code, follow a set of principles and practices that promote simplicity, modularity, and automation. Break your code into short, focused units that are easy to understand and modify. Keep the units simple, avoiding unnecessary complexity. Strive to write code once, avoiding duplication. Keep unit interfaces small and focused to ensure cohesion and minimize dependencies.
 

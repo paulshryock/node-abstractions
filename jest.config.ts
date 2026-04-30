@@ -5,9 +5,6 @@ const config: Config = {
 	collectCoverage: true,
 	collectCoverageFrom: ['bin/**/*', 'src/**/*'],
 	coverageDirectory: 'coverage',
-	coveragePathIgnorePatterns: [
-		'<rootDir>/bin/suppress-experimental-warnings.cjs',
-	],
 	coverageProvider: 'babel',
 	coverageThreshold: {
 		global: {

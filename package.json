@@ -67,7 +67,7 @@
 		"@typescript-eslint/eslint-plugin": "8.72.2",
 		"@typescript-eslint/parser": "8.72.2",
 		"babel-jest": "30.5.2",
-		"dts-bundle-generator": "9.5.1",
+		"dts-bundle-generator": "10.0.0",
 		"esbuild": "0.28.2",
 		"eslint": "10.15.0",
 		"eslint-config-prettier": "10.1.8",

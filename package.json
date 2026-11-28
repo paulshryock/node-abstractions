@@ -70,7 +70,7 @@
 		"dts-bundle-generator": "10.0.0",
 		"esbuild": "0.28.2",
 		"eslint": "10.15.0",
-		"eslint-config-prettier": "10.1.8",
+		"eslint-config-prettier": "10.1.9",
 		"eslint-plugin-jest": "29.17.2",
 		"eslint-plugin-jsdoc": "65.0.0",
 		"husky": "9.1.7",
